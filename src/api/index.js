@@ -1,6 +1,9 @@
 import axios from 'axios';
 
+const countryUrl = 'https://covid19.mathdro.id/api';
 const url = 'https://covid19.mathdro.id/api';
+const urlSF = 'https://data.sfgov.org/resource/nfpa-mg4g.json';
+const urlUS = 'https://covid19.mathdro.id/api';
 
 export const fetchData = async (country) => {
   let changeableUrl = url;
