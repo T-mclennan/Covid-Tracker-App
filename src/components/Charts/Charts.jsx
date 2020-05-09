@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchDailyData } from '../../api';
+import { fetchDailyData, fetchSFData } from '../../api';
 import { Line, Bar } from 'react-chartjs-2';
 
 import styles from './Charts.module.css';
@@ -23,19 +23,27 @@ const Charts = ({ data: { confirmed, deaths, recovered }, country }) => {
         datasets: [
           {
             data: dailyData.map(({ confirmed }) => confirmed),
-            label: 'Infected',
+            // label: 'Infected',
             borderColor: '#3333ff',
             fill: true,
           },
           {
             data: dailyData.map(({ deaths }) => deaths),
-            label: 'Infected',
+            label: 'Deaths',
             borderColor: 'red',
             backgroundColor: 'rgba(255, 0, 0, 0.5)',
             fill: true,
           },
         ],
       }}
+      options={{
+        legend: { display: false },
+        title: { display: true, text: `Current state in ${country}` },
+      }}
+      // width={50}
+      height={window.innerHeight * 0.6}
+      width={window.innerWidth * 0.7}
+      options={{ maintainAspectRatio: false, legend: false }}
     />
   ) : null;
 
