@@ -19,7 +19,10 @@ const Charts = ({ data: { confirmed, deaths, recovered }, country }) => {
   const lineChart = dailyData.length ? (
     <Line
       data={{
-        labels: dailyData.map(({ date }) => date),
+        labels: dailyData.map(({ date }) => {
+          const dateWithoutYear = date.slice(5, 9);
+          return dateWithoutYear;
+        }),
         datasets: [
           {
             data: dailyData.map(({ confirmed }) => confirmed),
