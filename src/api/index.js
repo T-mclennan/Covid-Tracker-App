@@ -6,21 +6,18 @@ const urlSF = 'https://data.sfgov.org/resource/nfpa-mg4g.json';
 const urlUS = 'https://covid19.mathdro.id/api';
 
 export const fetchData = async (country) => {
-  let changeableUrl = url;
-  if (country) {
-    changeableUrl = `${url}/countries/${country}`;
-  }
+  let changeableUrl = urlSF;
 
   try {
     const {
-      data: { confirmed, recovered, deaths, lastUpdate },
+      data: { result_date, tests, pos, pct },
     } = await axios.get(changeableUrl);
 
     const modifiedData = {
-      confirmed,
-      recovered,
-      deaths,
-      lastUpdate,
+      result_date,
+      tests,
+      pos,
+      pct,
     };
 
     return modifiedData;
@@ -30,33 +27,29 @@ export const fetchData = async (country) => {
 };
 
 export const fetchSFData = async () => {
-  // try {
-  //   const { data } = await axios.get(`${url}/daily`);
-  //   const modifiedData = data.map((dailyData) => ({
-  //     confirmed: dailyData.confirmed.total,
-  //     deaths: dailyData.deaths.total,
-  //     date: dailyData.reportDate,
-  //   }));
-  //   return modifiedData;
-  // } catch (error) {
-  //   console.log(error);
-  // }
-};
-
-export const fetchDailyData = async () => {
+  let changeableUrl = urlSF;
   try {
-    const { data } = await axios.get(`${url}/daily`);
-
-    const modifiedData = data.map((dailyData) => ({
-      confirmed: dailyData.confirmed.total,
-      deaths: dailyData.deaths.total,
-      date: dailyData.reportDate,
-    }));
-    return modifiedData;
+    const responseData = await axios.get(changeableUrl);
+    return responseData;
   } catch (error) {
     console.log(error);
   }
 };
+
+// export const fetchDailyData = async () => {
+//   try {
+//     const { data } = await axios.get(`${url}/daily`);
+
+//     const modifiedData = data.map((dailyData) => ({
+//       confirmed: dailyData.confirmed.total,
+//       deaths: dailyData.deaths.total,
+//       date: dailyData.reportDate,
+//     }));
+//     return modifiedData;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 export const fetchCountries = async () => {
   try {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Cards, Charts, CountryPicker, MainHeader, Footer } from './components';
 import styles from './App.module.css';
-import { fetchData } from './api/index';
+import { fetchSFData } from './api/index';
 
 class App extends React.Component {
   state = {
@@ -10,16 +10,15 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    const fetchedData = await fetchData();
-    console.log(fetchedData);
+    const fetchedData = await fetchSFData();
     this.setState({ data: fetchedData });
   }
 
-  handleCountryChange = async (country) => {
-    const fetchedData = await fetchData(country);
-    this.setState({ data: fetchedData, country: country });
-    console.log(fetchData);
-  };
+  // handleCountryChange = async (country) => {
+  //   const fetchedData = await fetchData(country);
+  //   this.setState({ data: fetchedData, country: country });
+  //   console.log(fetchData);
+  // };
 
   render() {
     const { data, country } = this.state;
