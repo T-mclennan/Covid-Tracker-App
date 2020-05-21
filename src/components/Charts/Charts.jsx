@@ -21,11 +21,13 @@ const Charts = ({ data: { data } }) => {
     fetchAPI();
   }, []);
 
+  const inputBar = <div className={styles.inputBar}>this is input</div>;
+
   const lineChart = dailyData.length ? (
     <Line
       data={{
         labels: dailyData.reverse().map(({ result_date }) => {
-          return result_date.slice(6, 10);
+          return result_date.slice(5, 10);
         }),
         datasets: [
           {
@@ -42,7 +44,7 @@ const Charts = ({ data: { data } }) => {
         title: { display: true, text: `Rate of cases in San Francisco` },
       }}
       height={window.innerHeight * 0.6}
-      width={window.innerWidth * 0.7}
+      width={window.innerWidth * 0.6}
       options={{ maintainAspectRatio: false, legend: false }}
     />
   ) : null;
@@ -50,7 +52,10 @@ const Charts = ({ data: { data } }) => {
   return (
     // <div className={styles.container}>{country ? barChart : lineChart}</div>
 
-    <div className={styles.container}>{lineChart}</div>
+    <div className={styles.container}>
+      {inputBar}
+      {lineChart}
+    </div>
   );
 };
 
