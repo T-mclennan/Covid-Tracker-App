@@ -30,6 +30,7 @@ export const fetchSFData = async () => {
   let changeableUrl = urlSF;
   try {
     const responseData = await axios.get(changeableUrl);
+    console.log(responseData);
     return responseData;
   } catch (error) {
     console.log(error);

@@ -11,12 +11,8 @@ const Charts = ({ data: { data } }) => {
     const fetchAPI = async () => {
       // setDailyData(await fetchDailyData());
       const data = await fetchSFData();
-      console.log(`data fetch: `);
-      console.log(data);
       setDailyData(data.data);
     };
-    console.log('Daily Data');
-    console.log(dailyData);
 
     fetchAPI();
   }, []);
@@ -26,8 +22,8 @@ const Charts = ({ data: { data } }) => {
   const lineChart = dailyData.length ? (
     <Line
       data={{
-        labels: dailyData.reverse().map(({ result_date }) => {
-          return result_date.slice(5, 10);
+        labels: dailyData.reverse().map(({ specimen_collection_date }) => {
+          return specimen_collection_date.slice(5, 10);
         }),
         datasets: [
           {
