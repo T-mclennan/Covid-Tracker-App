@@ -1,12 +1,21 @@
 import React from 'react';
+import styles from './Footer.module.css';
 
 const Footer = () => {
-  return <div className={footerStyle}>links</div>;
-};
+  return (
+    <div
+      // style={{ backgroundColor: 'black' }}
 
-const footerStyle = {
-  backgroundColor: 'red',
-  fontSize: '2rem',
+      className={styles.Footer}
+    >
+      <div className='content-box'>
+        <h3>Data is sourced from SFData.org </h3>
+      </div>
+      {/* <div className='content-box'>
+        <h3>Links go here </h3>
+        </div> */}
+    </div>
+  );
 };
 
 export default Footer;
