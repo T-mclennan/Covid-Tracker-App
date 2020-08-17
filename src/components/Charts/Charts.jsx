@@ -12,6 +12,16 @@ const Charts = ({ data: { data } }) => {
   const [criteria, setCriteria] = useState('Daily Infections');
   const [chartStyle, setChartStyle] = useState('line');
 
+  // Data in the form of:
+
+  // indeterminate: "6.0"
+  // last_updated_at: "2020-08-14T15:30:00.000"
+  // neg: "1853.0"
+  // pct: "0.012260127931769723"
+  // pos: "23.0"
+  // specimen_collection_date: "2020-06-07T00:00:00.000"
+  // tests: "1882.0"
+
   useEffect(() => {
     const fetchAPI = async () => {
       const data = await fetchSFData();

@@ -9,11 +9,11 @@ const Footer = () => {
       className={styles.Footer}
     >
       <div className='content-box'>
-        <h3>Data is sourced from SFData.org </h3>
+        <p>Data is sourced from SFData.org </p>
       </div>
-      {/* <div className='content-box'>
-        <h3>Links go here </h3>
-        </div> */}
+      <div className='content-box'>
+        <p>Links go here </p>
+      </div>
     </div>
   );
 };

@@ -1,12 +1,8 @@
 import axios from 'axios';
+import keys from '../config/keys';
 
-const countryUrl = 'https://covid19.mathdro.id/api';
-const url = 'https://covid19.mathdro.id/api';
-const urlSF = 'https://data.sfgov.org/resource/nfpa-mg4g.json';
-const urlUS = 'https://covid19.mathdro.id/api';
-
-export const fetchData = async (country) => {
-  let changeableUrl = urlSF;
+export const fetchCaseDeathData = async (country) => {
+  let changeableUrl = keys.SF_ORIGINAL_DATA;
 
   try {
     const {
@@ -27,7 +23,7 @@ export const fetchData = async (country) => {
 };
 
 export const fetchSFData = async () => {
-  let changeableUrl = urlSF;
+  let changeableUrl = keys.SF_ORIGINAL_DATA;
   try {
     const responseData = await axios.get(changeableUrl);
     console.log(responseData);
@@ -52,13 +48,13 @@ export const fetchSFData = async () => {
 //   }
 // };
 
-export const fetchCountries = async () => {
-  try {
-    const {
-      data: { countries },
-    } = await axios.get(`${url}/countries`);
-    return countries.map((country) => country.name);
-  } catch (error) {
-    console.log(error);
-  }
-};
+// export const fetchCountries = async () => {
+//   try {
+//     const {
+//       data: { countries },
+//     } = await axios.get(`${url}/countries`);
+//     return countries.map((country) => country.name);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
