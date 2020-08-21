@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleSelect({ heading, action, values }) {
   const classes = useStyles();
-  const [value, setValue] = useState();
+  const [value, setValue] = useState('');
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -32,8 +32,8 @@ export default function SimpleSelect({ heading, action, values }) {
           {heading}
         </InputLabel>
         <Select value={value} onChange={handleChange} label={heading}>
-          {values.map(({ value, label, id }) => (
-            <MenuItem key={id} value={value}>
+          {values.map(({ value, label }, i) => (
+            <MenuItem key={i} value={value}>
               {label}
             </MenuItem>
           ))}

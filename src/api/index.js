@@ -1,19 +1,33 @@
 import axios from 'axios';
 import keys from '../config/keys';
+import { makeSevenDayAverage } from '../components/Charts/utils';
 
-export const fetchCaseDeathData = async (country) => {
-  let changeableUrl = keys.SF_ORIGINAL_DATA;
+// FetchhospitalData response template:
+// covidstatus: 'COVID+';
+// dphcategory: 'Med/Surg';
+// hospital: 'All SF Hospitals';
+// patientcount: '46';
+// reportdate: '2020-07-07T00:00:00.000';
 
+export const fetchHospitalData = async () => {
   try {
-    const {
-      data: { result_date, tests, pos, pct },
-    } = await axios.get(changeableUrl);
+    const { data } = await axios.get(keys.HOSPITAL_RATE_API);
+    const icuData = data.filter((item) => item.dphcategory === 'ICU');
+    const regularPatientData = data.filter(
+      (item) => item.dphcategory === 'Med/Surg'
+    );
+    const label = regularPatientData.map(({ reportdate }) =>
+      reportdate.slice(5, 10)
+    );
+    const primary = regularPatientData.map(({ patientcount }) => patientcount);
+    const secondary = icuData.map(({ patientcount }) => patientcount);
 
     const modifiedData = {
-      result_date,
-      tests,
-      pos,
-      pct,
+      label,
+      primary,
+      secondary,
+      primaryLabel: 'patient data',
+      secondaryLabel: 'ICU parient data',
     };
 
     return modifiedData;
@@ -22,16 +36,84 @@ export const fetchCaseDeathData = async (country) => {
   }
 };
 
+// SFData in the form of:
+
+// indeterminate: "6.0"
+// last_updated_at: "2020-08-14T15:30:00.000"
+// neg: "1853.0"
+// pct: "0.012260127931769723"
+// pos: "23.0"
+// specimen_collection_date: "2020-06-07T00:00:00.000"
+// tests: "1882.0"
+
 export const fetchSFData = async () => {
-  let changeableUrl = keys.SF_ORIGINAL_DATA;
   try {
-    const responseData = await axios.get(changeableUrl);
-    console.log(responseData);
-    return responseData;
+    const inputData = await axios.get(keys.SF_ORIGINAL_DATA);
+    const label = [],
+      primary = [],
+      secondary = [],
+      other = [];
+
+    inputData.data.forEach(
+      ({ specimen_collection_date, pos, pct, neg, tests, indeterminate }) => {
+        //Positive count
+        primary.push(pos);
+
+        // Test count
+        label.push(specimen_collection_date.slice(5, 10));
+        other.push({
+          neg,
+          indeterminate,
+          pct,
+          tests,
+        });
+      }
+    );
+
+    console.log('Primary');
+    console.log(primary);
+    const sevenAverage = makeSevenDayAverage(primary);
+    console.log(sevenAverage);
+
+    const modifiedData = {
+      label,
+      primary,
+      secondary,
+      other,
+      primaryLabel: 'Positive Count',
+      secondaryLabel: 'Test Count',
+      sevenAverage,
+    };
+
+    return modifiedData;
   } catch (error) {
     console.log(error);
   }
 };
+
+export const fetchTestApi = async () => {
+  try {
+    const { data } = await axios.get(keys.ALT_CASES_DEATHS);
+    const deathData = data.filter((item) => item.case_disposition === 'Death');
+    console.log('TEST');
+    console.log(data);
+    console.log(deathData);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// export const fetchTestApi = async () => {
+//   try {
+//     const { data } = await axios.get(keys.ALT_CASES_DEATHS);
+//     console.log('TEST');
+//     console.log(data);
+//     return data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 // export const fetchDailyData = async () => {
 //   try {

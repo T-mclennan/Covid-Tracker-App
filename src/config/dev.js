@@ -11,6 +11,7 @@ module.exports = {
   //  https://covidtracking.com/data/api
   COVID_TRACKING_API: 'https://api.covidtracking.com',
 
+  //  ***** API NOT WORKING!
   //  Cases / Deaths API - San Francisco
   //  Details: https://dev.socrata.com/foundry/data.sfgov.org/dak2-gvuj
   //  Example: https://data.sfgov.org/stories/s/COVID-19-Cases-and-Deaths/dak2-gvuj
@@ -22,9 +23,17 @@ module.exports = {
 
   //  Health Indicators on containing Covid - San Francisco
   //  Details: https://dev.socrata.com/foundry/data.sfgov.org/epem-wyzb
-  RESPONSE_DATA_API: ' https://data.sfgov.org/resource/epem-wyzb.json',
+  HEALTH_DATA_API: ' https://data.sfgov.org/resource/epem-wyzb.json',
+
+  // Hospitalization Rates - San Francisco
+  // Details:
+  HOSPITAL_RATE_API: 'https://data.sfgov.org/resource/nxjg-bhem.json',
 
   // Map of cases: https://data.sfgov.org/stories/s/Map-of-Cumulative-Cases/adm5-wq8i/
+
+  ALT_CASES_DEATHS: 'https://data.sfgov.org/resource/tvq9-ec9w.json',
+  // Cases / Deaths - San Francisco
+  // Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Date-Transmission-and/tvq9-ec9w
 
   //Misc APIs:
   SF_ORIGINAL_DATA: 'https://data.sfgov.org/resource/nfpa-mg4g.json',

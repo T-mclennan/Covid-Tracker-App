@@ -1,11 +1,11 @@
 export const criteriaValues = [
   {
-    label: 'Daily Infections',
-    value: 'Daily Infections',
+    label: 'Daily Cases',
+    value: 'SF_CASE_DATA',
   },
   {
-    label: 'Total Infections',
-    value: 'Total Infections',
+    label: 'Hospital Data',
+    value: 'HOSPITAL_DATA',
   },
   {
     label: 'Daily Deaths',

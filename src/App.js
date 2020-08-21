@@ -1,5 +1,5 @@
 import React from 'react';
-import { Charts, MainHeader, Footer } from './components';
+import { OriginalChart, NewCasesChart, MainHeader, Footer } from './components';
 import styles from './App.module.css';
 import { fetchSFData } from './api/index';
 
@@ -20,7 +20,8 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         <MainHeader />
-        <Charts data={data} country={country} />
+        <OriginalChart data={data} country={country} />
+        {/* <NewCasesChart /> */}
         <Footer />
       </div>
     );
