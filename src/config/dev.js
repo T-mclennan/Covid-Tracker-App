@@ -1,5 +1,7 @@
 module.exports = {
   //Tokens:
+  MAPBOX_TOKEN:
+    'pk.eyJ1IjoidG1jbGVubmFuIiwiYSI6ImNrZTdpN2wwYjFoOG8yeXFnd25wc2N4YzcifQ.r850FQb6ArgwOR11LPhxbA',
 
   //SODA data access tokens:
   SODA_APP_TOKEN: 'ZZTDsFbChmBjIDzoNPxj1U13s',
@@ -29,7 +31,10 @@ module.exports = {
   // Details:
   HOSPITAL_RATE_API: 'https://data.sfgov.org/resource/nxjg-bhem.json',
 
-  // Map of cases: https://data.sfgov.org/stories/s/Map-of-Cumulative-Cases/adm5-wq8i/
+  // Map of cases - San Francisco
+  //Details : https://data.sfgov.org/stories/s/Map-of-Cumulative-Cases/adm5-wq8i/
+  CASES_MAP_API: 'https://data.sfgov.org/resource/tpyr-dvnc.json',
+  CASES_MAP_GEOJSON: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',
 
   ALT_CASES_DEATHS: 'https://data.sfgov.org/resource/tvq9-ec9w.json',
   // Cases / Deaths - San Francisco

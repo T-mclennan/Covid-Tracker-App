@@ -3,6 +3,7 @@ import {
   fetchCaseDeathData,
   fetchHospitalData,
   fetchTestApi,
+  fetchMapGeoJSON,
 } from '../../api';
 
 export const fetchData = async (criteria) => {
@@ -11,6 +12,8 @@ export const fetchData = async (criteria) => {
       return fetchHospitalData();
     case 'SF_CASE_DATA':
       return fetchSFData();
+    case 'MAP_DATA':
+      return fetchMapGeoJSON();
     case 'TEST':
       return fetchTestApi();
     default:

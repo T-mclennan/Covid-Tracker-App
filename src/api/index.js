@@ -70,10 +70,7 @@ export const fetchSFData = async () => {
       }
     );
 
-    console.log('Primary');
-    console.log(primary);
     const sevenAverage = makeSevenDayAverage(primary);
-    console.log(sevenAverage);
 
     const modifiedData = {
       label,
@@ -93,11 +90,26 @@ export const fetchSFData = async () => {
 
 export const fetchTestApi = async () => {
   try {
-    const { data } = await axios.get(keys.ALT_CASES_DEATHS);
-    const deathData = data.filter((item) => item.case_disposition === 'Death');
+    console.log('test');
+    const { data } = await axios.get(keys.CASES_MAP_GEOJSON);
+    // const deathData = data.filter((item) => item.case_disposition === 'Death');
     console.log('TEST');
     console.log(data);
-    console.log(deathData);
+    // console.log(deathData);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchMapGeoJSON = async () => {
+  try {
+    console.log('geoJSON');
+    const { data } = await axios.get(keys.CASES_MAP_GEOJSON);
+    // const deathData = data.filter((item) => item.case_disposition === 'Death');
+    console.log('TEST');
+    console.log(data);
+    // console.log(deathData);
     return data;
   } catch (error) {
     console.log(error);

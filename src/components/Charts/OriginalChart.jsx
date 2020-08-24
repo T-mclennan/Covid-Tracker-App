@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { fetchSFData, fetchCaseDeathData, fetchHospitalData } from '../../api';
 import { fetchData, makeSevenDayAverage } from './utils';
-import { fetchTestApi } from '../../api';
+import { fetchMapGeoJSON } from '../../api';
 import { Line, Bar } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
 import { criteriaValues, dateRangeValues } from '../Charts/ChartConfig';
 import styles from './OriginalChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
+import { MapChart } from './MapChart';
 
 const OriginalChart = () => {
   const [dates, setDates] = useState([]);
@@ -16,19 +16,19 @@ const OriginalChart = () => {
   const [secondaryLabel, setSecondaryLabel] = useState('');
   const [otherData, setOtherData] = useState([]);
 
-  const [dayCount, setDayCount] = useState(0);
+  const [dayCount, setDayCount] = useState(90);
   const [criteria, setCriteria] = useState('SF_CASE_DATA');
   const [chartStyle, setChartStyle] = useState('line');
 
   useEffect(() => {
     const fetchAPI = async () => {
       const data = await fetchData(criteria);
-      // const testData = await fetchTestApi();
-      // console.log('useEffect test');
+      // const testData = await fetchMapGeoJSON();
+      console.log('useEffect test');
       // console.log(testData);
       console.log(data);
-      setData(data);
-      setDayCount(isMobile ? 30 : 120);
+      if (criteria !== 'MAP_DATA') setData(data);
+      setDayCount(isMobile ? 30 : dayCount);
     };
 
     fetchAPI();
@@ -88,12 +88,12 @@ const OriginalChart = () => {
     type: 'line',
     data: makeSevenDayAverage(primaryData).slice(length - dayCount, length - 3),
     fill: false,
-    borderColor: '#EC932F',
-    backgroundColor: '#EC932F',
-    pointBorderColor: '#EC932F',
-    pointBackgroundColor: '#EC932F',
-    pointHoverBackgroundColor: '#EC932F',
-    pointHoverBorderColor: '#EC932F',
+    borderColor: 'rgb(145, 142, 244)',
+    backgroundColor: 'rgb(145, 142, 244)',
+    pointBorderColor: 'rgb(145, 142, 244)',
+    pointBackgroundColor: 'rgb(145, 142, 244)',
+    pointHoverBackgroundColor: 'rgb(66, 129, 164)',
+    pointHoverBorderColor: 'rgb(66, 129, 164)',
     yAxisID: 'y-axis-1',
   };
 
@@ -202,8 +202,10 @@ const OriginalChart = () => {
         legend: { display: false },
         title: { display: true, text: `Rate of cases in San Francisco` },
       }}
-      height={window.innerHeight * 0.3}
-      width={window.innerWidth * 0.3}
+      // height={window.innerHeight * 0.3}
+      height={isMobile ? window.innerHeight * 0.45 : '100vh'}
+      width={'auto'}
+      // width={window.innerWidth * 0.3}
       // options={{ maintainAspectRatio: false, legend: false }}
       options={options}
       legend={legend}
@@ -213,8 +215,7 @@ const OriginalChart = () => {
   return (
     <div className={styles.container}>
       {inputBar}
-      {lineChart}
-      {criteria}
+      {criteria === 'MAP_DATA' ? <MapChart /> : lineChart}
     </div>
   );
 };
