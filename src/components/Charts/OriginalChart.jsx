@@ -8,7 +8,7 @@ import styles from './OriginalChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
 import { MapChart } from './MapChart';
 
-const OriginalChart = () => {
+const OriginalChart = (props) => {
   const [dates, setDates] = useState([]);
   const [primaryData, setPrimaryData] = useState([]);
   const [primaryLabel, setPrimaryLabel] = useState('');
@@ -41,13 +41,18 @@ const OriginalChart = () => {
     primaryLabel,
     secondaryLabel,
     other,
+    source,
+    date,
   }) => {
+    const { setSource, setDate } = props;
     setPrimaryData(primary);
     setSecondaryData(secondary);
     setPrimaryLabel(primaryLabel);
     setSecondaryLabel(secondaryLabel);
     setDates(label);
     setOtherData(other);
+    setSource(source);
+    setDate(date);
   };
 
   const inputBar = (
@@ -121,24 +126,6 @@ const OriginalChart = () => {
     yAxisID: 'y-axis-1',
   };
 
-  // const dataProps = (canvas) => {
-  //   const ctx = canvas.getContext('2d');
-  //   const gradient = ctx.createLinearGradient(0, 0, 100, 0);
-  //   const length = dates.length;
-  //   return {
-  //     backgroundColor: gradient,
-  //     labels: dates.slice(length - dayCount, length - 3),
-  //     datasets: [
-  //       {
-  //         label: primaryLabel,
-  //         data: primaryData.slice(length - dayCount, length - 3),
-  //         borderColor: '#3333ff',
-  //         backgroundColor: 'rgba(173,216,230 ,0.5 )',
-  //         fill: true,
-  //       },
-  //     ],
-  //   };
-  // };
   const newData = {
     datasets: [secondaryData.length ? secondary : sevenDayAverage, primary],
   };
