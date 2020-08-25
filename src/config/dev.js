@@ -32,9 +32,17 @@ module.exports = {
   HOSPITAL_RATE_API: 'https://data.sfgov.org/resource/nxjg-bhem.json',
 
   // Map of cases - San Francisco
-  //Details : https://data.sfgov.org/stories/s/Map-of-Cumulative-Cases/adm5-wq8i/
+  //Details: https://data.sfgov.org/stories/s/Map-of-Cumulative-Cases/adm5-wq8i/
   CASES_MAP_API: 'https://data.sfgov.org/resource/tpyr-dvnc.json',
   CASES_MAP_GEOJSON: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',
+
+  //Cases summarized by gender - San Francisco
+  //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Gender/nhy6-gqam
+  GENDER_CASES_API: 'https://data.sfgov.org/resource/nhy6-gqam.json',
+
+  //Cases summarized by race / ethnicity - San Francisco
+  //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Race-and-Ethnicity/vqqm-nsqg
+  RACE_ETHNICITY_API: 'https://data.sfgov.org/resource/nhy6-gqam.json',
 
   ALT_CASES_DEATHS: 'https://data.sfgov.org/resource/tvq9-ec9w.json',
   // Cases / Deaths - San Francisco

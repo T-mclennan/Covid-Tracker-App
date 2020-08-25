@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData, makeSevenDayAverage } from './utils';
-import { fetchMapGeoJSON } from '../../api';
+import { fetchMapGeoJSON, fetchTestApi } from '../../api';
 import { Line, Bar } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
 import { criteriaValues, dateRangeValues } from '../Charts/ChartConfig';
@@ -23,10 +23,10 @@ const OriginalChart = () => {
   useEffect(() => {
     const fetchAPI = async () => {
       const data = await fetchData(criteria);
-      // const testData = await fetchMapGeoJSON();
+      const testData = await fetchTestApi();
       console.log('useEffect test');
-      // console.log(testData);
-      console.log(data);
+      console.log(testData);
+      // console.log(data);
       if (criteria !== 'MAP_DATA') setData(data);
       setDayCount(isMobile ? 30 : dayCount);
     };

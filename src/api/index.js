@@ -54,19 +54,31 @@ export const fetchSFData = async () => {
       secondary = [],
       other = [];
 
+    let lastIndex = 0;
     inputData.data.forEach(
-      ({ specimen_collection_date, pos, pct, neg, tests, indeterminate }) => {
-        //Positive count
-        primary.push(pos);
+      (
+        { specimen_collection_date, pos, pct, neg, tests, indeterminate },
+        index
+      ) => {
+        console.log(
+          `last: ${
+            label[label.length - 1]
+          } curr: ${specimen_collection_date.slice(5, 10)} ${lastIndex}`
+        );
+        if (specimen_collection_date.slice(5, 10) !== label[label.length - 1]) {
+          lastIndex = index;
+          //Positive count
+          primary.push(pos);
 
-        // Test count
-        label.push(specimen_collection_date.slice(5, 10));
-        other.push({
-          neg,
-          indeterminate,
-          pct,
-          tests,
-        });
+          // Test count
+          label.push(specimen_collection_date.slice(5, 10));
+          other.push({
+            neg,
+            indeterminate,
+            pct,
+            tests,
+          });
+        }
       }
     );
 
@@ -82,6 +94,8 @@ export const fetchSFData = async () => {
       sevenAverage,
     };
 
+    console.log('mod');
+    console.log(modifiedData);
     return modifiedData;
   } catch (error) {
     console.log(error);
