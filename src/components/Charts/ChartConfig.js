@@ -1,6 +1,6 @@
 export const dataSetLabels = [
   {
-    label: 'Daily Cases',
+    label: 'Positive Cases',
     value: 'SF_CASE_DATA',
   },
   {
@@ -27,7 +27,7 @@ export const dataSetLabels = [
 
 const caseSecondary = [
   {
-    label: 'Positive Cases',
+    label: 'Daily Cases',
     value: 'option1',
   },
   {
@@ -35,14 +35,14 @@ const caseSecondary = [
     value: 'option2',
   },
   {
-    label: '% of Tests Positive',
+    label: 'Positive Test %',
     value: 'option3',
   },
 ];
 
 const dashboardSecondary = [
   {
-    label: 'Positive Cases',
+    label: 'Cases per Day',
     value: 'option1',
   },
   {
@@ -50,7 +50,7 @@ const dashboardSecondary = [
     value: 'option2',
   },
   {
-    label: '% of Tests Positive',
+    label: 'Positive Test %',
     value: 'option3',
   },
 ];
@@ -72,7 +72,7 @@ const raceSecondary = [
 
 const hospitalSecondary = [
   {
-    label: 'Positive Cases',
+    label: 'Patients',
     value: 'option1',
   },
   {
@@ -161,6 +161,8 @@ export const fetchSecondary = (dataSet) => {
       return raceSecondary;
     case 'GENDER_DATA':
       return genderSecondary;
+    case 'MAP_DATA':
+      return [];
     default:
       console.log(`Dataset ${dataSet} not recognized.`);
       return null;

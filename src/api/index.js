@@ -87,7 +87,7 @@ export const fetchSFData = async () => {
 export const fetchTestApi = async () => {
   try {
     console.log('test');
-    const { data } = await axios.get(keys.SF_ORIGINAL_DATA);
+    const { data } = await axios.get(keys.HEALTH_DATA_API);
     // const deathData = data.filter((item) => item.case_disposition === 'Death');
     console.log('TEST');
     console.log(data);

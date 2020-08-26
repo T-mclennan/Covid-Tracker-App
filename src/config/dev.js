@@ -13,19 +13,14 @@ module.exports = {
   //  https://covidtracking.com/data/api
   COVID_TRACKING_API: 'https://api.covidtracking.com',
 
-  //  ***** API NOT WORKING!
-  //  Cases / Deaths API - San Francisco
-  //  Details: https://dev.socrata.com/foundry/data.sfgov.org/dak2-gvuj
+  //  Transmission / Case type API - San Francisco
+  //  Details: https://data.sfgov.org/resource/tvq9-ec9w
   //  Example: https://data.sfgov.org/stories/s/COVID-19-Cases-and-Deaths/dak2-gvuj
-  CASES_DEATHS_API: 'https://data.sfgov.org/resource/dak2-gvuj.json',
+  DASHBOARD_API: 'https://data.sfgov.org/resource/tvq9-ec9w.json',
 
   //  Response Data / Reports API - San Francisco
   //  Details: https://dev.socrata.com/foundry/data.sfgov.org/fjki-2fab
   RESPONSE_DATA_API: 'https://data.sfgov.org/resource/fjki-2fab.json',
-
-  //  Health Indicators on containing Covid - San Francisco
-  //  Details: https://dev.socrata.com/foundry/data.sfgov.org/epem-wyzb
-  HEALTH_DATA_API: ' https://data.sfgov.org/resource/epem-wyzb.json',
 
   // Hospitalization Rates - San Francisco
   // Details:
@@ -43,6 +38,10 @@ module.exports = {
   //Cases summarized by race / ethnicity - San Francisco
   //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Race-and-Ethnicity/vqqm-nsqg
   RACE_ETHNICITY_API: 'https://data.sfgov.org/resource/nhy6-gqam.json',
+
+  //Cases summarized by age - San Francisco
+  //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Age-Group/sunc-2t3k
+  AGE_API: 'https://data.sfgov.org/resource/sunc-2t3k.json',
 
   ALT_CASES_DEATHS: 'https://data.sfgov.org/resource/tvq9-ec9w.json',
   // Cases / Deaths - San Francisco

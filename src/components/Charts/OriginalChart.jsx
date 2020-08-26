@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData, makeSevenDayAverage } from './utils';
-import { fetchMapGeoJSON, fetchTestApi } from '../../api';
+import { fetchTestApi } from '../../api';
 import { Line, Bar } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
-import { dataSetLabels, dateRangeValues } from '../Charts/ChartConfig';
+import {
+  dataSetLabels,
+  dateRangeValues,
+  fetchSecondary,
+} from '../Charts/ChartConfig';
 import styles from './OriginalChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
 import { MapChart } from './MapChart';
@@ -65,7 +69,11 @@ const OriginalChart = (props) => {
         defaultValue={'SF_CASE_DATA'}
       />
       {!isMobile && (
-        <SimpleSelect action={{}} heading='Criteria' values={[{}, {}, {}]} />
+        <SimpleSelect
+          action={{}}
+          heading='Visualization'
+          values={fetchSecondary(criteria)}
+        />
       )}
       {!isMobile && (
         <SimpleSelect
