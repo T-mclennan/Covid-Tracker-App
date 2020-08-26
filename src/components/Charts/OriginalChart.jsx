@@ -3,7 +3,7 @@ import { fetchData, makeSevenDayAverage } from './utils';
 import { fetchMapGeoJSON, fetchTestApi } from '../../api';
 import { Line, Bar } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
-import { criteriaValues, dateRangeValues } from '../Charts/ChartConfig';
+import { dataSetLabels, dateRangeValues } from '../Charts/ChartConfig';
 import styles from './OriginalChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
 import { MapChart } from './MapChart';
@@ -18,14 +18,15 @@ const OriginalChart = (props) => {
 
   const [dayCount, setDayCount] = useState(90);
   const [criteria, setCriteria] = useState('SF_CASE_DATA');
+  const [subCatagory, setSubCatagory] = useState('default');
   const [chartStyle, setChartStyle] = useState('line');
 
   useEffect(() => {
     const fetchAPI = async () => {
       const data = await fetchData(criteria);
       const testData = await fetchTestApi();
-      console.log('useEffect test');
-      console.log(testData);
+      // console.log('useEffect test');
+      // console.log(testData);
       // console.log(data);
       if (criteria !== 'MAP_DATA') setData(data);
       setDayCount(isMobile ? 30 : dayCount);
@@ -59,10 +60,13 @@ const OriginalChart = (props) => {
     <div className={styles.inputBar}>
       <SimpleSelect
         action={setCriteria}
-        heading='Criteria'
-        values={criteriaValues}
+        heading='Data Set'
+        values={dataSetLabels}
         defaultValue={'SF_CASE_DATA'}
       />
+      {!isMobile && (
+        <SimpleSelect action={{}} heading='Criteria' values={[{}, {}, {}]} />
+      )}
       {!isMobile && (
         <SimpleSelect
           action={setDayCount}
@@ -70,9 +74,6 @@ const OriginalChart = (props) => {
           values={dateRangeValues}
           defaultValue={30}
         />
-      )}
-      {!isMobile && (
-        <SimpleSelect action={{}} heading='Range' values={[{}, {}, {}]} />
       )}
     </div>
   );

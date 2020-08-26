@@ -1,4 +1,4 @@
-export const criteriaValues = [
+export const dataSetLabels = [
   {
     label: 'Daily Cases',
     value: 'SF_CASE_DATA',
@@ -8,8 +8,95 @@ export const criteriaValues = [
     value: 'HOSPITAL_DATA',
   },
   {
+    label: 'Dashboard',
+    value: 'DASHBOARD',
+  },
+  {
+    label: 'Gender Data',
+    value: 'GENDER_DATA',
+  },
+  {
+    label: 'Demographic Data',
+    value: 'RACE_DATA',
+  },
+  {
     label: 'Neighborhood Map',
     value: 'MAP_DATA',
+  },
+];
+
+const caseSecondary = [
+  {
+    label: 'Positive Cases',
+    value: 'option1',
+  },
+  {
+    label: 'Tests Conducted',
+    value: 'option2',
+  },
+  {
+    label: '% of Tests Positive',
+    value: 'option3',
+  },
+];
+
+const dashboardSecondary = [
+  {
+    label: 'Positive Cases',
+    value: 'option1',
+  },
+  {
+    label: 'Tests Conducted',
+    value: 'option2',
+  },
+  {
+    label: '% of Tests Positive',
+    value: 'option3',
+  },
+];
+
+const raceSecondary = [
+  {
+    label: 'Positive Cases',
+    value: 'option1',
+  },
+  {
+    label: 'Tests Conducted',
+    value: 'option2',
+  },
+  {
+    label: '% of Tests Positive',
+    value: 'option3',
+  },
+];
+
+const hospitalSecondary = [
+  {
+    label: 'Positive Cases',
+    value: 'option1',
+  },
+  {
+    label: 'Tests Conducted',
+    value: 'option2',
+  },
+  {
+    label: '% of Tests Positive',
+    value: 'option3',
+  },
+];
+
+const genderSecondary = [
+  {
+    label: 'Positive Cases',
+    value: 'option1',
+  },
+  {
+    label: 'Tests Conducted',
+    value: 'option2',
+  },
+  {
+    label: '% of Tests Positive',
+    value: 'option3',
   },
 ];
 
@@ -60,4 +147,22 @@ export const mapDataLayer = {
     },
     'fill-opacity': 0.2,
   },
+};
+
+export const fetchSecondary = (dataSet) => {
+  switch (dataSet) {
+    case 'HOSPITAL_DATA':
+      return hospitalSecondary;
+    case 'SF_CASE_DATA':
+      return caseSecondary;
+    case 'DASHBOARD':
+      return dashboardSecondary;
+    case 'RACE_DATA':
+      return raceSecondary;
+    case 'GENDER_DATA':
+      return genderSecondary;
+    default:
+      console.log(`Dataset ${dataSet} not recognized.`);
+      return null;
+  }
 };

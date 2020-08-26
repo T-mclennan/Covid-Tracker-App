@@ -2,13 +2,6 @@ import axios from 'axios';
 import keys from '../config/keys';
 import { makeSevenDayAverage } from '../components/Charts/utils';
 
-// FetchhospitalData response template:
-// covidstatus: 'COVID+';
-// dphcategory: 'Med/Surg';
-// hospital: 'All SF Hospitals';
-// patientcount: '46';
-// reportdate: '2020-07-07T00:00:00.000';
-
 export const fetchHospitalData = async () => {
   try {
     const { data } = await axios.get(keys.HOSPITAL_RATE_API);
@@ -94,7 +87,7 @@ export const fetchSFData = async () => {
 export const fetchTestApi = async () => {
   try {
     console.log('test');
-    const { data } = await axios.get(keys.CASES_MAP_GEOJSON);
+    const { data } = await axios.get(keys.SF_ORIGINAL_DATA);
     // const deathData = data.filter((item) => item.case_disposition === 'Death');
     console.log('TEST');
     console.log(data);

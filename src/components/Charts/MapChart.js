@@ -21,8 +21,6 @@ export const MapChart = () => {
   useEffect(() => {
     const fetchAPI = async () => {
       const data = await fetchMapGeoJSON();
-      console.log('map data:');
-      console.log(data);
       setData(data);
     };
 
@@ -58,6 +56,7 @@ export const MapChart = () => {
           </button>
         </div>
         <div className='map-overlay' id='legend'>
+          <h5 style={{ margin: '0 0 1em 0' }}>Cases per 10,000 residents:</h5>
           {generateLegend()}
         </div>
       </ReactMapGl>
