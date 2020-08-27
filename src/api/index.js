@@ -34,10 +34,12 @@ export const fetchHospitalData = async () => {
 export const fetchSFData = async () => {
   try {
     const inputData = await axios.get(keys.SF_ORIGINAL_DATA);
-    const label = [],
-      primary = [],
-      secondary = [],
-      other = [];
+    const dates = [],
+      positive = [],
+      total_tests = [],
+      percent = [],
+      negative = [],
+      average = [];
 
     let lastIndex = 0;
     inputData.data.forEach(
@@ -45,35 +47,51 @@ export const fetchSFData = async () => {
         { specimen_collection_date, pos, pct, neg, tests, indeterminate },
         index
       ) => {
-        if (specimen_collection_date.slice(5, 10) !== label[label.length - 1]) {
+        if (specimen_collection_date.slice(5, 10) !== dates[dates.length - 1]) {
           lastIndex = index;
-          //Positive count
-          primary.push(pos);
-
-          // Test count
-          label.push(specimen_collection_date.slice(5, 10));
-          other.push({
-            neg,
-            indeterminate,
-            pct,
-            tests,
-          });
+          positive.push(pos);
+          dates.push(specimen_collection_date.slice(5, 10));
+          total_tests.push(tests);
+          average.push(pct * 100);
+          percent.push((pct * 100).toFixed(2));
+          negative.push(neg);
         }
       }
     );
+    //Positive cases + seven day average:
+    const chart1 = {
+      primary: positive,
+      secondary: makeSevenDayAverage(positive),
+      dates,
+      primaryLabel: 'Positive Tests',
+      secondaryLabel: 'Seven day average',
+      type: 'average',
+    };
 
-    const sevenAverage = makeSevenDayAverage(primary);
+    const chart2 = {
+      primary: total_tests,
+      secondary: makeSevenDayAverage(total_tests),
+      dates,
+      primaryLabel: 'Tests Conducted',
+      secondaryLabel: 'Seven day average',
+      type: 'average',
+    };
+
+    const chart3 = {
+      primary: percent,
+      secondary: makeSevenDayAverage(average),
+      dates,
+      primaryLabel: '% of Tests Positive',
+      secondaryLabel: 'Seven day average',
+      type: 'average',
+    };
 
     const modifiedData = {
-      label,
-      primary,
-      secondary,
-      other,
-      primaryLabel: 'Positive Count',
-      secondaryLabel: 'Test Count',
-      sevenAverage,
+      chart1,
+      chart2,
+      chart3,
       source: 'https://data.sfgov.org/resource/nfpa-mg4g.json',
-      date: label[label.length - 1],
+      date_recorded: dates[dates.length - 1],
     };
 
     console.log('mod');
@@ -102,11 +120,8 @@ export const fetchMapGeoJSON = async () => {
   try {
     console.log('geoJSON');
     const { data } = await axios.get(keys.CASES_MAP_GEOJSON);
-    // const deathData = data.filter((item) => item.case_disposition === 'Death');
     console.log('TEST');
     console.log(data);
-
-    // console.log(deathData);
     return {
       primary: data,
       source: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',

@@ -1,6 +1,5 @@
 import {
   fetchSFData,
-  fetchCaseDeathData,
   fetchHospitalData,
   fetchTestApi,
   fetchMapGeoJSON,
@@ -36,7 +35,7 @@ export const makeSevenDayAverage = (dataset) => {
       sum -= parseInt(dataset[i - 7]);
       sum += parseInt(dataset[i]);
       const average = sum / 7;
-      ret.push(Math.round(average).toString());
+      ret.push(average.toFixed(2).toString());
     }
   }
   return ret;

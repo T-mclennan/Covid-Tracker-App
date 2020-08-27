@@ -1,5 +1,5 @@
 import React from 'react';
-import { OriginalChart, NewCasesChart, MainHeader, Footer } from './components';
+import { OriginalChart, MainHeader, Footer } from './components';
 import styles from './App.module.css';
 import { fetchSFData } from './api/index';
 

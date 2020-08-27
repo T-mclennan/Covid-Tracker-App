@@ -1,170 +1,125 @@
-export const dataSetLabels = [
-  {
-    label: 'Positive Cases',
-    value: 'SF_CASE_DATA',
-  },
-  {
-    label: 'Hospital Data',
-    value: 'HOSPITAL_DATA',
-  },
-  {
-    label: 'Dashboard',
-    value: 'DASHBOARD',
-  },
-  {
-    label: 'Gender Data',
-    value: 'GENDER_DATA',
-  },
-  {
-    label: 'Demographic Data',
-    value: 'RACE_DATA',
-  },
-  {
-    label: 'Neighborhood Map',
-    value: 'MAP_DATA',
-  },
-];
+export const composeData = (
+  { primary, secondary, primaryLabel, secondaryLabel, dates, type },
+  dayCount
+) => {
+  const length = dates.length;
+  console.log('Type: ', type);
+  console.log('Primary: ', primary);
+  console.log('props', dates);
+  const averageSet = {
+    label: secondaryLabel,
+    type: 'line',
+    data: secondary.slice(length - dayCount, length - 3),
+    fill: false,
+    borderColor: 'rgb(145, 142, 244)',
+    backgroundColor: 'rgb(145, 142, 244)',
+    pointBorderColor: 'rgb(145, 142, 244)',
+    pointBackgroundColor: 'rgb(145, 142, 244)',
+    pointHoverBackgroundColor: 'rgb(66, 129, 164)',
+    pointHoverBorderColor: 'rgb(66, 129, 164)',
+    yAxisID: 'y-axis-1',
+  };
 
-const caseSecondary = [
-  {
-    label: 'Daily Cases',
-    value: 'option1',
-  },
-  {
-    label: 'Tests Conducted',
-    value: 'option2',
-  },
-  {
-    label: 'Positive Test %',
-    value: 'option3',
-  },
-];
+  const primarySet = {
+    label: primaryLabel,
+    type: 'bar',
+    data: primary.slice(length - dayCount, length - 3),
+    fill: false,
+    backgroundColor: 'rgba(173,216,230 ,0.5 )',
+    borderColor: '#3333ff',
+    hoverBackgroundColor: 'rgba(173,216,230 ,1 )',
+    hoverBorderColor: '#71B37C',
+    yAxisID: 'y-axis-1',
+  };
 
-const dashboardSecondary = [
-  {
-    label: 'Cases per Day',
-    value: 'option1',
-  },
-  {
-    label: 'Tests Conducted',
-    value: 'option2',
-  },
-  {
-    label: 'Positive Test %',
-    value: 'option3',
-  },
-];
+  const secondarySet = {
+    label: secondaryLabel,
+    type: 'bar',
+    data: secondary.slice(length - dayCount, length - 3),
+    fill: false,
+    backgroundColor: 'blue',
+    borderColor: 'blue',
+    hoverBackgroundColor: 'rgba(173,216,230 ,1 )',
+    hoverBorderColor: '#71B37C',
+    yAxisID: 'y-axis-1',
+  };
 
-const raceSecondary = [
-  {
-    label: 'Positive Cases',
-    value: 'option1',
-  },
-  {
-    label: 'Tests Conducted',
-    value: 'option2',
-  },
-  {
-    label: '% of Tests Positive',
-    value: 'option3',
-  },
-];
-
-const hospitalSecondary = [
-  {
-    label: 'Patients',
-    value: 'option1',
-  },
-  {
-    label: 'Tests Conducted',
-    value: 'option2',
-  },
-  {
-    label: '% of Tests Positive',
-    value: 'option3',
-  },
-];
-
-const genderSecondary = [
-  {
-    label: 'Positive Cases',
-    value: 'option1',
-  },
-  {
-    label: 'Tests Conducted',
-    value: 'option2',
-  },
-  {
-    label: '% of Tests Positive',
-    value: 'option3',
-  },
-];
-
-export const dateRangeValues = [
-  {
-    label: 'Last 30 days',
-    value: 30,
-  },
-  {
-    label: 'Last 60 days',
-    value: 60,
-  },
-  {
-    label: 'Last 90 days',
-    value: 90,
-  },
-  {
-    label: 'Last 120 days',
-    value: 120,
-  },
-  {
-    label: 'Last 150 days',
-    value: 150,
-  },
-  {
-    label: 'All available data',
-    value: 'all data',
-  },
-];
-
-export const mapDataLayer = {
-  id: 'data',
-  type: 'fill',
-  paint: {
-    'fill-color': {
-      property: 'value',
-      stops: [
-        [0, '#F2F12D'],
-        [1, '#EED322'],
-        [2, '#E6B71E'],
-        [3, '#DA9C20'],
-        [4, '#CA8323'],
-        [5, '#B86B25'],
-        [6, '#A25626'],
-        [7, '#8B4225'],
-        [8, '#723122'],
-      ],
-    },
-    'fill-opacity': 0.2,
-  },
-};
-
-export const fetchSecondary = (dataSet) => {
-  switch (dataSet) {
-    case 'HOSPITAL_DATA':
-      return hospitalSecondary;
-    case 'SF_CASE_DATA':
-      return caseSecondary;
-    case 'DASHBOARD':
-      return dashboardSecondary;
-    case 'RACE_DATA':
-      return raceSecondary;
-    case 'GENDER_DATA':
-      return genderSecondary;
-    case 'MAP_DATA':
-      return [];
+  switch (type) {
+    case 'average':
+      return { datasets: [primarySet, averageSet] };
+    case 'stacked':
+      return { datasets: [primarySet, secondarySet] };
     default:
-      console.log(`Dataset ${dataSet} not recognized.`);
+      console.log(`Chart type ${type} not recognized.`);
       return null;
   }
+};
+
+export const composeOptions = (
+  { primary, secondary, primaryLabel, secondaryLabel, dates, type },
+  dayCount
+) => {
+  const length = dates.length;
+
+  const options = {
+    responsive: true,
+    labels: dates.slice(length - dayCount, length - 3),
+    tooltips: {
+      mode: 'label',
+    },
+    elements: {
+      line: {
+        fill: false,
+      },
+    },
+    scales: {
+      xAxes: [
+        {
+          display: true,
+          gridLines: {
+            display: false,
+          },
+          stacked: true,
+          labels: dates.slice(length - dayCount, length - 3),
+        },
+      ],
+      yAxes: [
+        {
+          type: 'linear',
+          display: true,
+          position: 'left',
+          id: 'y-axis-1',
+          gridLines: {
+            display: false,
+          },
+          labels: {
+            show: true,
+          },
+          stacked: true,
+        },
+        // {
+        //   type: 'linear',
+        //   display: true,
+        //   position: 'right',
+        //   id: 'y-axis-2',
+        //   gridLines: {
+        //     display: false,
+        //   },
+        //   labels: {
+        //     show: true,
+        //   },
+        // },
+      ],
+    },
+  };
+  return options;
+};
+
+export const legend = {
+  display: true,
+  position: 'bottom',
+  labels: {
+    fontColor: '#323130',
+    fontSize: 14,
+  },
 };

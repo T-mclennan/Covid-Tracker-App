@@ -7,7 +7,12 @@ const Footer = ({ date, source }) => {
       <div style={contentBox}>
         <div>
           Data is sourced from:
-          <a href={source} target='_blank' style={{ marginLeft: '5px' }}>
+          <a
+            href={source}
+            target='_blank'
+            rel='noopener noreferrer'
+            style={{ marginLeft: '5px' }}
+          >
             {source}
           </a>
         </div>
