@@ -87,16 +87,20 @@ const hospitalSecondary = [
 
 const genderSecondary = [
   {
-    label: 'Positive Cases',
+    label: 'Data by Gender',
     value: 'chart1',
   },
   {
-    label: 'Tests Conducted',
+    label: 'Male Cases',
     value: 'chart2',
   },
   {
-    label: '% of Tests Positive',
+    label: 'Female Cases',
     value: 'chart3',
+  },
+  {
+    label: 'Cumulative Cases',
+    value: 'chart4',
   },
 ];
 

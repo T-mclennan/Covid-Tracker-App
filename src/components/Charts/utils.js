@@ -1,8 +1,8 @@
 import {
   fetchSFData,
   fetchHospitalData,
-  fetchTestApi,
   fetchMapGeoJSON,
+  fetchGenderData,
 } from '../../api';
 
 export const fetchData = async (criteria) => {
@@ -11,10 +11,10 @@ export const fetchData = async (criteria) => {
       return fetchHospitalData();
     case 'SF_CASE_DATA':
       return fetchSFData();
+    case 'GENDER_DATA':
+      return fetchGenderData();
     case 'MAP_DATA':
       return fetchMapGeoJSON();
-    case 'TEST':
-      return fetchTestApi();
     default:
       console.log(`Criteria ${criteria} not recognized.`);
       return null;

@@ -3,9 +3,8 @@ export const composeData = (
   dayCount
 ) => {
   const length = dates.length;
-  console.log('Type: ', type);
-  console.log('Primary: ', primary);
-  console.log('props', dates);
+  if (type === 'doughnut') return {};
+
   const averageSet = {
     label: secondaryLabel,
     type: 'line',
@@ -49,11 +48,15 @@ export const composeData = (
       return { datasets: [primarySet, averageSet] };
     case 'stacked':
       return { datasets: [primarySet, secondarySet] };
+    case 'pie':
+      return { labels: primaryLabel, datasets: primary };
     default:
       console.log(`Chart type ${type} not recognized.`);
       return null;
   }
 };
+
+const pieOptions = {};
 
 export const composeOptions = (
   { primary, secondary, primaryLabel, secondaryLabel, dates, type },

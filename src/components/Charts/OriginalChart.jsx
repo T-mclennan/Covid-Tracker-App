@@ -8,7 +8,7 @@ import {
   fetchSecondary,
 } from '../Select/SelectConfig';
 import { MapChart } from './MapChart';
-import { Line, Bar } from 'react-chartjs-2';
+import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
 import styles from './OriginalChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
@@ -19,11 +19,12 @@ const OriginalChart = (props) => {
   const [dates, setDates] = useState([]);
   const [currentData, setCurrentData] = useState({});
   const [totalData, setTotalData] = useState({});
+  const [chartType, setChartType] = useState('');
 
   //Input bar state:
   const [dayCount, setDayCount] = useState(90);
   const [criteria, setCriteria] = useState('SF_CASE_DATA');
-  const [subCatagory, setSubCatagory] = useState('chart1');
+  const [subCategory, setSubCategory] = useState('chart1');
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -37,22 +38,30 @@ const OriginalChart = (props) => {
     };
 
     fetchAPI();
-  }, [criteria, dayCount]);
+  }, [criteria, dayCount, subCategory]);
 
   const parseData = (data) => {
     const { setSource, setDate } = props;
-    console.log(data[subCatagory]);
     setTotalData(data);
     setSource(data.source);
     setDate(data.date_recorded);
-    setCurrentData(data[subCatagory]);
-    setDates(data[subCatagory].dates);
+    setCurrentData(data[subCategory]);
+    setChartType(data[subCategory].type);
+    setDates(data[subCategory].dates);
+  };
+
+  const handleCriteria = (input) => {
+    setCriteria(input);
+    console.log(input);
+    if (input === 'MAP_DATA') {
+      setChartType('map');
+    }
   };
 
   const inputBar = (
     <div className={styles.inputBar}>
       <SimpleSelect
-        action={setCriteria}
+        action={handleCriteria}
         heading='Data Set'
         values={dataSetLabels}
         defaultValue={'SF_CASE_DATA'}
@@ -60,7 +69,7 @@ const OriginalChart = (props) => {
       {!isMobile && (
         <SimpleSelect
           action={(event) => {
-            setSubCatagory(event);
+            setSubCategory(event);
             setCurrentData(totalData[event]);
           }}
           heading='Visualization'
@@ -78,21 +87,36 @@ const OriginalChart = (props) => {
     </div>
   );
 
-  const dynamicChart = dates.length ? (
-    <Line
-      data={composeData(currentData, dayCount)}
+  const dynamicChart =
+    chartType !== 'doughnut' && dates.length ? (
+      <Line
+        data={composeData(currentData, dayCount)}
+        height={isMobile ? window.innerHeight * 0.45 : '100vh'}
+        width={'auto'}
+        options={composeOptions(currentData, dayCount)}
+        legend={legend}
+      />
+    ) : null;
+
+  const doughnutChart = dates.length ? (
+    <Doughnut
+      data={currentData.primary}
       height={isMobile ? window.innerHeight * 0.45 : '100vh'}
       width={'auto'}
-      options={composeOptions(currentData, dayCount)}
+      options={{}}
       legend={legend}
     />
   ) : null;
 
-  console.log('Dates: ', dates.length);
   return (
     <div className={styles.container}>
       {inputBar}
-      {criteria === 'MAP_DATA' ? <MapChart /> : dynamicChart}
+      {chartType === 'map' && <MapChart />}
+      {(chartType === 'average' ||
+        chartType === 'line' ||
+        chartType === 'stacked') &&
+        dynamicChart}
+      {chartType === 'doughnut' && doughnutChart}
     </div>
   );
 };
