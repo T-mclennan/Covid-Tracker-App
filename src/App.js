@@ -1,5 +1,5 @@
 import React from 'react';
-import { OriginalChart, MainHeader, Footer } from './components';
+import { DynamicChart, MainHeader, Footer } from './components';
 import styles from './App.module.css';
 import { fetchSFData } from './api/index';
 
@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         <MainHeader />
-        <OriginalChart setSource={setDataSource} setDate={setDataDate} />
+        <DynamicChart setSource={setDataSource} setDate={setDataDate} />
         <Footer source={dataSource} date={dataDate} />
       </div>
     );

@@ -5,7 +5,7 @@ export const composeData = (
   const length = dates.length;
   if (type === 'doughnut') return {};
 
-  const averageSet = {
+  const averageLine = {
     label: secondaryLabel,
     type: 'line',
     data: secondary.slice(length - dayCount, length - 3),
@@ -19,7 +19,7 @@ export const composeData = (
     yAxisID: 'y-axis-1',
   };
 
-  const primarySet = {
+  const primaryBar = {
     label: primaryLabel,
     type: 'bar',
     data: primary.slice(length - dayCount, length - 3),
@@ -31,7 +31,7 @@ export const composeData = (
     yAxisID: 'y-axis-1',
   };
 
-  const secondarySet = {
+  const secondaryBar = {
     label: secondaryLabel,
     type: 'bar',
     data: secondary.slice(length - dayCount, length - 3),
@@ -43,13 +43,29 @@ export const composeData = (
     yAxisID: 'y-axis-1',
   };
 
+  const line1 = {
+    label: primaryLabel,
+    data: primary,
+    fill: true,
+    backgroundColor: 'rgba(75,192,192,0.2)',
+    borderColor: 'rgba(75,192,192,1)',
+  };
+
+  const line2 = {
+    label: secondaryLabel,
+    data: secondary,
+    fill: true,
+    borderColor: '#742774',
+    backgroundColor: 'rgba(116, 39, 116, 0.2)',
+  };
+
   switch (type) {
     case 'average':
-      return { datasets: [primarySet, averageSet] };
+      return { datasets: [primaryBar, averageLine] };
     case 'stacked':
-      return { datasets: [primarySet, secondarySet] };
-    case 'pie':
-      return { labels: primaryLabel, datasets: primary };
+      return { datasets: [primaryBar, secondaryBar] };
+    case 'line':
+      return { datasets: [line2, line1] };
     default:
       console.log(`Chart type ${type} not recognized.`);
       return null;
@@ -58,10 +74,7 @@ export const composeData = (
 
 const pieOptions = {};
 
-export const composeOptions = (
-  { primary, secondary, primaryLabel, secondaryLabel, dates, type },
-  dayCount
-) => {
+export const composeOptions = ({ dates }, dayCount) => {
   const length = dates.length;
 
   const options = {

@@ -10,7 +10,7 @@ import {
 import { MapChart } from './MapChart';
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
-import styles from './OriginalChart.module.css';
+import styles from './DynamicChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
 import { composeOptions, composeData, legend } from './ChartConfig';
 
