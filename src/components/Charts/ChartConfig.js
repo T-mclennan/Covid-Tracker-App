@@ -25,6 +25,7 @@ export const composeData = (
     data: primary.slice(length - dayCount, length - 3),
     fill: false,
     backgroundColor: 'rgba(173,216,230 ,0.5 )',
+    // backgroundColor: '#7d49c6|#daa3ff',
     borderColor: '#3333ff',
     hoverBackgroundColor: 'rgba(173,216,230 ,1 )',
     hoverBorderColor: '#71B37C',
@@ -83,11 +84,11 @@ export const composeOptions = ({ dates }, dayCount) => {
     tooltips: {
       mode: 'label',
     },
-    elements: {
-      line: {
-        fill: false,
-      },
-    },
+    // elements: {
+    //   line: {
+    //     fill: false,
+    //   },
+    // },
     scales: {
       xAxes: [
         {
@@ -97,10 +98,22 @@ export const composeOptions = ({ dates }, dayCount) => {
           },
           stacked: true,
           labels: dates.slice(length - dayCount, length - 3),
+          ticks: {
+            autoSkip: true,
+            maxTicksLimit: 22,
+            fontSize: 12,
+            fontFamily: 'Montserrat',
+            fontColor: '#0f1222',
+          },
         },
       ],
       yAxes: [
         {
+          // ticks: {
+          //   fontSize: 12,
+          //   fontFamily: 'Montserrat',
+          //   fontColor: '#0f1222',
+          // },
           type: 'linear',
           display: true,
           position: 'left',
@@ -125,6 +138,47 @@ export const composeOptions = ({ dates }, dayCount) => {
         //     show: true,
         //   },
         // },
+      ],
+    },
+  };
+
+  const theoptions = {
+    maintainAspectRatio: false,
+    legend: {
+      display: false,
+    },
+    tooltips: {
+      mode: 'nearest',
+    },
+    cornerRadius: 20,
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            autoSkip: true,
+            maxTicksLimit: 4,
+            fontSize: 12,
+            fontFamily: 'Montserrat',
+            fontColor: '#0f1222',
+          },
+          gridLines: {
+            display: false,
+            drawBorder: false,
+          },
+        },
+      ],
+      yAxes: [
+        {
+          gridLines: {
+            display: false,
+            drawBorder: false,
+          },
+          ticks: {
+            fontSize: 12,
+            fontFamily: 'Montserrat',
+            fontColor: '#0f1222',
+          },
+        },
       ],
     },
   };

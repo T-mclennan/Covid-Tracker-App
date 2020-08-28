@@ -4,7 +4,8 @@
   flex-direction: row;
   justify-content: space-evenly;
   width: 100%;
-  height: 3em;
+  /* height: 3em; */
+  padding: 0.7em;
   color: white;
   background-color: rgb(15, 15, 66);
 }
@@ -22,4 +23,18 @@
 
 a:visited {
   color: rgba(173, 216, 230, 1);
+}
+
+@media (max-width: 500px) {
+  .Footer {
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    /* height: 3em; */
+    color: white;
+    background-color: rgb(15, 15, 66);
+    padding: 1em;
+  }
 }

@@ -6,14 +6,15 @@ import { fetchMapGeoJSON } from '../../api';
 import { generateLegend } from './MapUtils';
 // import 'mapbox-gl/dist/mapbox-gl.css';
 import './Map.css';
+import { isMobile } from 'react-device-detect';
 
 export const MapChart = () => {
   const [viewPort, setViewPort] = useState({
     latitude: 37.7591262,
     longitude: -122.451323,
     zoom: 12,
-    width: '80vw',
-    height: '60vh',
+    width: isMobile ? '90%' : '80vw',
+    height: isMobile ? '100%' : '60vh',
   });
 
   const [data, setData] = useState({ features: [] });

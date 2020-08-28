@@ -70,7 +70,7 @@ p {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   line-height: 18px;
   height: 15rem;
-  margin-bottom: 4rem;
+  /* margin-bottom: 4rem; */
   width: 8rem;
 }
 
@@ -80,4 +80,29 @@ p {
   width: 10px;
   height: 10px;
   margin-right: 5px;
+}
+
+@media (max-width: 770px) {
+  /* .map-overlay {
+    top: 1em;
+    left: 1em;
+    background: rgba(255, 255, 255, 0.8);
+    font-family: Arial, sans-serif;
+    overflow: auto;
+    font-size: 2px;
+    border-radius: 3px;
+  }
+
+  h5 {
+    font-size: 2px;
+  }
+
+  #legend {
+    padding: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    line-height: 10px;
+    height: 10rem;
+    margin-bottom: 4rem;
+    width: 8rem;
+  } */
 }
