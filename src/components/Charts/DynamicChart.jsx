@@ -8,7 +8,7 @@ import {
   fetchSecondary,
 } from '../Select/SelectConfig';
 import { MapChart } from './MapChart';
-import { Line, Bar, Doughnut } from 'react-chartjs-2';
+import { Line, Bar, Doughnut, Chart } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
 import styles from './DynamicChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
@@ -28,6 +28,7 @@ const OriginalChart = (props) => {
 
   useEffect(() => {
     const fetchAPI = async () => {
+      console.log(window.innerWidth);
       const data = await fetchData(criteria);
       // const testData = await fetchTestApi();
       // console.log('useEffect test');
@@ -91,7 +92,9 @@ const OriginalChart = (props) => {
     chartType !== 'doughnut' && dates.length ? (
       <Line
         data={composeData(currentData, dayCount)}
-        height={isMobile ? window.innerHeight * 0.45 : '100vh'}
+        height={
+          isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.15
+        }
         width={'auto'}
         options={composeOptions(currentData, dayCount)}
         legend={legend}
@@ -101,7 +104,7 @@ const OriginalChart = (props) => {
   const doughnutChart = dates.length ? (
     <Doughnut
       data={currentData.primary}
-      height={isMobile ? window.innerHeight * 0.45 : '100vh'}
+      height={isMobile ? window.innerHeight * 0.45 : 100}
       width={'auto'}
       options={{}}
       legend={legend}

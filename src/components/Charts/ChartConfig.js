@@ -84,11 +84,11 @@ export const composeOptions = ({ dates }, dayCount) => {
     tooltips: {
       mode: 'label',
     },
-    // elements: {
-    //   line: {
-    //     fill: false,
-    //   },
-    // },
+    legend: {
+      display: true,
+      padding: 10,
+    },
+
     scales: {
       xAxes: [
         {
