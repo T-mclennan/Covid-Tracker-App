@@ -3,6 +3,7 @@ import {
   fetchHospitalData,
   fetchMapGeoJSON,
   fetchGenderData,
+  fetchRaceData,
 } from '../../api';
 
 export const fetchData = async (criteria) => {
@@ -13,6 +14,8 @@ export const fetchData = async (criteria) => {
       return fetchSFData();
     case 'GENDER_DATA':
       return fetchGenderData();
+    case 'RACE_DATA':
+      return fetchRaceData();
     case 'MAP_DATA':
       return fetchMapGeoJSON();
     default:

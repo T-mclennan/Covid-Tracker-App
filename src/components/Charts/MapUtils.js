@@ -34,16 +34,4 @@ export const generateLegend = () => {
       </div>
     );
   });
-
-  //   var item = <div></div>
-  //   var key = document.createElement('span');
-  //   key.className = 'legend-key';
-  //   key.style.backgroundColor = color;
-
-  //   var value = document.createElement('span');
-  //   value.innerHTML = layer;
-  //   item.appendChild(key);
-  //   item.appendChild(value);
-  //   legend.appendChild(item);
-  // }
 };

@@ -218,6 +218,177 @@ export const fetchGenderData = async () => {
   }
 };
 
+export const fetchRaceData = async () => {
+  try {
+    const { data } = await axios.get(keys.RACE_ETHNICITY_API);
+    console.log('race data:');
+    console.log(data);
+
+    const Asian = data.filter((item) => item.race_ethnicity === 'Asian');
+    const White = data.filter((item) => item.race_ethnicity === 'White');
+    const Unknown = data.filter((item) => item.race_ethnicity === 'Unknown');
+    // const Black = data.filter(
+    //   (item) => item.race_ethnicity === 'Black or African American'
+    // );
+    const Native = data.filter(
+      (item) =>
+        item.race_ethnicity === 'Native Hawaiian or Other Pacific Islander'
+    );
+    const Hispanic = data.filter(
+      (item) => item.race_ethnicity === 'Hispanic or Latino/a, all races'
+    );
+    const MultiRacial = data.filter(
+      (item) => item.race_ethnicity === 'Multi-racial'
+    );
+
+    console.log(Asian);
+    console.log(White);
+    // console.log(Black);
+    console.log(Native);
+    console.log(Hispanic);
+    console.log(MultiRacial);
+
+    const dailyAsian = Asian.map((item) => item.new_confirmed_cases);
+    const dailyWhite = White.map((item) => item.new_confirmed_cases);
+    // const dailyBlack = Black.map((item) => item.new_confirmed_cases);
+    const dailyNative = Native.map((item) => item.new_confirmed_cases);
+    const dailyHispanic = Hispanic.map((item) => item.new_confirmed_cases);
+
+    const dates = White.map((item) =>
+      item.specimen_collection_date.slice(5, 10)
+    );
+
+    const chart1 = {
+      primary: {
+        labels: [
+          'Asian',
+          'White',
+          'Hispanic',
+          // 'Black',
+          'Native American',
+          'Multi-Racial',
+          'Unknown',
+        ],
+        datasets: [
+          {
+            data: [
+              Asian[Asian.length - 1].cumulative_confirmed_cases,
+              White[White.length - 1].cumulative_confirmed_cases,
+              Hispanic[Hispanic.length - 1].cumulative_confirmed_cases,
+              // Black[Black.length - 1].cumulative_confirmed_cases,
+              Native[Native.length - 1].cumulative_confirmed_cases,
+              MultiRacial[MultiRacial.length - 1].cumulative_confirmed_cases,
+              Unknown[Unknown.length - 1].cumulative_confirmed_cases,
+            ],
+            backgroundColor: [
+              '#669900',
+              '#FF9900',
+              '#FFCC00',
+              // '#006699',
+              '#CCEE66',
+              '#3399CC',
+              '#CC3399',
+            ],
+          },
+        ],
+      },
+      secondary: {},
+      primaryLabel: '',
+      secondaryLabel: '',
+      dates,
+      chartLabel: 'Race of confirmed cases',
+      type: 'doughnut',
+    };
+
+    const chart2 = {
+      primary: dailyAsian,
+      secondary: makeSevenDayAverage(dailyAsian),
+      dates: Asian.map((item) => item.specimen_collection_date.slice(5, 10)),
+      primaryLabel: 'Confirmed cases of Asian descent',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: '#669900',
+        secondary: '',
+      },
+    };
+
+    const chart3 = {
+      primary: dailyWhite,
+      secondary: makeSevenDayAverage(dailyWhite),
+      dates: White.map((item) => item.specimen_collection_date.slice(5, 10)),
+      primaryLabel: 'Confirmed cases of White descent',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: '#FF9900',
+        secondary: '',
+      },
+    };
+
+    // const chart4 = {
+    //   primary: dailyBlack,
+    //   secondary: makeSevenDayAverage(dailyBlack),
+    //   dates,
+    //   primaryLabel: 'Confirmed cases of Black descent',
+    //   secondaryLabel: '7-day average',
+    //   chartLabel: 'daily cases',
+    //   type: 'average',
+    //   colors: {
+    //     primary: '#FFCC00',
+    //     secondary: '',
+    //   },
+    // };
+
+    const chart4 = {
+      primary: dailyHispanic,
+      secondary: makeSevenDayAverage(dailyHispanic),
+      dates: Hispanic.map((item) => item.specimen_collection_date.slice(5, 10)),
+      primaryLabel: 'Confirmed cases of Hispanic descent',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: '#006699',
+        secondary: '',
+      },
+    };
+
+    const chart5 = {
+      primary: dailyNative,
+      secondary: makeSevenDayAverage(dailyNative),
+      dates: Native.map((item) => item.specimen_collection_date.slice(5, 10)),
+      primaryLabel: 'Confirmed cases of Native American descent',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: '#CCEE66',
+        secondary: '',
+      },
+    };
+
+    const modifiedData = {
+      chart1,
+      chart2,
+      chart3,
+      chart4,
+      chart5,
+      // chart6,
+      source: 'https://data.sfgov.org/resource/vqqm-nsqg.json',
+      date_recorded: dates[dates.length - 1],
+    };
+
+    console.log('mod');
+    console.log(modifiedData);
+    return modifiedData;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const fetchTestApi = async () => {
   try {
     console.log('test');

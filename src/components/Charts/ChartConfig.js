@@ -16,7 +16,6 @@ export const composeData = (
     pointBackgroundColor: 'rgb(145, 142, 244)',
     pointHoverBackgroundColor: 'rgb(66, 129, 164)',
     pointHoverBorderColor: 'rgb(66, 129, 164)',
-    yAxisID: 'y-axis-1',
   };
 
   const primaryBar = {

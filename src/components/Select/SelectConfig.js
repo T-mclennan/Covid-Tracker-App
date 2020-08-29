@@ -57,16 +57,28 @@ const dashboardSecondary = [
 
 const raceSecondary = [
   {
-    label: 'Positive Cases',
+    label: 'Pie Chart',
     value: 'chart1',
   },
   {
-    label: 'Tests Conducted',
+    label: 'Asian',
     value: 'chart2',
   },
   {
-    label: '% of Tests Positive',
+    label: 'White',
     value: 'chart3',
+  },
+  // {
+  //   label: 'Black',
+  //   value: 'chart4',
+  // },
+  {
+    label: 'Hispanic',
+    value: 'chart4',
+  },
+  {
+    label: 'Native American',
+    value: 'chart5',
   },
 ];
 

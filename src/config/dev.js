@@ -37,7 +37,7 @@ module.exports = {
 
   //Cases summarized by race / ethnicity - San Francisco
   //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Race-and-Ethnicity/vqqm-nsqg
-  RACE_ETHNICITY_API: 'https://data.sfgov.org/resource/nhy6-gqam.json',
+  RACE_ETHNICITY_API: 'https://data.sfgov.org/resource/vqqm-nsqg.json',
 
   //Cases summarized by age - San Francisco
   //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Age-Group/sunc-2t3k
