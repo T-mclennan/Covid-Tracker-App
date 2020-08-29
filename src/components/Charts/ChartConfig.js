@@ -1,5 +1,5 @@
 export const composeData = (
-  { primary, secondary, primaryLabel, secondaryLabel, dates, type },
+  { primary, secondary, primaryLabel, secondaryLabel, dates, type, colors },
   dayCount
 ) => {
   const length = dates.length;
@@ -10,10 +10,10 @@ export const composeData = (
     type: 'line',
     data: secondary.slice(length - dayCount, length - 3),
     fill: false,
-    borderColor: 'rgb(145, 142, 244)',
-    backgroundColor: 'rgb(145, 142, 244)',
-    pointBorderColor: 'rgb(145, 142, 244)',
-    pointBackgroundColor: 'rgb(145, 142, 244)',
+    borderColor: colors.secondary,
+    backgroundColor: colors.secondary,
+    pointBorderColor: colors.secondary,
+    pointBackgroundColor: colors.secondary,
     pointHoverBackgroundColor: 'rgb(66, 129, 164)',
     pointHoverBorderColor: 'rgb(66, 129, 164)',
   };
@@ -23,8 +23,8 @@ export const composeData = (
     type: 'bar',
     data: primary.slice(length - dayCount, length - 3),
     fill: false,
-    backgroundColor: 'rgba(173,216,230 ,0.5 )',
-    // backgroundColor: '#7d49c6|#daa3ff',
+    // backgroundColor: 'rgba(173,216,230 ,0.5 )',
+    backgroundColor: colors.primary,
     borderColor: '#3333ff',
     hoverBackgroundColor: 'rgba(173,216,230 ,1 )',
     hoverBorderColor: '#71B37C',
@@ -36,8 +36,8 @@ export const composeData = (
     type: 'bar',
     data: secondary.slice(length - dayCount, length - 3),
     fill: false,
-    backgroundColor: 'blue',
-    borderColor: 'blue',
+    backgroundColor: colors.secondary,
+    borderColor: colors.secondary,
     hoverBackgroundColor: 'rgba(173,216,230 ,1 )',
     hoverBorderColor: '#71B37C',
     yAxisID: 'y-axis-1',
@@ -47,7 +47,8 @@ export const composeData = (
     label: primaryLabel,
     data: primary,
     fill: true,
-    backgroundColor: 'rgba(75,192,192,0.2)',
+    // backgroundColor: 'rgba(75,192,192,0.2)',
+    backgroundColor: colors.secondary,
     borderColor: 'rgba(75,192,192,1)',
   };
 
@@ -56,12 +57,13 @@ export const composeData = (
     data: secondary,
     fill: true,
     borderColor: '#742774',
-    backgroundColor: 'rgba(116, 39, 116, 0.2)',
+    // backgroundColor: 'rgba(116, 39, 116, 0.2)',
+    backgroundColor: colors.secondary,
   };
 
   switch (type) {
     case 'average':
-      return { datasets: [primaryBar, averageLine] };
+      return { datasets: [averageLine, primaryBar] };
     case 'stacked':
       return { datasets: [primaryBar, secondaryBar] };
     case 'line':
@@ -71,8 +73,6 @@ export const composeData = (
       return null;
   }
 };
-
-const pieOptions = {};
 
 export const composeOptions = ({ dates }, dayCount) => {
   const length = dates.length;
@@ -100,19 +100,14 @@ export const composeOptions = ({ dates }, dayCount) => {
           ticks: {
             autoSkip: true,
             maxTicksLimit: 22,
-            fontSize: 12,
-            fontFamily: 'Montserrat',
-            fontColor: '#0f1222',
+            // fontSize: 12,
+            // fontFamily: 'Montserrat',
+            // fontColor: '#0f1222',
           },
         },
       ],
       yAxes: [
         {
-          // ticks: {
-          //   fontSize: 12,
-          //   fontFamily: 'Montserrat',
-          //   fontColor: '#0f1222',
-          // },
           type: 'linear',
           display: true,
           position: 'left',
@@ -125,6 +120,7 @@ export const composeOptions = ({ dates }, dayCount) => {
           },
           stacked: true,
         },
+        // {},
         // {
         //   type: 'linear',
         //   display: true,

@@ -23,6 +23,10 @@ export const fetchHospitalData = async () => {
       primaryLabel: 'Acute care patients',
       secondaryLabel: 'Seven day average',
       type: 'average',
+      colors: {
+        primary: 'rgba(111, 255, 233, 0.5)',
+        secondray: 'rgba(10, 173, 149, 0.7)',
+      },
     };
 
     //ICU care 7 day average:
@@ -33,6 +37,10 @@ export const fetchHospitalData = async () => {
       primaryLabel: 'ICU patients',
       secondaryLabel: 'Seven day average',
       type: 'average',
+      colors: {
+        primary: 'rgba(131, 188, 255, 0.5)',
+        secondray: 'rgba(43, 85, 133, 0.7)',
+      },
     };
 
     //ICU care 7 day average:
@@ -43,6 +51,10 @@ export const fetchHospitalData = async () => {
       primaryLabel: 'ICU patients',
       secondaryLabel: 'Acute care patients',
       type: 'stacked',
+      colors: {
+        primary: 'rgba(111, 255, 233, 0.5)',
+        secondray: 'rgba(131, 188, 255, 0.5)',
+      },
     };
 
     const modifiedData = {
@@ -69,14 +81,10 @@ export const fetchSFData = async () => {
       negative = [],
       average = [];
 
-    let lastIndex = 0;
     inputData.data.forEach(
-      (
-        { specimen_collection_date, pos, pct, neg, tests, indeterminate },
-        index
-      ) => {
+      ({ specimen_collection_date, pos, pct, neg, tests, indeterminate }) => {
         if (specimen_collection_date.slice(5, 10) !== dates[dates.length - 1]) {
-          lastIndex = index;
+          // lastIndex = index;
           positive.push(pos);
           dates.push(specimen_collection_date.slice(5, 10));
           total_tests.push(tests);
@@ -94,6 +102,10 @@ export const fetchSFData = async () => {
       primaryLabel: 'Positive Tests',
       secondaryLabel: 'Seven day average',
       type: 'average',
+      colors: {
+        primary: 'rgba(173,216,230 ,0.5 )',
+        secondary: 'rgba(96, 21, 119, 0.7)',
+      },
     };
 
     const chart2 = {
@@ -103,6 +115,10 @@ export const fetchSFData = async () => {
       primaryLabel: 'Tests Conducted',
       secondaryLabel: 'Seven day average',
       type: 'average',
+      colors: {
+        primary: 'rgba(159, 233, 211, 0.5)',
+        secondary: 'rgba(26, 153, 115, 0.7)',
+      },
     };
 
     const chart3 = {
@@ -112,6 +128,10 @@ export const fetchSFData = async () => {
       primaryLabel: '% of Tests Positive',
       secondaryLabel: 'Seven day average',
       type: 'average',
+      colors: {
+        primary: 'rgba(230, 194, 173, 0.5)',
+        secondary: 'rgba(173, 81, 27, 0.7)',
+      },
     };
 
     const modifiedData = {
@@ -159,7 +179,12 @@ export const fetchGenderData = async () => {
               trans[trans.length - 1].cumulative_confirmed_cases,
               unknown[unknown.length - 1].cumulative_confirmed_cases,
             ],
-            backgroundColor: ['red', 'orange', 'yellow', 'pink'],
+            backgroundColor: [
+              'rgba(112, 214, 255, 0.5)',
+              'rgba(255, 112, 166, 0.5)',
+              'rgba(255, 151, 112, 0.5)',
+              'rgba(255, 214, 112, 0.5)',
+            ],
           },
         ],
       },
@@ -179,6 +204,10 @@ export const fetchGenderData = async () => {
       secondaryLabel: '7-day average',
       chartLabel: 'daily cases',
       type: 'average',
+      colors: {
+        primary: 'rgba(112, 214, 255, 0.5)',
+        secondray: 'rgba(36, 98, 211, 0.7)',
+      },
     };
 
     const chart3 = {
@@ -189,6 +218,10 @@ export const fetchGenderData = async () => {
       secondaryLabel: '7-day average',
       chartLabel: 'daily cases',
       type: 'average',
+      colors: {
+        primary: 'rgba(255, 112, 166, 0.5)',
+        secondray: 'rgba(168, 21, 126, 0.7)',
+      },
     };
 
     const chart4 = {
@@ -199,6 +232,10 @@ export const fetchGenderData = async () => {
       secondaryLabel: 'Female Cases',
       chartLabel: 'Cumulative Cases',
       type: 'line',
+      colors: {
+        primary: 'rgba(112, 214, 255, 0.5)',
+        secondray: 'rgba(255, 112, 166, 0.5)',
+      },
     };
 
     const modifiedData = {
@@ -281,11 +318,11 @@ export const fetchRaceData = async () => {
               Unknown[Unknown.length - 1].cumulative_confirmed_cases,
             ],
             backgroundColor: [
-              '#669900',
+              '#a0ee02',
               '#FF9900',
-              '#FFCC00',
+              '#2eb4f7',
               // '#006699',
-              '#CCEE66',
+              '#dca7f1',
               '#3399CC',
               '#CC3399',
             ],
@@ -309,8 +346,8 @@ export const fetchRaceData = async () => {
       chartLabel: 'daily cases',
       type: 'average',
       colors: {
-        primary: '#669900',
-        secondary: '',
+        primary: '#a0ee02',
+        secondary: '#669900',
       },
     };
 
@@ -324,7 +361,7 @@ export const fetchRaceData = async () => {
       type: 'average',
       colors: {
         primary: '#FF9900',
-        secondary: '',
+        secondary: '#df6311',
       },
     };
 
@@ -351,8 +388,8 @@ export const fetchRaceData = async () => {
       chartLabel: 'daily cases',
       type: 'average',
       colors: {
-        primary: '#006699',
-        secondary: '',
+        primary: '#2eb4f7',
+        secondary: '#006699',
       },
     };
 
@@ -365,8 +402,8 @@ export const fetchRaceData = async () => {
       chartLabel: 'daily cases',
       type: 'average',
       colors: {
-        primary: '#CCEE66',
-        secondary: '',
+        primary: '#dca7f1',
+        secondary: '#752e91',
       },
     };
 
