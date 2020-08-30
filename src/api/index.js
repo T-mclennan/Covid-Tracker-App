@@ -20,12 +20,12 @@ export const fetchHospitalData = async () => {
       primary: patients,
       secondary: makeSevenDayAverage(patients),
       dates: label,
-      primaryLabel: 'Acute care patients',
+      primaryLabel: 'Daily acute care patients',
       secondaryLabel: 'Seven day average',
       type: 'average',
       colors: {
         primary: 'rgba(111, 255, 233, 0.5)',
-        secondray: 'rgba(10, 173, 149, 0.7)',
+        secondary: 'rgba(10, 173, 149, 0.7)',
       },
     };
 
@@ -34,12 +34,12 @@ export const fetchHospitalData = async () => {
       primary: icu,
       secondary: makeSevenDayAverage(icu),
       dates: label,
-      primaryLabel: 'ICU patients',
+      primaryLabel: 'Daily ICU patients',
       secondaryLabel: 'Seven day average',
       type: 'average',
       colors: {
         primary: 'rgba(131, 188, 255, 0.5)',
-        secondray: 'rgba(43, 85, 133, 0.7)',
+        secondary: 'rgba(43, 85, 133, 0.7)',
       },
     };
 
@@ -48,12 +48,12 @@ export const fetchHospitalData = async () => {
       primary: icu,
       secondary: patients,
       dates: label,
-      primaryLabel: 'ICU patients',
-      secondaryLabel: 'Acute care patients',
+      primaryLabel: 'Daily ICU patients',
+      secondaryLabel: 'Daily Acute care patients',
       type: 'stacked',
       colors: {
         primary: 'rgba(111, 255, 233, 0.5)',
-        secondray: 'rgba(131, 188, 255, 0.5)',
+        secondary: 'rgba(131, 188, 255, 0.5)',
       },
     };
 
@@ -103,8 +103,8 @@ export const fetchSFData = async () => {
       secondaryLabel: 'Seven day average',
       type: 'average',
       colors: {
-        primary: 'rgba(173,216,230 ,0.5 )',
-        secondary: 'rgba(96, 21, 119, 0.7)',
+        primary: 'rgba(146, 201, 219, 0.5)',
+        secondary: 'rgba(25, 195, 214, 0.5)',
       },
     };
 
@@ -181,8 +181,8 @@ export const fetchGenderData = async () => {
             ],
             backgroundColor: [
               'rgba(112, 214, 255, 0.5)',
-              'rgba(255, 112, 166, 0.5)',
-              'rgba(255, 151, 112, 0.5)',
+              'rgba(255, 188, 126, 0.5)',
+              'rgba(225, 102, 110, 0.5)',
               'rgba(255, 214, 112, 0.5)',
             ],
           },
@@ -206,7 +206,7 @@ export const fetchGenderData = async () => {
       type: 'average',
       colors: {
         primary: 'rgba(112, 214, 255, 0.5)',
-        secondray: 'rgba(36, 98, 211, 0.7)',
+        secondary: 'rgba(36, 98, 211, 0.7)',
       },
     };
 
@@ -219,8 +219,8 @@ export const fetchGenderData = async () => {
       chartLabel: 'daily cases',
       type: 'average',
       colors: {
-        primary: 'rgba(255, 112, 166, 0.5)',
-        secondray: 'rgba(168, 21, 126, 0.7)',
+        primary: 'rgba(255, 188, 126, 0.5)',
+        secondary: 'rgba(242, 103, 124, 0.5)',
       },
     };
 
@@ -234,7 +234,7 @@ export const fetchGenderData = async () => {
       type: 'line',
       colors: {
         primary: 'rgba(112, 214, 255, 0.5)',
-        secondray: 'rgba(255, 112, 166, 0.5)',
+        secondary: 'rgba(255, 112, 166, 0.5)',
       },
     };
 
@@ -318,12 +318,13 @@ export const fetchRaceData = async () => {
               Unknown[Unknown.length - 1].cumulative_confirmed_cases,
             ],
             backgroundColor: [
-              '#a0ee02',
-              '#FF9900',
-              '#2eb4f7',
+              // 'rgba(44, 182, 228, 0.5)',
+              'rgba(94, 233, 175, 0.6)',
+              'rgba(226, 139, 84, 0.5)',
+              'rgba(44, 182, 228, 0.5)',
               // '#006699',
               '#dca7f1',
-              '#3399CC',
+              'rgba(100, 77, 212, 0.6)',
               '#CC3399',
             ],
           },
@@ -346,8 +347,10 @@ export const fetchRaceData = async () => {
       chartLabel: 'daily cases',
       type: 'average',
       colors: {
-        primary: '#a0ee02',
-        secondary: '#669900',
+        // primary: 'rgba(44, 182, 228, 0.5)',
+        primary: 'rgba(94, 233, 175, 0.6)',
+        // secondary: 'rgba(50, 104, 206, 0.6)',
+        secondary: 'rgba(50, 205, 216, 0.6)',
       },
     };
 
@@ -360,8 +363,8 @@ export const fetchRaceData = async () => {
       chartLabel: 'daily cases',
       type: 'average',
       colors: {
-        primary: '#FF9900',
-        secondary: '#df6311',
+        primary: 'rgba(226, 139, 84, 0.5)',
+        secondary: 'rgba(196, 82, 41, 0.6)',
       },
     };
 
@@ -388,8 +391,8 @@ export const fetchRaceData = async () => {
       chartLabel: 'daily cases',
       type: 'average',
       colors: {
-        primary: '#2eb4f7',
-        secondary: '#006699',
+        primary: 'rgba(44, 182, 228, 0.5)',
+        secondary: 'rgba(50, 104, 206, 0.6)',
       },
     };
 
