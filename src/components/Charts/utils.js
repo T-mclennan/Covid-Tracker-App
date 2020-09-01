@@ -28,8 +28,6 @@ export const fetchData = async (criteria) => {
 };
 
 export const makeSevenDayAverage = (dataset) => {
-  console.log('inside 7 day average');
-  console.log(dataset);
   const ret = [];
   let sum = 0;
   for (let i = 0; i < dataset.length; i++) {
@@ -46,6 +44,5 @@ export const makeSevenDayAverage = (dataset) => {
       ret.push(average.toFixed(2).toString());
     }
   }
-  console.log(ret);
   return ret;
 };

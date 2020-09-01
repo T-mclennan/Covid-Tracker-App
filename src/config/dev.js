@@ -24,7 +24,8 @@ module.exports = {
 
   // Hospitalization Rates - San Francisco
   // Details:
-  HOSPITAL_RATE_API: 'https://data.sfgov.org/resource/nxjg-bhem.json',
+  HOSPITAL_RATE_API:
+    'https://data.sfgov.org/resource/nxjg-bhem.json?$limit=2000',
 
   // Map of cases - San Francisco
   //Details: https://data.sfgov.org/stories/s/Map-of-Cumulative-Cases/adm5-wq8i/
@@ -37,7 +38,8 @@ module.exports = {
 
   //Cases summarized by race / ethnicity - San Francisco
   //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Race-and-Ethnicity/vqqm-nsqg
-  RACE_ETHNICITY_API: 'https://data.sfgov.org/resource/vqqm-nsqg.json',
+  RACE_ETHNICITY_API:
+    'https://data.sfgov.org/resource/vqqm-nsqg.json?$limit=2000',
 
   //Cases summarized by age - San Francisco
   //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Age-Group/sunc-2t3k

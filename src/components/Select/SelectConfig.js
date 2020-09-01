@@ -92,17 +92,17 @@ const raceSecondary = [
     label: 'White',
     value: 'chart3',
   },
-  // {
-  //   label: 'Black',
-  //   value: 'chart4',
-  // },
   {
-    label: 'Hispanic',
+    label: 'Black',
     value: 'chart4',
   },
   {
-    label: 'Native American',
+    label: 'Hispanic',
     value: 'chart5',
+  },
+  {
+    label: 'Native American',
+    value: 'chart6',
   },
 ];
 

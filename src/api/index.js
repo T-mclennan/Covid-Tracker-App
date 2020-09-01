@@ -259,13 +259,14 @@ export const fetchGenderData = async () => {
 export const fetchRaceData = async () => {
   try {
     const { data } = await axios.get(keys.RACE_ETHNICITY_API);
-
+    console.log(data);
     const Asian = data.filter((item) => item.race_ethnicity === 'Asian');
     const White = data.filter((item) => item.race_ethnicity === 'White');
     const Unknown = data.filter((item) => item.race_ethnicity === 'Unknown');
     const Black = data.filter(
       (item) => item.race_ethnicity === 'Black or African American'
     );
+    console.log(Black);
     const Native = data.filter(
       (item) =>
         item.race_ethnicity === 'Native Hawaiian or Other Pacific Islander'
@@ -279,7 +280,7 @@ export const fetchRaceData = async () => {
 
     const dailyAsian = Asian.map((item) => item.new_confirmed_cases);
     const dailyWhite = White.map((item) => item.new_confirmed_cases);
-    // const dailyBlack = Black.map((item) => item.new_confirmed_cases);
+    const dailyBlack = Black.map((item) => item.new_confirmed_cases);
     const dailyNative = Native.map((item) => item.new_confirmed_cases);
     const dailyHispanic = Hispanic.map((item) => item.new_confirmed_cases);
 
@@ -291,9 +292,9 @@ export const fetchRaceData = async () => {
       primary: {
         labels: [
           'Asian',
+          'Black',
           'White',
           'Hispanic',
-          // 'Black',
           'Native American',
           'Multi-Racial',
           'Unknown',
@@ -302,19 +303,18 @@ export const fetchRaceData = async () => {
           {
             data: [
               Asian[Asian.length - 1].cumulative_confirmed_cases,
+              Black[Black.length - 1].cumulative_confirmed_cases,
               White[White.length - 1].cumulative_confirmed_cases,
               Hispanic[Hispanic.length - 1].cumulative_confirmed_cases,
-              // Black[Black.length - 1].cumulative_confirmed_cases,
               Native[Native.length - 1].cumulative_confirmed_cases,
               MultiRacial[MultiRacial.length - 1].cumulative_confirmed_cases,
               Unknown[Unknown.length - 1].cumulative_confirmed_cases,
             ],
             backgroundColor: [
-              // 'rgba(44, 182, 228, 0.5)',
               'rgba(94, 233, 175, 0.6)',
+              'rgba(216, 194, 107, 0.6)',
               'rgba(226, 139, 84, 0.5)',
               'rgba(44, 182, 228, 0.5)',
-              // '#006699',
               '#dca7f1',
               'rgba(100, 77, 212, 0.6)',
               'rgba(184, 70, 123, 0.6)',
@@ -358,21 +358,21 @@ export const fetchRaceData = async () => {
       },
     };
 
-    // const chart4 = {
-    //   primary: dailyBlack,
-    //   secondary: makeSevenDayAverage(dailyBlack),
-    //   dates,
-    //   primaryLabel: 'Confirmed cases of Black descent',
-    //   secondaryLabel: '7-day average',
-    //   chartLabel: 'daily cases',
-    //   type: 'average',
-    //   colors: {
-    //     primary: '#FFCC00',
-    //     secondary: '',
-    //   },
-    // };
-
     const chart4 = {
+      primary: dailyBlack,
+      secondary: makeSevenDayAverage(dailyBlack),
+      dates,
+      primaryLabel: 'Confirmed cases of Black descent',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(216, 194, 107, 0.6)',
+        secondary: 'rgba(204, 143, 68, 0.6)',
+      },
+    };
+
+    const chart5 = {
       primary: dailyHispanic,
       secondary: makeSevenDayAverage(dailyHispanic),
       dates: Hispanic.map((item) => item.specimen_collection_date.slice(5, 10)),
@@ -386,7 +386,7 @@ export const fetchRaceData = async () => {
       },
     };
 
-    const chart5 = {
+    const chart6 = {
       primary: dailyNative,
       secondary: makeSevenDayAverage(dailyNative),
       dates: Native.map((item) => item.specimen_collection_date.slice(5, 10)),
@@ -406,7 +406,7 @@ export const fetchRaceData = async () => {
       chart3,
       chart4,
       chart5,
-      // chart6,
+      chart6,
       source: 'https://data.sfgov.org/resource/vqqm-nsqg.json',
       date_recorded: dates[dates.length - 1],
     };
