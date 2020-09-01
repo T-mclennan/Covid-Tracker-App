@@ -41,7 +41,7 @@ module.exports = {
 
   //Cases summarized by age - San Francisco
   //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Age-Group/sunc-2t3k
-  AGE_API: 'https://data.sfgov.org/resource/sunc-2t3k.json',
+  AGE_API: 'https://data.sfgov.org/resource/sunc-2t3k.json?$limit=2000',
 
   ALT_CASES_DEATHS: 'https://data.sfgov.org/resource/tvq9-ec9w.json',
   // Cases / Deaths - San Francisco

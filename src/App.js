@@ -1,7 +1,6 @@
 import React from 'react';
 import { DynamicChart, MainHeader, Footer } from './components';
 import styles from './App.module.css';
-import { fetchSFData } from './api/index';
 
 class App extends React.Component {
   state = {

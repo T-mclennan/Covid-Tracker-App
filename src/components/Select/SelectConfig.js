@@ -8,12 +8,12 @@ export const dataSetLabels = [
     value: 'HOSPITAL_DATA',
   },
   {
-    label: 'Dashboard',
-    value: 'DASHBOARD',
-  },
-  {
     label: 'Gender Data',
     value: 'GENDER_DATA',
+  },
+  {
+    label: 'Age Data',
+    value: 'AGE_DATA',
   },
   {
     label: 'Demographic Data',
@@ -40,24 +40,48 @@ const caseSecondary = [
   },
 ];
 
-const dashboardSecondary = [
+const ageSecondary = [
   {
-    label: 'Cases per Day',
+    label: 'Age Pie Chart',
     value: 'chart1',
   },
   {
-    label: 'Tests Conducted',
+    label: 'Under 18',
     value: 'chart2',
   },
   {
-    label: 'Positive Test %',
+    label: 'Ages 18-30',
     value: 'chart3',
+  },
+  {
+    label: 'Ages 31-40',
+    value: 'chart4',
+  },
+  {
+    label: 'Ages 41-50',
+    value: 'chart5',
+  },
+  {
+    label: 'Ages 51-60',
+    value: 'chart6',
+  },
+  {
+    label: 'Ages 61-70',
+    value: 'chart7',
+  },
+  {
+    label: 'Ages 71-80',
+    value: 'chart8',
+  },
+  {
+    label: 'Ages 80+',
+    value: 'chart9',
   },
 ];
 
 const raceSecondary = [
   {
-    label: 'Pie Chart',
+    label: 'Demographic Pie Chart',
     value: 'chart1',
   },
   {
@@ -99,7 +123,7 @@ const hospitalSecondary = [
 
 const genderSecondary = [
   {
-    label: 'Data by Gender',
+    label: 'Gender Pie Chart',
     value: 'chart1',
   },
   {
@@ -138,8 +162,12 @@ export const dateRangeValues = [
     value: 150,
   },
   {
+    label: 'Last 180 days',
+    value: 180,
+  },
+  {
     label: 'All available data',
-    value: 'all data',
+    value: 'All data',
   },
 ];
 
@@ -149,8 +177,8 @@ export const fetchSecondary = (dataSet) => {
       return hospitalSecondary;
     case 'SF_CASE_DATA':
       return caseSecondary;
-    case 'DASHBOARD':
-      return dashboardSecondary;
+    case 'AGE_DATA':
+      return ageSecondary;
     case 'RACE_DATA':
       return raceSecondary;
     case 'GENDER_DATA':

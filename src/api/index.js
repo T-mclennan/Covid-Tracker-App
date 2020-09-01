@@ -13,6 +13,8 @@ export const fetchHospitalData = async () => {
       reportdate.slice(5, 10)
     );
     const patients = regularPatientData.map(({ patientcount }) => patientcount);
+    console.log('inside hospital');
+    console.log(patients);
     const icu = icuData.map(({ patientcount }) => patientcount);
 
     //Acute care 7 day average:
@@ -84,7 +86,6 @@ export const fetchSFData = async () => {
     inputData.data.forEach(
       ({ specimen_collection_date, pos, pct, neg, tests, indeterminate }) => {
         if (specimen_collection_date.slice(5, 10) !== dates[dates.length - 1]) {
-          // lastIndex = index;
           positive.push(pos);
           dates.push(specimen_collection_date.slice(5, 10));
           total_tests.push(tests);
@@ -100,7 +101,7 @@ export const fetchSFData = async () => {
       secondary: makeSevenDayAverage(positive),
       dates,
       primaryLabel: 'Positive Tests',
-      secondaryLabel: 'Seven day average',
+      secondaryLabel: '7-day average',
       type: 'average',
       colors: {
         primary: 'rgba(146, 201, 219, 0.5)',
@@ -113,7 +114,7 @@ export const fetchSFData = async () => {
       secondary: makeSevenDayAverage(total_tests),
       dates,
       primaryLabel: 'Tests Conducted',
-      secondaryLabel: 'Seven day average',
+      secondaryLabel: '7-day average',
       type: 'average',
       colors: {
         primary: 'rgba(159, 233, 211, 0.5)',
@@ -125,8 +126,8 @@ export const fetchSFData = async () => {
       primary: percent,
       secondary: makeSevenDayAverage(average),
       dates,
-      primaryLabel: '% of Tests Positive',
-      secondaryLabel: 'Seven day average',
+      primaryLabel: '% of positive tests',
+      secondaryLabel: '7-day average',
       type: 'average',
       colors: {
         primary: 'rgba(230, 194, 173, 0.5)',
@@ -258,15 +259,13 @@ export const fetchGenderData = async () => {
 export const fetchRaceData = async () => {
   try {
     const { data } = await axios.get(keys.RACE_ETHNICITY_API);
-    console.log('race data:');
-    console.log(data);
 
     const Asian = data.filter((item) => item.race_ethnicity === 'Asian');
     const White = data.filter((item) => item.race_ethnicity === 'White');
     const Unknown = data.filter((item) => item.race_ethnicity === 'Unknown');
-    // const Black = data.filter(
-    //   (item) => item.race_ethnicity === 'Black or African American'
-    // );
+    const Black = data.filter(
+      (item) => item.race_ethnicity === 'Black or African American'
+    );
     const Native = data.filter(
       (item) =>
         item.race_ethnicity === 'Native Hawaiian or Other Pacific Islander'
@@ -277,13 +276,6 @@ export const fetchRaceData = async () => {
     const MultiRacial = data.filter(
       (item) => item.race_ethnicity === 'Multi-racial'
     );
-
-    console.log(Asian);
-    console.log(White);
-    // console.log(Black);
-    console.log(Native);
-    console.log(Hispanic);
-    console.log(MultiRacial);
 
     const dailyAsian = Asian.map((item) => item.new_confirmed_cases);
     const dailyWhite = White.map((item) => item.new_confirmed_cases);
@@ -325,7 +317,7 @@ export const fetchRaceData = async () => {
               // '#006699',
               '#dca7f1',
               'rgba(100, 77, 212, 0.6)',
-              '#CC3399',
+              'rgba(184, 70, 123, 0.6)',
             ],
           },
         ],
@@ -347,9 +339,7 @@ export const fetchRaceData = async () => {
       chartLabel: 'daily cases',
       type: 'average',
       colors: {
-        // primary: 'rgba(44, 182, 228, 0.5)',
         primary: 'rgba(94, 233, 175, 0.6)',
-        // secondary: 'rgba(50, 104, 206, 0.6)',
         secondary: 'rgba(50, 205, 216, 0.6)',
       },
     };
@@ -421,8 +411,238 @@ export const fetchRaceData = async () => {
       date_recorded: dates[dates.length - 1],
     };
 
-    console.log('mod');
-    console.log(modifiedData);
+    return modifiedData;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchAgeData = async () => {
+  try {
+    const { data } = await axios.get(keys.AGE_API);
+
+    const underEighteen = data.filter((item) => item.age_group === 'under 18');
+    const eighteenThirty = data.filter((item) => item.age_group === '18-30');
+    const thirtyForty = data.filter((item) => item.age_group === '31-40');
+    const fortyFifty = data.filter((item) => item.age_group === '41-50');
+    const fiftySixty = data.filter((item) => item.age_group === '51-60');
+    const sixtySeventy = data.filter((item) => item.age_group === '61-70');
+    const seventyEighty = data.filter((item) => item.age_group === '71-80');
+    const eightyPlus = data.filter((item) => item.age_group === '81+');
+
+    const underEighteenCases = underEighteen.map(
+      (item) => item.new_confirmed_cases
+    );
+    const eighteenThirtyCases = eighteenThirty.map(
+      (item) => item.new_confirmed_cases
+    );
+    const thirtyFortyCases = thirtyForty.map(
+      (item) => item.new_confirmed_cases
+    );
+    const fortyFiftyCases = fortyFifty.map((item) => item.new_confirmed_cases);
+    const fiftySixtyCases = fiftySixty.map((item) => item.new_confirmed_cases);
+    const sixtySeventyCases = sixtySeventy.map(
+      (item) => item.new_confirmed_cases
+    );
+    const seventyEightyCases = seventyEighty.map(
+      (item) => item.new_confirmed_cases
+    );
+    const eightyPlusCases = eightyPlus.map((item) => item.new_confirmed_cases);
+
+    const dates = underEighteen.map((item) =>
+      item.specimen_collection_date.slice(5, 10)
+    );
+
+    const chart1 = {
+      primary: {
+        labels: [
+          'Under 18',
+          '18-30',
+          '31-40',
+          '41-50',
+          '51-60',
+          '61-70',
+          '71-80',
+          '80+',
+        ],
+        datasets: [
+          {
+            data: [
+              underEighteen[underEighteen.length - 1]
+                .cumulative_confirmed_cases,
+              eighteenThirty[eighteenThirty.length - 1]
+                .cumulative_confirmed_cases,
+              thirtyForty[thirtyForty.length - 1].cumulative_confirmed_cases,
+              fortyFifty[fortyFifty.length - 1].cumulative_confirmed_cases,
+              fiftySixty[fiftySixty.length - 1].cumulative_confirmed_cases,
+              sixtySeventy[sixtySeventy.length - 1].cumulative_confirmed_cases,
+              seventyEighty[seventyEighty.length - 1]
+                .cumulative_confirmed_cases,
+              eightyPlus[eightyPlus.length - 1].cumulative_confirmed_cases,
+            ],
+            backgroundColor: [
+              'rgba(233, 201, 94, 0.6)',
+              'rgba(226, 122, 84, 0.5)',
+              'rgba(44, 130, 228, 0.5)',
+              'rgba(127, 192, 241, 0.6)',
+              'rgba(190, 111, 184, 0.6)',
+              'rgba(69, 180, 152, 0.6)',
+              'rgba(189, 54, 67, 0.6)',
+              'rgba(131, 74, 197, 0.6)',
+            ],
+          },
+        ],
+      },
+      secondary: {},
+      primaryLabel: '',
+      secondaryLabel: '',
+      dates,
+      chartLabel: 'Age of confirmed cases',
+      type: 'doughnut',
+    };
+
+    const chart2 = {
+      primary: underEighteenCases,
+      secondary: makeSevenDayAverage(underEighteenCases),
+      dates: underEighteen.map((item) =>
+        item.specimen_collection_date.slice(5, 10)
+      ),
+      primaryLabel: 'Confirmed cases between 18-30 years',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(233, 201, 94, 0.6)',
+        secondary: 'rgba(207, 132, 46, 0.6)',
+      },
+    };
+
+    const chart3 = {
+      primary: eighteenThirtyCases,
+      secondary: makeSevenDayAverage(eighteenThirtyCases),
+      dates: eighteenThirty.map((item) =>
+        item.specimen_collection_date.slice(5, 10)
+      ),
+      primaryLabel: 'Confirmed cases between 18-30 years',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(226, 122, 84, 0.5)',
+        secondary: 'rgba(185, 65, 22, 0.5)',
+      },
+    };
+
+    const chart4 = {
+      primary: thirtyFortyCases,
+      secondary: makeSevenDayAverage(thirtyFortyCases),
+      dates: thirtyForty.map((item) =>
+        item.specimen_collection_date.slice(5, 10)
+      ),
+      primaryLabel: 'Confirmed cases between 31-40 years',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(44, 130, 228, 0.5)',
+        secondary: 'rgba(44, 47, 228, 0.5)',
+      },
+    };
+
+    const chart5 = {
+      primary: fortyFiftyCases,
+      secondary: makeSevenDayAverage(fortyFiftyCases),
+      dates: fortyFifty.map((item) =>
+        item.specimen_collection_date.slice(5, 10)
+      ),
+      primaryLabel: 'Confirmed cases between 41-50 years',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(127, 192, 241, 0.6)',
+        secondary: 'rgba(63, 171, 190, 0.6)',
+      },
+    };
+
+    const chart6 = {
+      primary: fiftySixtyCases,
+      secondary: makeSevenDayAverage(fiftySixtyCases),
+      dates: fiftySixty.map((item) =>
+        item.specimen_collection_date.slice(5, 10)
+      ),
+      primaryLabel: 'Confirmed cases between 51-60 years',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(190, 111, 184, 0.6)',
+        secondary: 'rgba(160, 48, 170, 0.6)',
+      },
+    };
+
+    const chart7 = {
+      primary: sixtySeventyCases,
+      secondary: makeSevenDayAverage(sixtySeventyCases),
+      dates: sixtySeventy.map((item) =>
+        item.specimen_collection_date.slice(5, 10)
+      ),
+      primaryLabel: 'Confirmed cases between 61-70 years',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(127, 192, 241, 0.6)',
+        secondary: 'rgba(63, 171, 190, 0.6)',
+      },
+    };
+
+    const chart8 = {
+      primary: seventyEightyCases,
+      secondary: makeSevenDayAverage(seventyEightyCases),
+      dates: seventyEighty.map((item) =>
+        item.specimen_collection_date.slice(5, 10)
+      ),
+      primaryLabel: 'Confirmed cases between 71-80 years',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(189, 54, 67, 0.5)',
+        secondary: 'rgba(156, 26, 104, 0.6)',
+      },
+    };
+
+    const chart9 = {
+      primary: eightyPlusCases,
+      secondary: makeSevenDayAverage(eightyPlusCases),
+      dates: eightyPlus.map((item) =>
+        item.specimen_collection_date.slice(5, 10)
+      ),
+      primaryLabel: 'Confirmed cases over 80 years of age',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(131, 74, 197, 0.6)',
+        secondary: 'rgba(67, 49, 185, 0.6)',
+      },
+    };
+
+    const modifiedData = {
+      chart1,
+      chart2,
+      chart3,
+      chart4,
+      chart5,
+      chart6,
+      chart7,
+      chart8,
+      chart9,
+      source: 'https://data.sfgov.org/resource/sunc-2t3k.json',
+      date_recorded: dates[dates.length - 1],
+    };
+
     return modifiedData;
   } catch (error) {
     console.log(error);

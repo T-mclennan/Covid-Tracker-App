@@ -4,6 +4,7 @@ import {
   fetchMapGeoJSON,
   fetchGenderData,
   fetchRaceData,
+  fetchAgeData,
 } from '../../api';
 
 export const fetchData = async (criteria) => {
@@ -16,6 +17,8 @@ export const fetchData = async (criteria) => {
       return fetchGenderData();
     case 'RACE_DATA':
       return fetchRaceData();
+    case 'AGE_DATA':
+      return fetchAgeData();
     case 'MAP_DATA':
       return fetchMapGeoJSON();
     default:
@@ -25,13 +28,15 @@ export const fetchData = async (criteria) => {
 };
 
 export const makeSevenDayAverage = (dataset) => {
+  console.log('inside 7 day average');
+  console.log(dataset);
   const ret = [];
   let sum = 0;
   for (let i = 0; i < dataset.length; i++) {
     if (i < 7) {
       sum += parseInt(dataset[i]);
 
-      const average = sum === 0 ? 0 : sum / i + 1;
+      const average = sum === 0 ? 0 : sum / (i + 1);
 
       ret.push(Math.round(average).toString());
     } else {
@@ -41,5 +46,6 @@ export const makeSevenDayAverage = (dataset) => {
       ret.push(average.toFixed(2).toString());
     }
   }
+  console.log(ret);
   return ret;
 };
