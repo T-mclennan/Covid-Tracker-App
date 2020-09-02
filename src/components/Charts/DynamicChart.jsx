@@ -32,7 +32,7 @@ const OriginalChart = (props) => {
     };
 
     fetchAPI();
-  }, [criteria, subCategory]);
+  }, [criteria]);
 
   const parseData = (data) => {
     const { setSource, setDate } = props;
