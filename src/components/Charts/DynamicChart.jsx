@@ -45,7 +45,7 @@ const OriginalChart = (props) => {
 
   const handleCriteria = (input) => {
     setCriteria(input);
-    console.log(input);
+    setSubCategory('chart1');
     if (input === 'MAP_DATA') {
       setChartType('map');
     }
@@ -67,6 +67,7 @@ const OriginalChart = (props) => {
           }}
           heading='Visualization'
           values={fetchSecondary(criteria)}
+          value={subCategory}
         />
       )}
       {!isMobile && (

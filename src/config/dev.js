@@ -50,6 +50,7 @@ module.exports = {
   // Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Date-Transmission-and/tvq9-ec9w
 
   //Misc APIs:
-  SF_ORIGINAL_DATA: 'https://data.sfgov.org/resource/nfpa-mg4g.json',
+  SF_ORIGINAL_DATA:
+    'https://data.sfgov.org/resource/nfpa-mg4g.json?$limit=2000',
   US_COVID_DATA: 'https://covid19.mathdro.id/api',
 };

@@ -42,7 +42,7 @@ const caseSecondary = [
 
 const ageSecondary = [
   {
-    label: 'Age Pie Chart',
+    label: 'Current Data',
     value: 'chart1',
   },
   {
@@ -81,7 +81,7 @@ const ageSecondary = [
 
 const raceSecondary = [
   {
-    label: 'Demographic Pie Chart',
+    label: 'Current Data',
     value: 'chart1',
   },
   {
@@ -123,7 +123,7 @@ const hospitalSecondary = [
 
 const genderSecondary = [
   {
-    label: 'Gender Pie Chart',
+    label: 'Current Data',
     value: 'chart1',
   },
   {
