@@ -67,7 +67,7 @@ const OriginalChart = (props) => {
           }}
           heading='Visualization'
           values={fetchSecondary(criteria)}
-          value={subCategory}
+          newValue={subCategory}
         />
       )}
       {!isMobile && (

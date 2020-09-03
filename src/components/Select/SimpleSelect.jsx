@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleSelect({ heading, action, values }) {
+export default function SimpleSelect({ heading, action, values, newValue }) {
   const classes = useStyles();
-  const [value, setValue] = useState('');
+  // const [value, setValue] = useState('');
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    // setValue(event.target.value);
     action(event.target.value);
   };
 
@@ -33,7 +33,12 @@ export default function SimpleSelect({ heading, action, values }) {
     <div>
       <FormControl variant='outlined' className={classes.formControl}>
         <InputLabel>{heading}</InputLabel>
-        <Select value={value} onChange={handleChange} label={heading}>
+        <Select
+          value={newValue}
+          onChange={handleChange}
+          label={heading}
+          // setValue={newValue}
+        >
           {values.map(({ value, label }, i) => (
             <MenuItem key={i} value={value}>
               {label}
