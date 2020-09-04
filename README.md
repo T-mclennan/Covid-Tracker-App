@@ -5,7 +5,7 @@
  
  #### * Limitations exist due to the nature of data collection.
  #### * A 3 day grace period is used to raise accuracy. 
- #### * Due to recovery data being inconsitantly reported, I omit figures that use it. 
+ #### * Due to recovery data being inconsitantly reported, I avoid use of that metric. 
  
  
 - ## Tools and Architecture: 
