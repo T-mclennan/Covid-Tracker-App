@@ -17,7 +17,7 @@
        
 
  
-- ## Tools and Architecture: 
+## Tools and Architecture: 
     
   ##### Frontend:
     - This App is built with Material UI and React.js
@@ -40,12 +40,11 @@
     - 8 sources of data are explored, each dataset is formatted diferently and needs to be converted to usable format.
     - Each dataset has mulitple visualizations possible, each is bundled and cached in state until another dataset is chosen.
    
-- ## Features:
+## Features:
     - One simple chart, populated by data dynamically based on user input. 
     - Each dataset has multiple sub categories, providing for granular visualization of specific parameters.
     - Date range can be adjusted to trim datasets as needed.
     - Footer provides data collection date, link to data source. 
-    <br/>
 
     <img width="1280" alt="Screen Shot 2020-09-04 at 10 30 03 AM" src="https://user-images.githubusercontent.com/43154475/92269750-a393c980-ee99-11ea-838c-2dd266b29e6b.png">
     
@@ -60,7 +59,7 @@
 
     ---
        
-- ## Additions:
+## Additions:
     - Future releases will contain an 'About' page, discussing the data and collection techniques, and with links to covid related resources.
     - More datasets are prepared for use, visualizations to come. 
     - I have data prepared for a traditional Dashboard, and a landing page that shows high level stats. 
