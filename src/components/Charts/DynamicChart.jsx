@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { fetchData } from './utils';
-import { fetchTestApi } from '../../api';
+// import { fetchTestApi } from '../../api';
 import {
   dataSetLabels,
   dateRangeValues,
@@ -25,7 +25,7 @@ const OriginalChart = (props) => {
   const [criteria, setCriteria] = useState('SF_CASE_DATA');
   const [subCategory, setSubCategory] = useState('chart1');
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fetchAPI = async () => {
       const data = await fetchData(criteria);
       if (criteria !== 'MAP_DATA') parseData(data);
@@ -90,9 +90,9 @@ const OriginalChart = (props) => {
       <Line
         data={composeData(currentData, dayCount)}
         height={
-          isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.16
+          isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.15
         }
-        // width={'auto'}
+        // width={}
         options={composeOptions(currentData, dayCount)}
         legend={legend}
       />
@@ -101,8 +101,8 @@ const OriginalChart = (props) => {
   const doughnutChart = currentData ? (
     <Doughnut
       data={currentData.primary}
-      height={isMobile ? window.innerHeight * 0.45 : 98}
-      // width={'auto'}
+      height={isMobile ? window.innerHeight * 0.45 : 100}
+      // width={}
       options={{}}
       legend={legend}
     />
