@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleSelect({ heading, action, values, newValue }) {
   const classes = useStyles();
-  // const [value, setValue] = useState('');
+  const [value, setValue] = useState('');
 
   const handleChange = (event) => {
-    // setValue(event.target.value);
+    if (!newValue) setValue(event.target.value);
     action(event.target.value);
   };
 
@@ -34,7 +34,7 @@ export default function SimpleSelect({ heading, action, values, newValue }) {
       <FormControl variant='outlined' className={classes.formControl}>
         <InputLabel>{heading}</InputLabel>
         <Select
-          value={newValue}
+          value={newValue ? newValue : value}
           onChange={handleChange}
           label={heading}
           // setValue={newValue}

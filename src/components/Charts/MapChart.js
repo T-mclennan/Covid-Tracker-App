@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ReactMapGl, { Layer, Source } from 'react-map-gl';
+import ReactMapGl from 'react-map-gl';
 import keys from '../../config/keys';
-import { mapDataLayer } from './ChartConfig';
 import { fetchMapGeoJSON } from '../../api';
 import { generateLegend } from './MapUtils';
 // import 'mapbox-gl/dist/mapbox-gl.css';
@@ -27,6 +26,8 @@ export const MapChart = () => {
 
     fetchAPI();
   }, []);
+
+  console.log(data);
 
   const zoomIn = () => {
     setViewPort({ ...viewPort, zoom: viewPort.zoom + 0.5 });

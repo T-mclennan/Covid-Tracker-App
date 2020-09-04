@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.10",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -23,6 +24,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "aws s3 sync build/ s3://sf-covid-tracker-app --delete",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id E193EVTFW0GL93 --paths '/*'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -39,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^4.1.0"
   }
 }

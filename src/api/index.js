@@ -13,8 +13,6 @@ export const fetchHospitalData = async () => {
       reportdate.slice(5, 10)
     );
     const patients = regularPatientData.map(({ patientcount }) => patientcount);
-    console.log('inside hospital');
-    console.log(patients);
     const icu = icuData.map(({ patientcount }) => patientcount);
 
     //Acute care 7 day average:
@@ -143,8 +141,6 @@ export const fetchSFData = async () => {
       date_recorded: dates[dates.length - 1],
     };
 
-    console.log('mod');
-    console.log(modifiedData);
     return modifiedData;
   } catch (error) {
     console.log(error);
@@ -248,8 +244,6 @@ export const fetchGenderData = async () => {
       date_recorded: dates[dates.length - 1],
     };
 
-    console.log('mod');
-    console.log(modifiedData);
     return modifiedData;
   } catch (error) {
     console.log(error);

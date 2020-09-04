@@ -11,6 +11,7 @@ import { Line, Doughnut } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
 import styles from './DynamicChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
+import { Skeleton } from '@material-ui/lab';
 import { composeOptions, composeData, legend } from './ChartConfig';
 
 const OriginalChart = (props) => {
@@ -32,7 +33,7 @@ const OriginalChart = (props) => {
     };
 
     fetchAPI();
-  }, [criteria]);
+  }, [criteria, subCategory, dayCount]);
 
   const parseData = (data) => {
     const { setSource, setDate } = props;
@@ -51,7 +52,7 @@ const OriginalChart = (props) => {
     }
   };
 
-  const inputBar = (
+  const inputBar = currentData ? (
     <div className={styles.inputBar}>
       <SimpleSelect
         action={handleCriteria}
@@ -79,7 +80,7 @@ const OriginalChart = (props) => {
         />
       )}
     </div>
-  );
+  ) : null;
 
   const dynamicChart =
     (chartType === 'average' ||
@@ -89,9 +90,9 @@ const OriginalChart = (props) => {
       <Line
         data={composeData(currentData, dayCount)}
         height={
-          isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.15
+          isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.16
         }
-        width={'auto'}
+        // width={'auto'}
         options={composeOptions(currentData, dayCount)}
         legend={legend}
       />
@@ -100,14 +101,14 @@ const OriginalChart = (props) => {
   const doughnutChart = currentData ? (
     <Doughnut
       data={currentData.primary}
-      height={isMobile ? window.innerHeight * 0.45 : 100}
-      width={'auto'}
+      height={isMobile ? window.innerHeight * 0.45 : 98}
+      // width={'auto'}
       options={{}}
       legend={legend}
     />
   ) : null;
 
-  return (
+  return currentData ? (
     <div className={styles.container}>
       {inputBar}
       {chartType === 'map' && <MapChart />}
@@ -116,6 +117,13 @@ const OriginalChart = (props) => {
         chartType === 'stacked') &&
         dynamicChart}
       {chartType === 'doughnut' && doughnutChart}
+    </div>
+  ) : (
+    <div>
+      <Skeleton variant='text' />
+      <Skeleton variant='circle' width={40} height={40} />
+      <Skeleton variant='rect' width={210} height={151} />
+      <Skeleton variant='rect' width={210} height={151} />
     </div>
   );
 };
