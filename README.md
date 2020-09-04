@@ -16,7 +16,7 @@
     
   ##### Data: 
     - The data is sourced from [SODA open data library](https://dev.socrata.com/consumers/getting-started.html).
-    - 6 sources of data were used, each dataset is formatted diferently and needs to be converted to usable format.
+    - 8 sources of data are explored, each dataset is formatted diferently and needs to be converted to usable format.
     - Each dataset has mulitple visualizations possible, each is bundled and cached in state until another dataset is chosen.
    
 - ## Features:
@@ -27,6 +27,7 @@
 
 - ## Additions:
     - Future releases will contain an 'About' page, discussing the data and collection techniques, and with links to covid related resources.
+    - More datasets are prepared for use, visualizations to come. 
     - I have data prepared for a traditional Dashboard, and a landing page that shows high level stats. 
     - More details on the Map interface.
   
