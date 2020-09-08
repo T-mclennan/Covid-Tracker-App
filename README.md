@@ -3,17 +3,17 @@
 
   ### [Click here for live project](https://sf-covid-dashboard.com/)
  
- #### * Limitations exist due to the nature of data collection.
- #### * A 3 day grace period is used to raise accuracy. 
- #### * Due to recovery data being inconsitantly reported, I avoid use of that metric. 
+   #####  - Limitations exist due to the nature of data collection.
+   #####  - A 3 day grace period is used to raise accuracy. 
+   #####  - Due to recovery data being inconsitantly reported, I avoid use of that metric. 
  
- ---
+          ---
        
 
  
-  <img width="1280" alt="Screen Shot 2020-09-04 at 10 24 23 AM" src="https://user-images.githubusercontent.com/43154475/92269476-15b7de80-ee99-11ea-9aaf-8d16da4c3a52.png">
+          <img width="1280" alt="Screen Shot 2020-09-04 at 10 24 23 AM" src="https://user-images.githubusercontent.com/43154475/92269476-15b7de80-ee99-11ea-9aaf-8d16da4c3a52.png">
   
- ---
+          ---
        
 
  
