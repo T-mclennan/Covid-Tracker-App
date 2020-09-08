@@ -1,32 +1,18 @@
 # SF Covid-19 Dashboard:
-## A real time visualization dashboard for San Francisco's coronavirus data.
+- ## A real time visualization dashboard for San Francisco's coronavirus data:
 
-- ## Tools and Architecture: 
     
-  ##### Frontend:
-    - This App is built with Material UI and React.js
-    - Chart.js wrapper react-chart-js2 is used for the Line and Bar charts.
-    - Neighborhood map is made with MapBox wrapper react-map-gl, with custom vector overlays. 
+  ### [Click here for live project](https://sf-covid-dashboard.com/)
+    - Limitations exist due to the nature of data collection.
+    - A 3 day grace period is used to raise accuracy. 
+    - Due to recovery data being inconsitantly reported, I avoid use of that metric. 
     
     ---
        
 
-    <img width="1280" alt="Screen Shot 2020-09-04 at 10 24 45 AM" src="https://user-images.githubusercontent.com/43154475/92269480-194b6580-ee99-11ea-8d83-01fed0934b5b.png">
+    <img width="1280" alt="Screen Shot 2020-09-04 at 10 24 23 AM" src="https://user-images.githubusercontent.com/43154475/92269476-15b7de80-ee99-11ea-9aaf-8d16da4c3a52.png">
 
     ---
-  - ### [Click here for live project](https://sf-covid-dashboard.com/)
- 
-   #####  - Limitations exist due to the nature of data collection.
-   #####  - A 3 day grace period is used to raise accuracy. 
-   #####  - Due to recovery data being inconsitantly reported, I avoid use of that metric. 
- 
-          ---
-       
-
- 
-          <img width="1280" alt="Screen Shot 2020-09-04 at 10 24 23 AM" src="https://user-images.githubusercontent.com/43154475/92269476-15b7de80-ee99-11ea-9aaf-8d16da4c3a52.png">
-  
-          ---
        
 
  
