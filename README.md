@@ -1,12 +1,13 @@
 # SF Covid-19 Dashboard:
-- ## A real time visualization dashboard for San Francisco's coronavirus data:
+## A real time visualization dashboard for San Francisco's coronavirus data.
 
     
-  ### [Click here for live project](https://sf-covid-dashboard.com/)
-  ##### Limitations exist due to the nature of data collection.
-  ##### A 3 day grace period is used to raise accuracy. 
-  ##### Due to recovery data being inconsitantly reported, I avoid use of that metric. 
+### [Click here for live project](https://sf-covid-dashboard.com/)
+##### Limitations exist due to the nature of data collection.
+##### A 3 day grace period is used to raise accuracy. 
+##### Due to recovery data being inconsitantly reported, I avoid use of that metric. 
     
+ - 
     ---
        
 
