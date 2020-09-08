@@ -1,6 +1,6 @@
 # SF Covid-19 Dashboard:
-## A real time visualization dashboard for San Francisco's coronavirus data.    
-### [Click here for live project](https://sf-covid-dashboard.com/)
+#### A real time visualization dashboard for San Francisco's coronavirus data.    
+#### [Click here for live project](https://sf-covid-dashboard.com/)
 
 - ## Note: 
   ##### Limitations exist due to the nature of data collection.
