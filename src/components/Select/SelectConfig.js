@@ -1,6 +1,6 @@
 export const dataSetLabels = [
   {
-    label: 'Positive Cases',
+    label: 'Case Data',
     value: 'SF_CASE_DATA',
   },
   {
@@ -42,7 +42,7 @@ const caseSecondary = [
 
 const ageSecondary = [
   {
-    label: 'Current Data',
+    label: 'Comparative',
     value: 'chart1',
   },
   {
@@ -81,7 +81,7 @@ const ageSecondary = [
 
 const raceSecondary = [
   {
-    label: 'Current Data',
+    label: 'Comparative',
     value: 'chart1',
   },
   {
@@ -123,7 +123,7 @@ const hospitalSecondary = [
 
 const genderSecondary = [
   {
-    label: 'Current Data',
+    label: 'Comparative',
     value: 'chart1',
   },
   {
