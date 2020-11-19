@@ -7,7 +7,7 @@ import {
   fetchAgeData,
 } from '../../api';
 
-export const fetchData = async (criteria) => {
+export const fetchData = (criteria) => {
   switch (criteria) {
     case 'HOSPITAL_DATA':
       return fetchHospitalData();
@@ -21,6 +21,26 @@ export const fetchData = async (criteria) => {
       return fetchAgeData();
     case 'MAP_DATA':
       return fetchMapGeoJSON();
+    default:
+      console.log(`Criteria ${criteria} not recognized.`);
+      return null;
+  }
+};
+
+export const fetchTitle = (criteria) => {
+  switch (criteria) {
+    case 'HOSPITAL_DATA':
+      return 'Hospital Data';
+    case 'SF_CASE_DATA':
+      return 'Total Cases';
+    case 'GENDER_DATA':
+      return 'Cases by Gender';
+    case 'RACE_DATA':
+      return 'Cases by Race';
+    case 'AGE_DATA':
+      return 'Cases by Age';
+    case 'MAP_DATA':
+      return 'Cases by Neighborhood';
     default:
       console.log(`Criteria ${criteria} not recognized.`);
       return null;

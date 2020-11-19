@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 85%;
-  height: 70%;
+  width: 80%;
+  /* height: 70%; */
+  height: 60rem;
   padding: 1rem;
-  margin: auto;
+  margin: 1rem auto;
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: lightslategray;
@@ -13,21 +14,40 @@
 }
 
 .inputBar {
-  padding-bottom: 0.5rem;
+  /* padding-bottom: 0.5rem; */
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: white;
+  /* background-color: blue; */
   width: 100%;
+  margin-bottom: 1rem;
+}
+
+.dropdownContainer {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  /* background-color: rosybrown; */
+}
+
+h1 {
+  margin: 0 0 0 1rem;
 }
 
 @media (max-width: 500px) {
   .container {
     width: 100%;
     height: 100%;
-    margin: 0;
+    margin: 1rem;
     border-radius: 0.2rem;
-    padding: none;
+    padding: 1rem;
+    font-size: small;
+  }
+
+  .inputBar {
+    justify-content: center;
   }
 }

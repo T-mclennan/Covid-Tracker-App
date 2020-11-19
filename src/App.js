@@ -9,21 +9,21 @@ class App extends React.Component {
   };
 
   render() {
-    const setDataSource = (dataSource) => {
-      this.setState({ dataSource });
-    };
 
-    const setDataDate = (dataDate) => {
-      this.setState({ dataDate });
-    };
-
-    const { dataDate, dataSource } = this.state;
 
     return (
       <div className={styles.container}>
-        <MainHeader />
-        <DynamicChart setSource={setDataSource} setDate={setDataDate} />
-        <Footer source={dataSource} date={dataDate} />
+        {/* <MainHeader /> */}
+        <DynamicChart category={'SF_CASE_DATA'}/>
+        <DynamicChart category={'HOSPITAL_DATA'}/>
+        <DynamicChart category={'GENDER_DATA'}/>
+        <DynamicChart category={'AGE_DATA'}/>
+        <DynamicChart category={'RACE_DATA'}/>
+        <DynamicChart category={'MAP_DATA'}/>
+
+
+
+        {/* <Footer source={dataSource} date={dataDate} /> */}
       </div>
     );
   }

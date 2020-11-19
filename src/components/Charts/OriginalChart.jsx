@@ -1,5 +1,6 @@
 import React, { useState, useLayoutEffect } from 'react';
-import { fetchData, fetchTitle } from './utils';
+import { fetchData } from './utils';
+// import { fetchTestApi } from '../../api';
 import {
   dataSetLabels,
   dateRangeValues,
@@ -12,32 +13,30 @@ import styles from './DynamicChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
 import { Skeleton } from '@material-ui/lab';
 import { composeOptions, composeData, legend } from './ChartConfig';
-import Footer from '../Footer/Footer';
 
-const DynamicChart = ({ category, title }) => {
+const OriginalChart = (props) => {
   //Chart data:
   const [currentData, setCurrentData] = useState({});
   const [totalData, setTotalData] = useState({});
   const [chartType, setChartType] = useState('');
-  const [ date, setDate ] = useState('')
-  const [ source, setSource] = useState('')
-
 
   //Input bar:
   const [dayCount, setDayCount] = useState(90);
+  const [criteria, setCriteria] = useState('SF_CASE_DATA');
   const [subCategory, setSubCategory] = useState('chart1');
 
   useLayoutEffect(() => {
     const fetchAPI = async () => {
-      const data = await fetchData(category);
-      if (category !== 'MAP_DATA') parseData(data);
+      const data = await fetchData(criteria);
+      if (criteria !== 'MAP_DATA') parseData(data);
       setDayCount(isMobile ? 30 : dayCount);
     };
 
     fetchAPI();
-  }, [subCategory, dayCount]);
+  }, [criteria, subCategory, dayCount]);
 
   const parseData = (data) => {
+    const { setSource, setDate } = props;
     setTotalData(data);
     setSource(data.source);
     setDate(data.date_recorded);
@@ -45,10 +44,22 @@ const DynamicChart = ({ category, title }) => {
     setChartType(data[subCategory].type);
   };
 
+  const handleCriteria = (input) => {
+    setCriteria(input);
+    setSubCategory('chart1');
+    if (input === 'MAP_DATA') {
+      setChartType('map');
+    }
+  };
+
   const inputBar = currentData ? (
     <div className={styles.inputBar}>
-      <h1>{fetchTitle(category)}</h1>
-      <div className={styles.dropdownContainer}>
+      <SimpleSelect
+        action={handleCriteria}
+        heading='Data Set'
+        values={dataSetLabels}
+        defaultValue={'SF_CASE_DATA'}
+      />
       {!isMobile && (
         <SimpleSelect
           action={(event) => {
@@ -56,7 +67,7 @@ const DynamicChart = ({ category, title }) => {
             setCurrentData(totalData[event]);
           }}
           heading='Visualization'
-          values={fetchSecondary(category)}
+          values={fetchSecondary(criteria)}
           newValue={subCategory}
         />
       )}
@@ -68,10 +79,8 @@ const DynamicChart = ({ category, title }) => {
           defaultValue={30}
         />
       )}
-      </div>
     </div>
   ) : null;
-
 
   const dynamicChart =
     (chartType === 'average' ||
@@ -80,9 +89,9 @@ const DynamicChart = ({ category, title }) => {
     currentData ? (
       <Line
         data={composeData(currentData, dayCount)}
-        // height={
-        //   isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.15
-        // }
+        height={
+          isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.15
+        }
         // width={}
         options={composeOptions(currentData, dayCount)}
         legend={legend}
@@ -92,7 +101,7 @@ const DynamicChart = ({ category, title }) => {
   const doughnutChart = currentData ? (
     <Doughnut
       data={currentData.primary}
-      // height={isMobile ? window.innerHeight * 0.45 : 100}
+      height={isMobile ? window.innerHeight * 0.45 : 100}
       // width={}
       options={{}}
       legend={legend}
@@ -101,7 +110,6 @@ const DynamicChart = ({ category, title }) => {
 
   return currentData ? (
     <div className={styles.container}>
-      
       {inputBar}
       {chartType === 'map' && <MapChart />}
       {(chartType === 'average' ||
@@ -109,7 +117,6 @@ const DynamicChart = ({ category, title }) => {
         chartType === 'stacked') &&
         dynamicChart}
       {chartType === 'doughnut' && doughnutChart}
-      <Footer date={date} source={source}/>
     </div>
   ) : (
     <div>
@@ -121,4 +128,4 @@ const DynamicChart = ({ category, title }) => {
   );
 };
 
-export default DynamicChart;
+export default OriginalChart;

@@ -7,9 +7,9 @@ body {
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: safe;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 @media (max-width: 770px) {
