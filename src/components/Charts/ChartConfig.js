@@ -91,21 +91,44 @@ export const composeData = (
   }
 };
 
+export const mobileOptions = {
+  display: true,
+  position: "bottom",
+  align: 'center',
+  labels: {
+    fontSize: 11,
+    padding: 5,
+    boxWidth: 30,
+  }
+   }
+
 export const composeOptions = ({ dates, type }, dayCount) => {
   const length = dates.length - 3;
   const offset =
     dayCount === 'All data' || dayCount > length ? length : dayCount;
 
+  const mobileOptions = {
+    display: true,
+    position: "bottom",
+    align: 'center',
+    labels: {
+      fontSize: 11,
+      padding: 5,
+      boxWidth: 30,
+    }
+     }
+  const desktopOptions = {
+    display: true,
+    padding: 10,
+  }
+  
   const options = {
     responsive: true,
     labels: dates.slice(length - offset, length),
     tooltips: {
       mode: 'label',
     },
-    legend: {
-      display: true,
-      padding: 10,
-    },
+    legend: window.innerWidth <= 500 ? mobileOptions : desktopOptions,
 
     scales: {
       xAxes: [
@@ -132,7 +155,7 @@ export const composeOptions = ({ dates, type }, dayCount) => {
             display: false,
           },
           labels: {
-            show: true,
+            show: false,
           },
           stacked: type !== 'line',
         },

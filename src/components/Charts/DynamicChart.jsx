@@ -11,7 +11,7 @@ import { isMobile } from 'react-device-detect';
 import styles from './DynamicChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
 import { Skeleton } from '@material-ui/lab';
-import { composeOptions, composeData, legend } from './ChartConfig';
+import { composeOptions, composeData, legend, mobileOptions} from './ChartConfig';
 import Footer from '../Footer/Footer';
 
 const DynamicChart = ({ category, title }) => {
@@ -88,7 +88,7 @@ const DynamicChart = ({ category, title }) => {
         // }
         // width={}
         options={composeOptions(currentData, dayCount)}
-        legend={legend}
+        // legend={legend}
       />
     ) : null;
 
@@ -97,8 +97,7 @@ const DynamicChart = ({ category, title }) => {
       data={currentData.primary}
       // height={isMobile ? window.innerHeight * 0.45 : 100}
       // width={}
-      options={{}}
-      legend={legend}
+      options={isMobile ? mobileOptions : {}}
     />
   ) : null;
 
@@ -112,7 +111,7 @@ const DynamicChart = ({ category, title }) => {
         chartType === 'stacked') &&
         dynamicChart}
       {chartType === 'doughnut' && doughnutChart}
-      <Footer date={date} source={source}/>
+      {!isMobile && <Footer date={date} source={source}/>}
     </div>
   ) : (
     <div>
