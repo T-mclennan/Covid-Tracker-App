@@ -17,6 +17,13 @@ export const MapChart = () => {
   });
 
   const [data, setData] = useState({ features: [] });
+  const [settings, setSettings] = useState({
+    dragRotate: false,
+    scrollZoom: false,
+    touchZoom: false,
+    touchRotate: false,
+    keyboard: false,
+    doubleClickZoom: false})
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -44,6 +51,7 @@ export const MapChart = () => {
     <>
       <ReactMapGl
         {...viewPort}
+        {...settings}
         mapboxApiAccessToken={keys.MAPBOX_TOKEN}
         onViewportChange={(nextViewport) => setViewPort(nextViewport)}
         mapStyle='mapbox://styles/tmclennan/cke7mgp6i1l7g19nrtbpaubiq'
