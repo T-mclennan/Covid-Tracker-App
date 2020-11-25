@@ -30,7 +30,10 @@ const DynamicChart = ({ category, title }) => {
   useLayoutEffect(() => {
     const fetchAPI = async () => {
       const data = await fetchData(category);
-      if (category !== 'MAP_DATA') parseData(data);
+      if (category !== 'MAP_DATA') {parseData(data)}
+      else {
+        setChartType('map')
+      }
       setDayCount(isMobile ? 30 : dayCount);
     };
 

@@ -13,12 +13,15 @@
     "classnames": "^2.2.6",
     "immutable": "^4.0.0-rc.12",
     "react": "^16.13.1",
+    "react-animated-burgers": "^1.2.8",
     "react-chartjs-2": "^2.9.0",
     "react-countup": "^4.3.3",
     "react-device-detect": "^1.13.1",
     "react-dom": "^16.13.1",
     "react-map-gl": "^5.2.7",
-    "react-scripts": "^3.4.3"
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.1",
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

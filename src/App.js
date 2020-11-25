@@ -1,5 +1,5 @@
 import React from 'react';
-import { DynamicChart, MainHeader, Footer } from './components';
+import { DynamicChart, MainHeader, Footer, Navbar } from './components';
 import styles from './App.module.css';
 
 class App extends React.Component {
@@ -14,6 +14,7 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         {/* <MainHeader /> */}
+        <Navbar/>
         <DynamicChart category={'SF_CASE_DATA'}/>
         <DynamicChart category={'HOSPITAL_DATA'}/>
         <DynamicChart category={'GENDER_DATA'}/>
