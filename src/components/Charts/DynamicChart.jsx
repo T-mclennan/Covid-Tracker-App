@@ -11,7 +11,7 @@ import styles from './DynamicChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
 import { Skeleton } from '@material-ui/lab';
 import { composeOptions, composeData, legend, mobileOptions} from './ChartConfig';
-import Footer from '../Footer/Footer';
+import Footer from './ChartFooter';
 
 const DynamicChart = ({ category, title }) => {
 
