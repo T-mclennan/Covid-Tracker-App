@@ -1,7 +1,6 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { fetchData, fetchTitle } from './utils';
 import {
-  dataSetLabels,
   dateRangeValues,
   fetchSecondary,
 } from '../Select/SelectConfig';
@@ -15,6 +14,7 @@ import { composeOptions, composeData, legend, mobileOptions} from './ChartConfig
 import Footer from '../Footer/Footer';
 
 const DynamicChart = ({ category, title }) => {
+
   //Chart data:
   const [currentData, setCurrentData] = useState({});
   const [totalData, setTotalData] = useState({});
@@ -28,6 +28,7 @@ const DynamicChart = ({ category, title }) => {
   const [subCategory, setSubCategory] = useState('chart1');
 
   useLayoutEffect(() => {
+    console.log('inside useffect main chart')
     const fetchAPI = async () => {
       const data = await fetchData(category);
       if (category !== 'MAP_DATA') {parseData(data)}
@@ -83,26 +84,19 @@ const DynamicChart = ({ category, title }) => {
     currentData ? (
       <Line
         data={composeData(currentData, dayCount)}
-        // height={
-        //   isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.15
-        // }
-        // width={}
         options={composeOptions(currentData, dayCount)}
-        // legend={legend}
       />
     ) : null;
 
   const doughnutChart = currentData ? (
     <Doughnut
       data={currentData.primary}
-      // height={isMobile ? window.innerHeight * 0.45 : 100}
-      // width={}
       options={isMobile ? mobileOptions : {}}
     />
   ) : null;
 
   return currentData ? (
-    <div className={styles.container}>
+    <div className={chartType === 'map' ? `${styles.map} ${styles.container}`: styles.container}>
       
       {inputBar}
       {chartType === 'map' && <MapChart />}

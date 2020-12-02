@@ -48,7 +48,6 @@ p {
   position: absolute;
   top: 1em;
   right: 1em;
-  /* background: rgba(255, 255, 255, 0.8); */
   display: flex;
   flex-direction: column;
 }
@@ -70,8 +69,19 @@ p {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   line-height: 18px;
   height: 15rem;
-  /* margin-bottom: 4rem; */
   width: 8rem;
+}
+
+#legend-mobile {
+  padding: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 12px;
+  height: 11rem;
+  width: 4.8rem;
+}
+
+#legend-mobile h5 h {
+  font-size: 0.7rem;
 }
 
 .legend-key {
@@ -82,27 +92,14 @@ p {
   margin-right: 5px;
 }
 
-@media (max-width: 770px) {
-  /* .map-overlay {
-    top: 1em;
-    left: 1em;
-    background: rgba(255, 255, 255, 0.8);
-    font-family: Arial, sans-serif;
-    overflow: auto;
-    font-size: 2px;
-    border-radius: 3px;
+@media (max-width: 600px) {
+  .map-overlay {
+    top: 0.3em;
+    left: 0.3em;
   }
 
-  h5 {
-    font-size: 2px;
+  .button-box {
+    top: 0.3em;
+    right: 0.3em;
   }
-
-  #legend {
-    padding: 5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    line-height: 10px;
-    height: 10rem;
-    margin-bottom: 4rem;
-    width: 8rem;
-  } */
 }

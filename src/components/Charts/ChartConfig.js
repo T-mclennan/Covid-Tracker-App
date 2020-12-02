@@ -92,15 +92,25 @@ export const composeData = (
 };
 
 export const mobileOptions = {
-  display: true,
-  position: "bottom",
-  align: 'center',
-  labels: {
-    fontSize: 11,
-    padding: 5,
-    boxWidth: 30,
+  legend: {
+    display: true,
+    position: "bottom",
+    align: 'center',
+    responsive: true,
+    maintainAspectRatio: true,
+    labels: {
+      fontSize: 12,
+      padding: 10,
+      boxWidth: 12,
+    }
   }
-   }
+
+}
+
+export const desktopOptions = {
+  
+}
+  
 
 export const composeOptions = ({ dates, type }, dayCount) => {
   const length = dates.length - 3;

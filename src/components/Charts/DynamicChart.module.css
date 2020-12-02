@@ -1,8 +1,8 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  width: 80%;
+  justify-content: flex-start;
+  width: 70%;
   padding: 1rem;
   margin: 1rem auto;
   background-color: white;
@@ -35,11 +35,14 @@ h1 {
 @media (max-width: 500px) {
   .container {
     width: 95%;
-    /* height: 100%; */
     margin: 0.25rem;
     border-radius: 0.1rem;
-    padding: 0.25rem;
+    padding: 0.75rem 0.25rem 0.25rem 0.25rem;
     font-size: small;
+  }
+
+  .map {
+    height: 45vh;
   }
 
   .inputBar {

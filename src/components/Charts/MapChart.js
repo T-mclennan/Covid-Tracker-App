@@ -9,11 +9,11 @@ import { isMobile } from 'react-device-detect';
 
 export const MapChart = () => {
   const [viewPort, setViewPort] = useState({
-    latitude: 37.7591262,
-    longitude: -122.451323,
+    latitude: 37.7785262,
+    longitude: -122.421323,
     zoom: 12,
-    width: isMobile ? '90%' : '80vw',
-    height: isMobile ? '100%' : '60vh',
+    width: isMobile ? '42vh' : '80vw',
+    height: isMobile ? '38vh' : '60vh',
   });
 
   const [data, setData] = useState({ features: [] });
@@ -46,7 +46,6 @@ export const MapChart = () => {
     console.log(viewPort.zoom);
   };
 
-  // const mapSF = data.features.length ? (
   const mapSF = (
     <>
       <ReactMapGl
@@ -65,14 +64,13 @@ export const MapChart = () => {
             -
           </button>
         </div>
-        <div className='map-overlay' id='legend'>
+        <div className='map-overlay' id={window.innerWidth >= 600 ? 'legend': 'legend-mobile'}>
           <h5 style={{ margin: '0 0 1em 0' }}>Cases per 10,000 residents:</h5>
           {generateLegend()}
         </div>
       </ReactMapGl>
     </>
   );
-  // ) : null;
 
   return <>{mapSF}</>;
 };

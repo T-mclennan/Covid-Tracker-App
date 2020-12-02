@@ -9,7 +9,7 @@
   height: 80px;
   width: 100%;
   font-size: 1.2rem;
-  position: fixed;
+  position: sticky;
   opacity: 0.88;
   top: 0;
   z-index: 999;
