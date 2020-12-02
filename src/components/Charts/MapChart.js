@@ -12,8 +12,8 @@ export const MapChart = () => {
     latitude: 37.7785262,
     longitude: -122.421323,
     zoom: 12,
-    width: isMobile ? '42vh' : '80vw',
-    height: isMobile ? '38vh' : '60vh',
+    width: isMobile ? '42vh' : '66vw',
+    height: isMobile ? '38vh' : '62vh',
   });
 
   const [data, setData] = useState({ features: [] });
