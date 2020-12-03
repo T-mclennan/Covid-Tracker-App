@@ -1,5 +1,7 @@
 body {
-  background-color: rgb(99, 120, 139);
+  /* background-color: rgb(99, 120, 139); */
+  background-color: rgb(62, 56, 78);
+
   margin: 0;
   overscroll-behavior: none;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Navbar, Main } from './components';
+import {  Navbar, Main, MainFooter } from './components';
 import styles from './App.module.css';
 
 class App extends React.Component {
@@ -11,6 +11,7 @@ class App extends React.Component {
       <div className={styles.container}>
         <Navbar/>
         <Main/>
+        <MainFooter />
       </div>
     );
   }

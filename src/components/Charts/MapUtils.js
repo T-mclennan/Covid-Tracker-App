@@ -28,7 +28,7 @@ const colors = [
 export const generateLegend = () => {
   return layers.map((layer, i) => {
     return (
-      <div>
+      <div key={i}>
         <span className='legend-key' style={{ backgroundColor: colors[i] }} />{' '}
         {layer}
       </div>

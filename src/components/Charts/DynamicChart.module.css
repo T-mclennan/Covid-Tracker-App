@@ -2,12 +2,15 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 70%;
+  width: 44%;
   padding: 1rem;
-  margin: 1rem auto;
+  /* margin: 0.6rem; */
+  margin: 0.7rem auto;
   background-color: white;
   border-radius: 0.5rem;
-  box-shadow: lightslategray;
+  /* box-shadow: lightslategray; */
+  /* -webkit-box-shadow: 2px 1px 3px 2px rgba(126, 140, 136, 0.7);
+  box-shadow: 2px 1px 3px 2px rgba(126, 140, 136, 0.7); */
   /* background-color: rgba(204, 143, 68, 0.6); */
 }
 
@@ -19,6 +22,13 @@
   align-items: center;
   width: 100%;
   margin-bottom: 1rem;
+}
+
+.map {
+  /* height: 60vh; */
+  height: auto;
+  width: 76%;
+  margin: auto;
 }
 
 .dropdownContainer {

@@ -10,7 +10,7 @@ import { isMobile } from 'react-device-detect';
 import styles from './DynamicChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
 import { Skeleton } from '@material-ui/lab';
-import { composeOptions, composeData, legend, mobileOptions} from './ChartConfig';
+import { composeOptions, composeData, mobileOptions} from './ChartConfig';
 import Footer from './ChartFooter';
 
 const DynamicChart = ({ category, title }) => {
@@ -51,8 +51,8 @@ const DynamicChart = ({ category, title }) => {
 
   const inputBar = currentData ? (
     <div className={styles.inputBar}>
-      <h1>{fetchTitle(category)}</h1>
-      <div className={styles.dropdownContainer}>
+      {/* <h1>{fetchTitle(category)}</h1> */}
+      {/* <div className={styles.dropdownContainer}> */}
       {!isMobile && (
         <SimpleSelect
           action={(event) => {
@@ -72,7 +72,7 @@ const DynamicChart = ({ category, title }) => {
           defaultValue={30}
         />
       )}
-      </div>
+      {/* </div> */}
     </div>
   ) : null;
 
@@ -98,7 +98,7 @@ const DynamicChart = ({ category, title }) => {
   return currentData ? (
     <div className={chartType === 'map' ? `${styles.map} ${styles.container}`: styles.container}>
       
-      {inputBar}
+      {/* {chartType !== 'map' && inputBar} */}
       {chartType === 'map' && <MapChart />}
       {(chartType === 'average' ||
         chartType === 'line' ||

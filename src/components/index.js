@@ -4,4 +4,5 @@ export { default as MainHeader } from './Header/MainHeader';
 export { default as Navbar } from './Header/Navbar';
 export { default as Footer } from './Charts/ChartFooter';
 export { default as Main } from './Dashboard';
+export { default as MainFooter} from './Footer/MainFooter'
 
