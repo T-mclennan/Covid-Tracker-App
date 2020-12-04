@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import { isMobile } from 'react-device-detect';
 import Select from '@material-ui/core/Select';
 import './SimpleSelect.module.css'
 
@@ -12,6 +11,7 @@ const useStyles = makeStyles((theme) => {
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     minWidth: window.innerWidth / 6,
+    maxWidth: 10,
   }
   
   const smallStyle = {

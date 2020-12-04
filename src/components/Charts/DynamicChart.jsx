@@ -55,7 +55,7 @@ const DynamicChart = ({ category }) => {
         <h5>{fetchTitle(category)}</h5>
       </div>
       <div className={styles.dropdownContainer}>
-      {!isMobile && chartType !== 'map' &&(
+      {window.innerWidth >= 900 && chartType !== 'map' &&(
         <SimpleSelect
           action={(event) => {
             setSubCategory(event);
@@ -66,7 +66,7 @@ const DynamicChart = ({ category }) => {
           newValue={subCategory}
         />
       )}
-      {!isMobile && chartType !== 'map' &&(
+      {window.innerWidth >= 900 && chartType !== 'map' &&(
         <SimpleSelect
           action={setDayCount}
           heading='Date Range'
@@ -110,7 +110,7 @@ const DynamicChart = ({ category }) => {
           chartType === 'stacked') &&
           dynamicChart}
         {chartType === 'doughnut' && doughnutChart}
-        {!isMobile && <Footer date={date} source={source}/>}
+        {/* {!isMobile && <Footer date={date} source={source}/>} */}
       </div>
     </div>
   ) 
