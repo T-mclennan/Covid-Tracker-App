@@ -108,7 +108,18 @@ export const mobileOptions = {
 }
 
 export const desktopOptions = {
-  
+  legend: {
+    display: true,
+    position: "bottom",
+    align: 'center',
+    responsive: true,
+    maintainAspectRatio: true,
+    labels: {
+      fontSize: 12,
+      padding: 10,
+      boxWidth: 12,
+    }
+  }
 }
   
 
@@ -124,13 +135,19 @@ export const composeOptions = ({ dates, type }, dayCount) => {
     labels: {
       fontSize: 11,
       padding: 5,
-      boxWidth: 30,
+      boxWidth: 12,
     }
      }
   const desktopOptions = {
     display: true,
-    padding: 10,
-  }
+    position: "bottom",
+    align: 'center',
+    labels: {
+      fontSize: 11,
+      padding: 5,
+      boxWidth: 12,
+    }
+     }
   
   const options = {
     responsive: true,

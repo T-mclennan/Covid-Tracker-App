@@ -23,5 +23,12 @@
   .main {
     display: flex;
     flex-direction: column;
+    /* padding: 0 0.25rem; */
+  }
+}
+
+@media (max-width: 1000px) {
+  .main {
+    padding: 0 1rem;
   }
 }

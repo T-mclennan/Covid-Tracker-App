@@ -5,20 +5,33 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import { isMobile } from 'react-device-detect';
 import Select from '@material-ui/core/Select';
+import './SimpleSelect.module.css'
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
+const useStyles = makeStyles((theme) => {
+  const largeStyle = {
     marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(3),
-    // minWidth: isMobile ? 280 : 220,
-    minWidth: isMobile ? 280 : window.innerWidth / 4.3,
+    marginRight: theme.spacing(2),
+    minWidth: window.innerWidth / 6,
+  }
+  
+  const smallStyle = {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    minWidth: window.innerWidth / 6,
 
-    // window.innerHeight
-  },
+  }
+  
+  return {
+  formControl: window.innerWidth >= 900 ? largeStyle : smallStyle,
   selectEmpty: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
   },
-}));
+
+  // select: {
+  //   width: '3em'
+  // }
+
+}});
 
 export default function SimpleSelect({ heading, action, values, newValue }) {
   const classes = useStyles();

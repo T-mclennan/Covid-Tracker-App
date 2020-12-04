@@ -9,11 +9,10 @@ import { Line, Doughnut } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
 import styles from './DynamicChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
-import { Skeleton } from '@material-ui/lab';
-import { composeOptions, composeData, mobileOptions} from './ChartConfig';
+import { composeOptions, composeData, mobileOptions, desktopOptions} from './ChartConfig';
 import Footer from './ChartFooter';
 
-const DynamicChart = ({ category, title }) => {
+const DynamicChart = ({ category }) => {
 
   //Chart data:
   const [currentData, setCurrentData] = useState({});
@@ -50,10 +49,13 @@ const DynamicChart = ({ category, title }) => {
   };
 
   const inputBar = currentData ? (
+    <>
     <div className={styles.inputBar}>
-      {/* <h1>{fetchTitle(category)}</h1> */}
-      {/* <div className={styles.dropdownContainer}> */}
-      {!isMobile && (
+      <div className={styles.headerContainer}>
+        <h5>{fetchTitle(category)}</h5>
+      </div>
+      <div className={styles.dropdownContainer}>
+      {!isMobile && chartType !== 'map' &&(
         <SimpleSelect
           action={(event) => {
             setSubCategory(event);
@@ -64,7 +66,7 @@ const DynamicChart = ({ category, title }) => {
           newValue={subCategory}
         />
       )}
-      {!isMobile && (
+      {!isMobile && chartType !== 'map' &&(
         <SimpleSelect
           action={setDayCount}
           heading='Date Range'
@@ -72,8 +74,9 @@ const DynamicChart = ({ category, title }) => {
           defaultValue={30}
         />
       )}
-      {/* </div> */}
+      </div>
     </div>
+    </>
   ) : null;
 
 
@@ -91,30 +94,26 @@ const DynamicChart = ({ category, title }) => {
   const doughnutChart = currentData ? (
     <Doughnut
       data={currentData.primary}
-      options={isMobile ? mobileOptions : {}}
+      options={isMobile ? mobileOptions : desktopOptions}
     />
   ) : null;
 
-  return currentData ? (
+  return (
     <div className={chartType === 'map' ? `${styles.map} ${styles.container}`: styles.container}>
       
       {/* {chartType !== 'map' && inputBar} */}
-      {chartType === 'map' && <MapChart />}
-      {(chartType === 'average' ||
-        chartType === 'line' ||
-        chartType === 'stacked') &&
-        dynamicChart}
-      {chartType === 'doughnut' && doughnutChart}
-      {!isMobile && <Footer date={date} source={source}/>}
+      {inputBar}
+      <div className={styles.chartContainer}> 
+        {chartType === 'map' && <MapChart />}
+        {(chartType === 'average' ||
+          chartType === 'line' ||
+          chartType === 'stacked') &&
+          dynamicChart}
+        {chartType === 'doughnut' && doughnutChart}
+        {!isMobile && <Footer date={date} source={source}/>}
+      </div>
     </div>
-  ) : (
-    <div>
-      <Skeleton variant='text' />
-      <Skeleton variant='circle' width={40} height={40} />
-      <Skeleton variant='rect' width={210} height={151} />
-      <Skeleton variant='rect' width={210} height={151} />
-    </div>
-  );
+  ) 
 };
 
 export default DynamicChart;
