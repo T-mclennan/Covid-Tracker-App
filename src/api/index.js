@@ -1,6 +1,8 @@
 import axios from 'axios';
 import keys from '../config/keys';
+import {ageConfig} from './dataUtils'
 import { makeSevenDayAverage } from '../components/Charts/utils';
+import { mobileOptions } from '../components/Charts/ChartConfig';
 
 export const fetchHospitalData = async () => {
   try {
@@ -413,78 +415,26 @@ export const fetchRaceData = async () => {
 };
 
 export const fetchAgeData = async () => {
+  const {ageLabels, ageDoughnutColors, colorList} = ageConfig
+
+  console.log('inside age API:')
+
   try {
     const { data } = await axios.get(keys.AGE_API);
+    console.log(data)
 
-    const underEighteen = data.filter((item) => item.age_group === 'under 18');
-    const eighteenThirty = data.filter((item) => item.age_group === '18-30');
-    const thirtyForty = data.filter((item) => item.age_group === '31-40');
-    const fortyFifty = data.filter((item) => item.age_group === '41-50');
-    const fiftySixty = data.filter((item) => item.age_group === '51-60');
-    const sixtySeventy = data.filter((item) => item.age_group === '61-70');
-    const seventyEighty = data.filter((item) => item.age_group === '71-80');
-    const eightyPlus = data.filter((item) => item.age_group === '81+');
-
-    const underEighteenCases = underEighteen.map(
-      (item) => item.new_confirmed_cases
-    );
-    const eighteenThirtyCases = eighteenThirty.map(
-      (item) => item.new_confirmed_cases
-    );
-    const thirtyFortyCases = thirtyForty.map(
-      (item) => item.new_confirmed_cases
-    );
-    const fortyFiftyCases = fortyFifty.map((item) => item.new_confirmed_cases);
-    const fiftySixtyCases = fiftySixty.map((item) => item.new_confirmed_cases);
-    const sixtySeventyCases = sixtySeventy.map(
-      (item) => item.new_confirmed_cases
-    );
-    const seventyEightyCases = seventyEighty.map(
-      (item) => item.new_confirmed_cases
-    );
-    const eightyPlusCases = eightyPlus.map((item) => item.new_confirmed_cases);
-
-    const dates = underEighteen.map((item) =>
+    const age_group_data = ageLabels.map((label) => data.filter((item) => item.age_group === label))
+    const dates = age_group_data[6].map((item) =>
       item.specimen_collection_date.slice(5, 10)
     );
 
     const chart1 = {
       primary: {
-        labels: [
-          'Under 18',
-          '18-30',
-          '31-40',
-          '41-50',
-          '51-60',
-          '61-70',
-          '71-80',
-          '80+',
-        ],
+        labels: ageLabels,
         datasets: [
-          {
-            data: [
-              underEighteen[underEighteen.length - 1]
-                .cumulative_confirmed_cases,
-              eighteenThirty[eighteenThirty.length - 1]
-                .cumulative_confirmed_cases,
-              thirtyForty[thirtyForty.length - 1].cumulative_confirmed_cases,
-              fortyFifty[fortyFifty.length - 1].cumulative_confirmed_cases,
-              fiftySixty[fiftySixty.length - 1].cumulative_confirmed_cases,
-              sixtySeventy[sixtySeventy.length - 1].cumulative_confirmed_cases,
-              seventyEighty[seventyEighty.length - 1]
-                .cumulative_confirmed_cases,
-              eightyPlus[eightyPlus.length - 1].cumulative_confirmed_cases,
-            ],
-            backgroundColor: [
-              'rgba(233, 201, 94, 0.6)',
-              'rgba(226, 122, 84, 0.5)',
-              'rgba(44, 130, 228, 0.5)',
-              'rgba(127, 192, 241, 0.6)',
-              'rgba(190, 111, 184, 0.6)',
-              'rgba(69, 180, 152, 0.6)',
-              'rgba(189, 54, 67, 0.6)',
-              'rgba(131, 74, 197, 0.6)',
-            ],
+            {
+            data: age_group_data.map((entry) => entry[entry.length-1].cumulative_confirmed_cases),
+            backgroundColor: ageDoughnutColors,
           },
         ],
       },
@@ -496,174 +446,39 @@ export const fetchAgeData = async () => {
       type: 'doughnut',
     };
 
-    const chart2 = {
-      primary: underEighteenCases,
-      secondary: makeSevenDayAverage(underEighteenCases),
-      dates: underEighteen.map((item) =>
-        item.specimen_collection_date.slice(5, 10)
-      ),
-      primaryLabel: 'Confirmed cases between 18-30 years',
-      secondaryLabel: '7-day average',
-      chartLabel: 'daily cases',
-      type: 'average',
-      colors: {
-        primary: 'rgba(233, 201, 94, 0.6)',
-        secondary: 'rgba(207, 132, 46, 0.6)',
-      },
-    };
-
-    const chart3 = {
-      primary: eighteenThirtyCases,
-      secondary: makeSevenDayAverage(eighteenThirtyCases),
-      dates: eighteenThirty.map((item) =>
-        item.specimen_collection_date.slice(5, 10)
-      ),
-      primaryLabel: 'Confirmed cases between 18-30 years',
-      secondaryLabel: '7-day average',
-      chartLabel: 'daily cases',
-      type: 'average',
-      colors: {
-        primary: 'rgba(226, 122, 84, 0.5)',
-        secondary: 'rgba(185, 65, 22, 0.5)',
-      },
-    };
-
-    const chart4 = {
-      primary: thirtyFortyCases,
-      secondary: makeSevenDayAverage(thirtyFortyCases),
-      dates: thirtyForty.map((item) =>
-        item.specimen_collection_date.slice(5, 10)
-      ),
-      primaryLabel: 'Confirmed cases between 31-40 years',
-      secondaryLabel: '7-day average',
-      chartLabel: 'daily cases',
-      type: 'average',
-      colors: {
-        primary: 'rgba(44, 130, 228, 0.5)',
-        secondary: 'rgba(44, 47, 228, 0.5)',
-      },
-    };
-
-    const chart5 = {
-      primary: fortyFiftyCases,
-      secondary: makeSevenDayAverage(fortyFiftyCases),
-      dates: fortyFifty.map((item) =>
-        item.specimen_collection_date.slice(5, 10)
-      ),
-      primaryLabel: 'Confirmed cases between 41-50 years',
-      secondaryLabel: '7-day average',
-      chartLabel: 'daily cases',
-      type: 'average',
-      colors: {
-        primary: 'rgba(127, 192, 241, 0.6)',
-        secondary: 'rgba(63, 171, 190, 0.6)',
-      },
-    };
-
-    const chart6 = {
-      primary: fiftySixtyCases,
-      secondary: makeSevenDayAverage(fiftySixtyCases),
-      dates: fiftySixty.map((item) =>
-        item.specimen_collection_date.slice(5, 10)
-      ),
-      primaryLabel: 'Confirmed cases between 51-60 years',
-      secondaryLabel: '7-day average',
-      chartLabel: 'daily cases',
-      type: 'average',
-      colors: {
-        primary: 'rgba(190, 111, 184, 0.6)',
-        secondary: 'rgba(160, 48, 170, 0.6)',
-      },
-    };
-
-    const chart7 = {
-      primary: sixtySeventyCases,
-      secondary: makeSevenDayAverage(sixtySeventyCases),
-      dates: sixtySeventy.map((item) =>
-        item.specimen_collection_date.slice(5, 10)
-      ),
-      primaryLabel: 'Confirmed cases between 61-70 years',
-      secondaryLabel: '7-day average',
-      chartLabel: 'daily cases',
-      type: 'average',
-      colors: {
-        primary: 'rgba(127, 192, 241, 0.6)',
-        secondary: 'rgba(63, 171, 190, 0.6)',
-      },
-    };
-
-    const chart8 = {
-      primary: seventyEightyCases,
-      secondary: makeSevenDayAverage(seventyEightyCases),
-      dates: seventyEighty.map((item) =>
-        item.specimen_collection_date.slice(5, 10)
-      ),
-      primaryLabel: 'Confirmed cases between 71-80 years',
-      secondaryLabel: '7-day average',
-      chartLabel: 'daily cases',
-      type: 'average',
-      colors: {
-        primary: 'rgba(189, 54, 67, 0.5)',
-        secondary: 'rgba(156, 26, 104, 0.6)',
-      },
-    };
-
-    const chart9 = {
-      primary: eightyPlusCases,
-      secondary: makeSevenDayAverage(eightyPlusCases),
-      dates: eightyPlus.map((item) =>
-        item.specimen_collection_date.slice(5, 10)
-      ),
-      primaryLabel: 'Confirmed cases over 80 years of age',
-      secondaryLabel: '7-day average',
-      chartLabel: 'daily cases',
-      type: 'average',
-      colors: {
-        primary: 'rgba(131, 74, 197, 0.6)',
-        secondary: 'rgba(67, 49, 185, 0.6)',
-      },
-    };
-
     const modifiedData = {
       chart1,
-      chart2,
-      chart3,
-      chart4,
-      chart5,
-      chart6,
-      chart7,
-      chart8,
-      chart9,
       source: 'https://data.sfgov.org/resource/sunc-2t3k.json',
       date_recorded: dates[dates.length - 1],
-    };
+    };  
 
-    return modifiedData;
+    age_group_data.forEach((entry, i) => {
+        const new_case_data =  entry.map((item) => item.new_confirmed_cases)
+        modifiedData[`chart${i+2}`] = {
+              primary: new_case_data,
+              secondary: makeSevenDayAverage(new_case_data),
+              dates: entry.map((item) =>
+                item.specimen_collection_date.slice(5, 10)
+              ),
+              primaryLabel: `Confirmed cases for ${ageLabels[i]} years`,
+              secondaryLabel: '7-day average',
+              chartLabel: 'daily cases',
+              type: 'average',
+              colors: colorList[i]
+        };
+    })
+    
+    console.log(modifiedData)
+    return modifiedData
   } catch (error) {
-    console.log(error);
-  }
-};
-
-export const fetchTestApi = async () => {
-  try {
-    console.log('test');
-    const { data } = await axios.get(keys.HEALTH_DATA_API);
-    // const deathData = data.filter((item) => item.case_disposition === 'Death');
-    console.log('TEST');
-    console.log(data);
-    // console.log(deathData);
-    return data;
-  } catch (error) {
+    console.log('Error in Age Data API call: ')
     console.log(error);
   }
 };
 
 export const fetchMapGeoJSON = async () => {
   try {
-    console.log('geoJSON');
     const { data } = await axios.get(keys.CASES_MAP_GEOJSON);
-    console.log('TEST');
-    console.log(data);
     return {
       primary: data,
       source: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',

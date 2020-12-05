@@ -42,6 +42,7 @@ const DynamicChart = ({ category }) => {
 
   const parseData = (data) => {
     setTotalData(data);
+    console.log(data)
     setSource(data.source);
     setDate(data.date_recorded);
     setCurrentData(data[subCategory]);
@@ -101,7 +102,6 @@ const DynamicChart = ({ category }) => {
   return (
     <div className={chartType === 'map' ? `${styles.map} ${styles.container}`: styles.container}>
       
-      {/* {chartType !== 'map' && inputBar} */}
       {inputBar}
       <div className={styles.chartContainer}> 
         {chartType === 'map' && <MapChart />}

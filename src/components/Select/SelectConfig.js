@@ -1,3 +1,5 @@
+import {ageConfig} from '../../api/dataUtils'
+
 export const dataSetLabels = [
   {
     label: 'Case Data',
@@ -40,43 +42,18 @@ const caseSecondary = [
   },
 ];
 
+
 const ageSecondary = [
   {
-    label: 'Comparative',
+    label: 'Compare All',
     value: 'chart1',
   },
-  {
-    label: 'Under 18',
-    value: 'chart2',
-  },
-  {
-    label: 'Ages 18-30',
-    value: 'chart3',
-  },
-  {
-    label: 'Ages 31-40',
-    value: 'chart4',
-  },
-  {
-    label: 'Ages 41-50',
-    value: 'chart5',
-  },
-  {
-    label: 'Ages 51-60',
-    value: 'chart6',
-  },
-  {
-    label: 'Ages 61-70',
-    value: 'chart7',
-  },
-  {
-    label: 'Ages 71-80',
-    value: 'chart8',
-  },
-  {
-    label: 'Ages 80+',
-    value: 'chart9',
-  },
+  ...ageConfig.ageLabels.map((entry, i) => {
+    return {
+      label: `Ages ${entry}`,
+      value: `chart${i+2}`,
+    }
+  })
 ];
 
 const raceSecondary = [

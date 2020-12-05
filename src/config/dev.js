@@ -39,11 +39,11 @@ module.exports = {
   //Cases summarized by race / ethnicity - San Francisco
   //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Race-and-Ethnicity/vqqm-nsqg
   RACE_ETHNICITY_API:
-    'https://data.sfgov.org/resource/vqqm-nsqg.json?$limit=2000',
+    'https://data.sfgov.org/resource/vqqm-nsqg.json?$limit=5000',
 
   //Cases summarized by age - San Francisco
   //Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Age-Group/sunc-2t3k
-  AGE_API: 'https://data.sfgov.org/resource/sunc-2t3k.json?$limit=2000',
+  AGE_API: 'https://data.sfgov.org/resource/sunc-2t3k.json?$limit=5000',
 
   ALT_CASES_DEATHS: 'https://data.sfgov.org/resource/tvq9-ec9w.json',
   // Cases / Deaths - San Francisco
@@ -51,6 +51,6 @@ module.exports = {
 
   //Misc APIs:
   SF_ORIGINAL_DATA:
-    'https://data.sfgov.org/resource/nfpa-mg4g.json?$limit=2000',
+    'https://data.sfgov.org/resource/nfpa-mg4g.json?$limit=5000',
   US_COVID_DATA: 'https://covid19.mathdro.id/api',
 };

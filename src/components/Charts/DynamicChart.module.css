@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   width: 47%;
   margin: 0.7rem auto;
   background-color: white;
@@ -10,6 +10,10 @@
   /* -webkit-box-shadow: 2px 1px 3px 2px rgba(126, 140, 136, 0.7);
   box-shadow: 2px 1px 3px 2px rgba(126, 140, 136, 0.7); */
   /* background-color: rgba(204, 143, 68, 0.6); */
+}
+
+.sample {
+  width: 100%;
 }
 
 .chartContainer {
@@ -70,6 +74,29 @@ h1 {
 @media (max-width: 500px) {
   .container {
     width: 95%;
+    margin: 0.25rem;
+    border-radius: 0.1rem;
+    padding: 0.75rem 0.25rem 0.25rem 0.25rem;
+    font-size: small;
+  }
+
+  .map {
+    height: 45vh;
+  }
+
+  .inputBar {
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .headerContainer {
+    background-color: white;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    /* width: 4%; */
     margin: 0.25rem;
     border-radius: 0.1rem;
     padding: 0.75rem 0.25rem 0.25rem 0.25rem;
