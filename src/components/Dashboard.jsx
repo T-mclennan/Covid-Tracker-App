@@ -9,8 +9,8 @@ function Dashboard() {
     <div className={styles.main}>
 
       <div className={styles.sampleCharts}>
-        <SampleChart />
-        <SampleChart />
+        <SampleChart title={'Total Cases'}/>
+        <SampleChart title={'Total Deaths'}/>
       </div>
 
         <DynamicChart category={'SF_CASE_DATA'}/>

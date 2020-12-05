@@ -2,23 +2,24 @@ import React from 'react'
 import styles from './DynamicChart.module.css';
 
 
-const inputBar = (<>
-<div className={styles.inputBar}>
-  <div className={styles.headerContainer}>
-    <h5>Title</h5>
-  </div>
-</div>
-</>)
+function SampleChart({title}) {
 
-function SampleChart() {
+  const inputBar = (<>
+    <div className={styles.inputBar}>
+      <div className={styles.headerContainer}>
+        <h5>{title}</h5>
+      </div>
+    </div>
+    </>)
+
   return (
     <div className={`${styles.container} ${styles.sample}`}>
       
       {inputBar}
       <div className={styles.chartContainer}> 
-        <div className={{display: 'inline-block', backgroundColor: 'red', padding: '2rem', width: '100%', height: '30rem'}} >
-            <h1>Dat</h1>
-        </div>
+
+            <h1>13,000 cases</h1>
+
       </div>
     </div>
   )

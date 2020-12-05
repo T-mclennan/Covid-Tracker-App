@@ -14,6 +14,8 @@
 
 .sample {
   width: 100%;
+  height: 12rem;
+  justify-content: flex-start;
 }
 
 .chartContainer {
@@ -103,6 +105,12 @@ h1 {
     font-size: small;
   }
 
+  .sample {
+    width: 100%;
+    height: 10rem;
+    justify-content: flex-start;
+  }
+
   .map {
     height: 45vh;
   }
@@ -116,3 +124,11 @@ h1 {
     background-color: white;
   }
 }
+
+/* @media (max-width: 1100px) {
+  .sample {
+    width: 100%;
+    height: 10rem;
+    justify-content: flex-start;
+  }
+} */

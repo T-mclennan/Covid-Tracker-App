@@ -464,7 +464,7 @@ export const fetchAgeData = async () => {
               secondaryLabel: '7-day average',
               chartLabel: 'daily cases',
               type: 'average',
-              colors: colorList[i]
+              colors: colorList[i % colorList.length]
         };
     })
     
