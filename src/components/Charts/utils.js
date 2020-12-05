@@ -5,6 +5,7 @@ import {
   fetchGenderData,
   fetchRaceData,
   fetchAgeData,
+  fetchSampleData
 } from '../../api';
 
 export const fetchData = (criteria) => {
@@ -21,6 +22,8 @@ export const fetchData = (criteria) => {
       return fetchAgeData();
     case 'MAP_DATA':
       return fetchMapGeoJSON();
+    case 'SAMPLE_DATA':
+      return fetchSampleData();
     default:
       console.log(`Criteria ${criteria} not recognized.`);
       return null;

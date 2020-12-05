@@ -12,16 +12,27 @@
   /* background-color: rgba(204, 143, 68, 0.6); */
 }
 
-.sample {
+/* .sample {
   width: 100%;
   height: 12rem;
   justify-content: flex-start;
-}
+} */
 
 .chartContainer {
   padding: 0 1rem 1rem 1rem;
   border-radius: 0.5rem;
 }
+
+/* .sampleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.75em;
+}
+
+.sampleContainer h5 {
+  margin-left: 2rem;
+} */
 
 .inputBar {
   /* padding-bottom: 0.5rem; */

@@ -1,8 +1,8 @@
 import axios from 'axios';
 import keys from '../config/keys';
-import {ageConfig} from './dataUtils'
+import {ageConfig } from './dataUtils'
 import { makeSevenDayAverage } from '../components/Charts/utils';
-import { mobileOptions } from '../components/Charts/ChartConfig';
+// import { mobileOptions } from '../components/Charts/ChartConfig';
 
 export const fetchHospitalData = async () => {
   try {
@@ -73,6 +73,25 @@ export const fetchHospitalData = async () => {
   }
 };
 
+export const fetchSampleData = async () => {
+    try {
+      const { data } = await axios.get(keys.ALT_CASES_DEATHS);
+      let cases = 0
+      let deaths = 0
+      data.forEach(({case_disposition, case_count}) => {
+          if (case_disposition === "Confirmed") {
+            cases += parseInt(case_count)
+          }
+          if (case_disposition === "Death") {
+            deaths += parseInt(case_count)
+          }
+      })
+      return {cases: cases, deaths: deaths}
+    } catch(e) {
+        console.log(e)
+    }
+}
+
 export const fetchSFData = async () => {
   try {
     const inputData = await axios.get(keys.SF_ORIGINAL_DATA);
@@ -95,6 +114,7 @@ export const fetchSFData = async () => {
         }
       }
     );
+
     //Positive cases + seven day average:
     const chart1 = {
       primary: positive,
@@ -255,7 +275,6 @@ export const fetchGenderData = async () => {
 export const fetchRaceData = async () => {
   try {
     const { data } = await axios.get(keys.RACE_ETHNICITY_API);
-    console.log(data);
     const Asian = data.filter((item) => item.race_ethnicity === 'Asian');
     const White = data.filter((item) => item.race_ethnicity === 'White');
     const Unknown = data.filter((item) => item.race_ethnicity === 'Unknown');

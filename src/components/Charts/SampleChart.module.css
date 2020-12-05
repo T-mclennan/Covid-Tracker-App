@@ -1,0 +1,78 @@
+:root {
+  --cases-color: rgb(47, 102, 68);
+  --deaths-color: rgb(109, 47, 47);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 47%;
+  margin: 0.7rem auto;
+  background-color: white;
+  border-radius: 0.5rem;
+  /* box-shadow: lightslategray; */
+  /* -webkit-box-shadow: 2px 1px 3px 2px rgba(126, 140, 136, 0.7);
+  box-shadow: 2px 1px 3px 2px rgba(126, 140, 136, 0.7); */
+  /* background-color: rgba(204, 143, 68, 0.6); */
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  justify-content: center;
+  top: 0;
+  width: 100%;
+  height: 2.5rem;
+  background-color: rgba(202, 195, 240, 0.6);
+  color: rgb(51, 50, 50);
+  margin-bottom: 1rem;
+  border: 1px whitesmoke;
+}
+
+.sample {
+  width: 100%;
+  height: 12rem;
+  justify-content: flex-start;
+}
+
+.cases {
+  color: var(--cases-color);
+}
+
+.deaths {
+  color: var(--deaths-color);
+}
+
+.chartContainer {
+  padding: 0 1rem 1rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.sampleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.75em;
+}
+
+.sampleContainer h1 {
+  color: ;
+}
+
+.sampleContainer h5 {
+  margin-left: 2rem;
+}
+
+.inputBar {
+  /* padding-bottom: 0.5rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  /* margin-bottom: 1rem; */
+  text-align: center;
+}
