@@ -1,3 +1,6 @@
+import keys from '../config/keys';
+
+const {HOSPITAL_RATE_API, ALT_CASES_DEATHS, SF_ORIGINAL_DATA, GENDER_CASES_API, RACE_ETHNICITY_API, AGE_API} = keys
 
 export const ageConfig = {
   ageLabels: [
@@ -65,4 +68,25 @@ export const ageConfig = {
         secondary: 'rgba(67, 49, 185, 0.6)',
       },
 ]
+}
+
+export const dataConfig = {
+  
+   urls: [
+    HOSPITAL_RATE_API,
+    ALT_CASES_DEATHS,
+    SF_ORIGINAL_DATA,
+    GENDER_CASES_API,
+    RACE_ETHNICITY_API,
+    AGE_API,
+  ],
+
+  titles: [
+    'hospital', 
+    'sample',
+    'sf',
+    'gender',
+    'race',
+    'age',
+  ]
 }

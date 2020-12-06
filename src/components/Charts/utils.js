@@ -6,7 +6,7 @@ import {
   fetchRaceData,
   fetchAgeData,
   fetchSampleData
-} from '../../api';
+} from '../../api/old-index';
 
 export const fetchData = (criteria) => {
   switch (criteria) {

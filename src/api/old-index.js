@@ -1,12 +1,12 @@
 import axios from 'axios';
-import {ageConfig, dataConfig } from './dataUtils'
+import keys from '../config/keys';
+import {ageConfig } from './dataUtils'
 import { makeSevenDayAverage } from '../components/Charts/utils';
+// import { mobileOptions } from '../components/Charts/ChartConfig';
 
-const {urls, titles } = dataConfig
-
-export const processHospitalData = (data) => {
-  console.log(data)
+export const fetchHospitalData = async () => {
   try {
+    const { data } = await axios.get(keys.HOSPITAL_RATE_API);
     const icuData = data.filter((item) => item.dphcategory === 'ICU');
     const regularPatientData = data.filter(
       (item) => item.dphcategory === 'Med/Surg'
@@ -59,7 +59,7 @@ export const processHospitalData = (data) => {
       },
     };
 
-    const hospitalData = {
+    const modifiedData = {
       chart1,
       chart2,
       chart3,
@@ -67,28 +67,34 @@ export const processHospitalData = (data) => {
       date_recorded: label[label.length - 1],
     };
 
-    return hospitalData;
+    return modifiedData;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const processSampleData = (data) => {
-    let cases = 0
-    let deaths = 0
-    data.forEach(({case_disposition, case_count}) => {
-        if (case_disposition === "Confirmed") {
-          cases += parseInt(case_count)
-        }
-        if (case_disposition === "Death") {
-          deaths += parseInt(case_count)
-        }
-    })
-    return {cases: cases, deaths: deaths}
+export const fetchSampleData = async () => {
+    try {
+      const { data } = await axios.get(keys.ALT_CASES_DEATHS);
+      let cases = 0
+      let deaths = 0
+      data.forEach(({case_disposition, case_count}) => {
+          if (case_disposition === "Confirmed") {
+            cases += parseInt(case_count)
+          }
+          if (case_disposition === "Death") {
+            deaths += parseInt(case_count)
+          }
+      })
+      return {cases: cases, deaths: deaths}
+    } catch(e) {
+        console.log(e)
+    }
 }
 
-export const processSFData = (data) => {
-  console.log(data)
+export const fetchSFData = async () => {
+  try {
+    const inputData = await axios.get(keys.SF_ORIGINAL_DATA);
     const dates = [],
       positive = [],
       total_tests = [],
@@ -96,7 +102,7 @@ export const processSFData = (data) => {
       negative = [],
       average = [];
 
-    data.forEach(
+    inputData.data.forEach(
       ({ specimen_collection_date, pos, pct, neg, tests, indeterminate }) => {
         if (specimen_collection_date.slice(5, 10) !== dates[dates.length - 1]) {
           positive.push(pos);
@@ -149,7 +155,7 @@ export const processSFData = (data) => {
       },
     };
 
-    const SFData = {
+    const modifiedData = {
       chart1,
       chart2,
       chart3,
@@ -157,11 +163,15 @@ export const processSFData = (data) => {
       date_recorded: dates[dates.length - 1],
     };
 
-    return SFData;
+    return modifiedData;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const processGenderData = (data) => {
-
+export const fetchGenderData = async () => {
+  try {
+    const { data } = await axios.get(keys.GENDER_CASES_API);
     const male = data.filter((item) => item.gender === 'Male');
     const female = data.filter((item) => item.gender === 'Female');
     const cumulativeMale = male.map((item) => item.cumulative_confirmed_cases);
@@ -247,7 +257,7 @@ export const processGenderData = (data) => {
       },
     };
 
-    const genderData = {
+    const modifiedData = {
       chart1,
       chart2,
       chart3,
@@ -256,16 +266,22 @@ export const processGenderData = (data) => {
       date_recorded: dates[dates.length - 1],
     };
 
-    return genderData;
+    return modifiedData;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const processRaceData = (data) => {
+export const fetchRaceData = async () => {
+  try {
+    const { data } = await axios.get(keys.RACE_ETHNICITY_API);
     const Asian = data.filter((item) => item.race_ethnicity === 'Asian');
     const White = data.filter((item) => item.race_ethnicity === 'White');
     const Unknown = data.filter((item) => item.race_ethnicity === 'Unknown');
     const Black = data.filter(
       (item) => item.race_ethnicity === 'Black or African American'
     );
+    console.log(Black);
     const Native = data.filter(
       (item) =>
         item.race_ethnicity === 'Native Hawaiian or Other Pacific Islander'
@@ -400,7 +416,7 @@ export const processRaceData = (data) => {
       },
     };
 
-    const raceData = {
+    const modifiedData = {
       chart1,
       chart2,
       chart3,
@@ -411,11 +427,20 @@ export const processRaceData = (data) => {
       date_recorded: dates[dates.length - 1],
     };
 
-    return raceData;
+    return modifiedData;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const processAgeData = (data) => {
+export const fetchAgeData = async () => {
   const {ageLabels, ageDoughnutColors, colorList} = ageConfig
+
+  console.log('inside age API:')
+
+  try {
+    const { data } = await axios.get(keys.AGE_API);
+    console.log(data)
 
     const age_group_data = ageLabels.map((label) => data.filter((item) => item.age_group === label))
     const dates = age_group_data[6].map((item) =>
@@ -440,7 +465,7 @@ export const processAgeData = (data) => {
       type: 'doughnut',
     };
 
-    const ageData = {
+    const modifiedData = {
       chart1,
       source: 'https://data.sfgov.org/resource/sunc-2t3k.json',
       date_recorded: dates[dates.length - 1],
@@ -448,7 +473,7 @@ export const processAgeData = (data) => {
 
     age_group_data.forEach((entry, i) => {
         const new_case_data =  entry.map((item) => item.new_confirmed_cases)
-        ageData[`chart${i+2}`] = {
+        modifiedData[`chart${i+2}`] = {
               primary: new_case_data,
               secondary: makeSevenDayAverage(new_case_data),
               dates: entry.map((item) =>
@@ -462,34 +487,23 @@ export const processAgeData = (data) => {
         };
     })
     
-    return ageData
+    console.log(modifiedData)
+    return modifiedData
+  } catch (error) {
+    console.log('Error in Age Data API call: ')
+    console.log(error);
+  }
 };
 
-// export const fetchMapGeoJSON = async () => {
-//   try {
-//     const { data } = await axios.get(keys.CASES_MAP_GEOJSON);
-//     return {
-//       primary: data,
-//       source: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',
-//       date: new Date().getMonth() + '-' + new Date().getDate(),
-//     };
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-const processes = [processHospitalData, processSampleData, processSFData, processGenderData, processRaceData, processAgeData]
-  
-export const generateData = () => {
-  const requests = urls.map(url => axios.get(url));
-  const chartData = Promise.all(requests)
-    .then((responses) => {
-        const result = {}
-        responses.forEach(({data}, i) => {
-            result[`${titles[i]}`] = processes[i](data)
-        })
-        return result
-    })
-
-    return chartData
-}
+export const fetchMapGeoJSON = async () => {
+  try {
+    const { data } = await axios.get(keys.CASES_MAP_GEOJSON);
+    return {
+      primary: data,
+      source: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',
+      date: new Date().getMonth() + '-' + new Date().getDate(),
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};

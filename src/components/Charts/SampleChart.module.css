@@ -55,11 +55,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.75em;
+  font-size: 1.6em;
 }
 
 .sampleContainer h1 {
-  color: ;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .sampleContainer h5 {

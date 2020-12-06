@@ -25,14 +25,14 @@ export const MapChart = () => {
     keyboard: false,
     doubleClickZoom: false})
 
-  useEffect(() => {
-    const fetchAPI = async () => {
-      const data = await fetchMapGeoJSON();
-      setData(data);
-    };
+  // useEffect(() => {
+  //   const fetchAPI = async () => {
+  //     const data = await fetchMapGeoJSON();
+  //     setData(data);
+  //   };
 
-    fetchAPI();
-  }, []);
+  //   fetchAPI();
+  // }, []);
 
   console.log(data);
 

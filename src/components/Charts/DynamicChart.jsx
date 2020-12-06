@@ -1,6 +1,9 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { fetchData, fetchTitle } from './utils';
 import {
+  generateData
+} from '../../api';
+import {
   dateRangeValues,
   fetchSecondary,
 } from '../Select/SelectConfig';
@@ -12,42 +15,43 @@ import SimpleSelect from '../Select/SimpleSelect';
 import { composeOptions, composeData, mobileOptions, desktopOptions} from './ChartConfig';
 import Footer from './ChartFooter';
 
-const DynamicChart = ({ category }) => {
-
-  //Chart data:
-  const [currentData, setCurrentData] = useState({});
-  const [totalData, setTotalData] = useState({});
-  const [chartType, setChartType] = useState('');
-  const [ date, setDate ] = useState('')
-  const [ source, setSource] = useState('')
 
 
-  //Input bar:
-  const [dayCount, setDayCount] = useState(90);
-  const [subCategory, setSubCategory] = useState('chart1');
+const DynamicChart = ({ category, data }) => {
+
+  console.log(`${category} Chart`)
+  console.log(data)
+  // //Chart data:
+  // const [currentData, setCurrentData] = useState(null);
+  // const [totalData, setTotalData] = useState({});
+  // const [chartType, setChartType] = useState('');
+  // const [ date, setDate ] = useState('')
+  // const [ source, setSource] = useState('')
+
+
+  // //Input bar:
+  // const [dayCount, setDayCount] = useState(90);
+  // const [subCategory, setSubCategory] = useState('chart1');
+
+
+   //Input bar:
+ const [dayCount, setDayCount] = useState(90);
+ const [subCategory, setSubCategory] = useState('chart1');
+
+ //Chart data:
+ const [currentData, setCurrentData] = useState(null);
+ const [totalData, setTotalData] = useState(null);
+ const [chartType, setChartType] = useState('chart1');
+ const [ date, setDate ] = useState('')
+ const [ source, setSource] = useState('')
 
   useLayoutEffect(() => {
-    console.log('inside useffect main chart')
-    const fetchAPI = async () => {
-      const data = await fetchData(category);
-      if (category !== 'MAP_DATA') {parseData(data)}
-      else {
-        setChartType('map')
-      }
-      setDayCount(isMobile ? 30 : dayCount);
-    };
-
-    fetchAPI();
-  }, [subCategory, dayCount]);
-
-  const parseData = (data) => {
-    setTotalData(data);
-    console.log(data)
-    setSource(data.source);
-    setDate(data.date_recorded);
-    setCurrentData(data[subCategory]);
-    setChartType(data[subCategory].type);
-  };
+    setCurrentData(data[subCategory])
+    setTotalData(data)
+    setChartType(data[subCategory].type)
+    setDate(data.date_recorded)
+    setSource(data.source)
+  }, [data]);
 
   const inputBar = currentData ? (
     <>
@@ -61,6 +65,7 @@ const DynamicChart = ({ category }) => {
           action={(event) => {
             setSubCategory(event);
             setCurrentData(totalData[event]);
+            setChartType(totalData[event].type)
           }}
           heading='Visualization'
           values={fetchSecondary(category)}
@@ -100,7 +105,7 @@ const DynamicChart = ({ category }) => {
   ) : null;
 
   return (
-    <div className={chartType === 'map' ? `${styles.map} ${styles.container}`: styles.container}>
+    currentData && <div className={chartType === 'map' ? `${styles.map} ${styles.container}`: styles.container}>
       
       {inputBar}
       <div className={styles.chartContainer}> 
