@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { HamburgerSliderReverse } from 'react-animated-burgers'
 import {Link} from 'react-router-dom'
-// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-// import {faTimes, faBars} from '@fortawesome/free-solid-svg-icons'
+import logo from './logo.png'
 import './Navbar.css';
 
 function Navbar() {
@@ -25,33 +24,28 @@ function Navbar() {
       <nav className="navbar">
         <div className="navbar-container">
           <div className="navbar-logo">
+            <img src={logo}  alt={logo}/>
             SF Covid Dashboard 
           </div>
-          {/* <div className="menu-icon" onClick={handleClick}>
-            {click ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faBars} /> }
-          </div> */}
           <ul className={!isActive ? 'nav-menu': "nav-menu active"}>
             <li className="nav-item">
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>About</Link>
-              {/* About */}
+            </li>
+            <li className="nav-item">
+              <Link to='/' className='nav-links' onClick={closeMobileMenu}>Source</Link>
             </li>
             <li className="nav-item">
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>Github</Link>
-              {/* Data  */}
-            </li>
-            <li className="nav-item">
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>Search</Link>
-              {/* Github */}
             </li>
           </ul>
-          <HamburgerSliderReverse
-            buttonStyle={{}}
+          {/* <HamburgerSliderReverse
+            buttonStyle={{outline: 'none'}}
             barColor="transparent"
-            {...{ isActive, toggleButton }}
-          />
+          /> */}
         {window.innerWidth <= 800 ? 
          <HamburgerSliderReverse
             buttonStyle={burgerStyle}
+            buttonWidth={25}
             barColor="white"
             {...{ isActive, toggleButton }}
           />
@@ -67,6 +61,7 @@ const burgerStyle = {
   position: 'relative',
   right: '1rem',
   outline: 'none'
+  
 }
 
 export default Navbar
