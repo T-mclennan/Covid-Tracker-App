@@ -35,13 +35,13 @@ export const fetchTitle = (criteria) => {
     case 'HOSPITAL_DATA':
       return 'Hospital Data';
     case 'SF_CASE_DATA':
-      return 'Total Cases';
+      return 'Case Data';
     case 'GENDER_DATA':
-      return 'Cases by Gender';
+      return 'Gender Data';
     case 'RACE_DATA':
-      return 'Cases by Race';
+      return 'Race Data';
     case 'AGE_DATA':
-      return 'Cases by Age';
+      return 'Age Data';
     case 'MAP_DATA':
       return 'Cases by Neighborhood';
     default:

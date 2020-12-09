@@ -42,7 +42,7 @@ function Navbar() {
             buttonStyle={{outline: 'none'}}
             barColor="transparent"
           /> */}
-        {window.innerWidth <= 800 ? 
+        {window.innerWidth <= 900 ? 
          <HamburgerSliderReverse
             buttonStyle={burgerStyle}
             buttonWidth={25}

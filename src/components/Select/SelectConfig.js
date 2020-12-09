@@ -33,11 +33,11 @@ const caseSecondary = [
     value: 'chart1',
   },
   {
-    label: 'Tests Conducted',
+    label: 'Daily Tests',
     value: 'chart2',
   },
   {
-    label: 'Positive Test %',
+    label: 'Positive %',
     value: 'chart3',
   },
 ];
@@ -58,7 +58,7 @@ const ageSecondary = [
 
 const raceSecondary = [
   {
-    label: 'Comparative',
+    label: 'Compare All',
     value: 'chart1',
   },
   {
@@ -100,7 +100,7 @@ const hospitalSecondary = [
 
 const genderSecondary = [
   {
-    label: 'Comparative',
+    label: 'Compare All',
     value: 'chart1',
   },
   {
@@ -112,7 +112,7 @@ const genderSecondary = [
     value: 'chart3',
   },
   {
-    label: 'Cumulative Cases',
+    label: 'Cumulative',
     value: 'chart4',
   },
 ];

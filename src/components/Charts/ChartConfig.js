@@ -168,7 +168,7 @@ export const composeOptions = ({ dates, type }, dayCount) => {
           labels: dates.slice(length - offset, length),
           ticks: {
             autoSkip: true,
-            maxTicksLimit: 22,
+            maxTicksLimit: window.innerWidth <= 500? 10 : 22,
           },
         },
       ],
@@ -185,6 +185,10 @@ export const composeOptions = ({ dates, type }, dayCount) => {
             show: false,
           },
           stacked: type !== 'line',
+          ticks: {
+            autoSkip: true,
+            maxTicksLimit: window.innerWidth <= 500? 6 : 10,
+          },
         },
       ],
     },

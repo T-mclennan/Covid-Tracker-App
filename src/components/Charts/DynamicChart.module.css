@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   width: 47%;
+  max-width: 500px;
   margin: 0.7rem auto;
   background-color: white;
   border-radius: 0.5rem;
@@ -76,8 +77,9 @@
 .dropdownContainer {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  width: 100%;
 }
 
 h1 {
@@ -98,12 +100,8 @@ h1 {
   }
 
   .inputBar {
-    justify-content: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .headerContainer {
-    background-color: white;
+    /* justify-content: center; */
+    margin: 0.5rem 0;
   }
 }
 
@@ -111,7 +109,7 @@ h1 {
   .container {
     /* width: 4%; */
     margin: 0.25rem;
-    border-radius: 0.1rem;
+    border-radius: 0.25rem;
     padding: 0.75rem 0.25rem 0.25rem 0.25rem;
     font-size: small;
   }
@@ -127,12 +125,35 @@ h1 {
   }
 
   .inputBar {
-    justify-content: center;
-    margin-bottom: 0.5rem;
+    /* padding-bottom: 0.5rem; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    /* margin-bottom: 0.5rem; */
   }
 
-  .headerContainer {
+  .inputBar h5 {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+
+  /* .headerContainer {
     background-color: white;
+    margin: 0;
+  } */
+
+  .headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: white;
+    margin: 0;
+    padding-left: 1.5rem;
   }
 }
 

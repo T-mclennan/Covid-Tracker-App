@@ -105,7 +105,7 @@
   transition: 0.4s all;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 900px) {
   .nav-menu {
     display: flex;
     flex-direction: column;
@@ -181,6 +181,11 @@
     padding: 14px 20px;
     border: 1px solid #fff;
     transition: all 0.3s ease-out;
+  }
+
+  .navbar-container {
+    justify-content: space-between;
+    padding: 0;
   }
 
   .nav-links-mobile:hover {
