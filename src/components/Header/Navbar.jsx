@@ -29,19 +29,18 @@ function Navbar() {
           </div>
           <ul className={!isActive ? 'nav-menu': "nav-menu active"}>
             <li className="nav-item">
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>About</Link>
+              <Link to='/about' className='nav-links' onClick={closeMobileMenu}>About</Link>
             </li>
             <li className="nav-item">
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>Source</Link>
+              <Link to='/source' className='nav-links' onClick={closeMobileMenu}>Source</Link>
             </li>
             <li className="nav-item">
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>Github</Link>
             </li>
+            <li className="nav-item">
+              <Link to='/contact' className='nav-links' onClick={closeMobileMenu}>Contact</Link>
+            </li>
           </ul>
-          {/* <HamburgerSliderReverse
-            buttonStyle={{outline: 'none'}}
-            barColor="transparent"
-          /> */}
         {window.innerWidth <= 900 ? 
          <HamburgerSliderReverse
             buttonStyle={burgerStyle}

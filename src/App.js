@@ -1,20 +1,40 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import {  Navbar, Main, MainFooter } from './components';
+import { About, DataSource, Contact } from './pages'
+import {ChartProvider} from './context/ChartContext'
 import styles from './App.module.css';
 
-class App extends React.Component {
-
-  render() {
-
+const App = () => {
 
     return (
-      <div className={styles.container}>
-        <Navbar/>
-        <Main/>
-        <MainFooter />
-      </div>
-    );
-  }
+      <ChartProvider>
+        <Router>
+          <div className={styles.container}>
+            <Navbar/>
+              <Switch>
+                <Route exact path="/about">
+                  <About />
+                </Route>
+                <Route exact path="/source">
+                  <DataSource />
+                </Route>
+                <Route exact path="/contact">
+                  <Contact />
+                </Route>
+                <Route path="/">
+                  <Main />
+                </Route>
+              </Switch>
+            <MainFooter />
+          </div>
+      </Router>
+    </ChartProvider>
+  );
 }
 
 export default App;

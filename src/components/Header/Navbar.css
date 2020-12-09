@@ -1,6 +1,6 @@
-/* * {
+* {
   outline: green solid 3px;
-} */
+}
 
 .navbar {
   background-color: rgb(11, 6, 28);
@@ -55,8 +55,8 @@
 
 .nav-menu {
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-gap: 3.5rem;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 2.5rem;
   list-style: none;
   text-align: center;
   align-items: center;
@@ -133,6 +133,7 @@
     text-align: center;
     padding: 2rem;
     width: 100%;
+    min-width: 7rem;
     display: table;
   }
 
