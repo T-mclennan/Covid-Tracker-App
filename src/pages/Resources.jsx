@@ -1,12 +1,15 @@
 import React from 'react'
 import styles from './Pages.module.css'
 
-function DataSource() {
+
+function Resources() {
+
+  
   return (
     <div className={styles.container}>
-      Data Source
+      
     </div>
   )
 }
 
-export default DataSource
+export default Resources

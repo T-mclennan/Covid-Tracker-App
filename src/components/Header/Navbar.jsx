@@ -1,12 +1,15 @@
 import React, { useState, useCallback } from 'react'
 import { HamburgerSliderReverse } from 'react-animated-burgers'
 import {Link} from 'react-router-dom'
+import history from '../../history';
 import logo from './logo.png'
 import './Navbar.css';
 
 function Navbar() {
 
-  // const [click, setClick] = useState(false)
+  // const [path, setPath] = useState(window.location.pathname)
+  // console.log('Nav: ', path)
+
   const [isActive, setIsActive] = useState(false)
 
   const toggleButton = useCallback(
@@ -14,7 +17,6 @@ function Navbar() {
     [],
   )
 
-  // const handleClick = () => setClick(!click)
   const closeMobileMenu = () => setIsActive(false)
 
   return (
@@ -23,19 +25,30 @@ function Navbar() {
 {/* SliderReverse */}
       <nav className="navbar">
         <div className="navbar-container">
-          <div className="navbar-logo">
+          <div className="navbar-logo" onClick={() => history.push(`/`)}>
             <img src={logo}  alt={logo}/>
             SF Covid Dashboard 
           </div>
           <ul className={!isActive ? 'nav-menu': "nav-menu active"}>
+          {/* <li className="nav-item">
+              <Link to='/' className='nav-links' onClick={closeMobileMenu}>Home</Link>
+            </li> */}
             <li className="nav-item">
               <Link to='/about' className='nav-links' onClick={closeMobileMenu}>About</Link>
             </li>
             <li className="nav-item">
-              <Link to='/source' className='nav-links' onClick={closeMobileMenu}>Source</Link>
+              <Link to='/resources' className='nav-links' onClick={closeMobileMenu}>Resources</Link>
             </li>
             <li className="nav-item">
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>Github</Link>
+            <a
+              className='nav-links'
+              // href={'https://github.com/T-mclennan/Covid-Tracker-App'}
+              // id='github'
+              // aria-label='github'
+              // target="_blank"
+              // rel="noopener noreferrer"
+              onClick={closeMobileMenu}>Github
+            </a>
             </li>
             <li className="nav-item">
               <Link to='/contact' className='nav-links' onClick={closeMobileMenu}>Contact</Link>

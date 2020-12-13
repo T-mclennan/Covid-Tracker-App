@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => {
 
 export default function SimpleSelect({ heading, action, values, newValue }) {
 
-  console.log(heading,' NEW VALUE: ', newValue)
   const classes = useStyles();
   const [value, setValue] = useState('');
 

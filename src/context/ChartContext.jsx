@@ -14,6 +14,7 @@ const ChartProvider = (props) => {
       const data = await generateData()
       setData(data)
       setLoaded(true)
+      console.log('Data fetched: success')
     };
     fetchAPI();
   }, []);

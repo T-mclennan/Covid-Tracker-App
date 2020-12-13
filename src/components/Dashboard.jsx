@@ -3,7 +3,6 @@ import DynamicChart from './Charts/DynamicChart'
 import SampleChart from './Charts/SampleChart'
 import {ChartContext} from '../context/ChartContext'
 import Loader from 'react-loader-spinner'
-
 import styles from './Dashboard.module.css'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 

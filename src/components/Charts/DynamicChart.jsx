@@ -13,7 +13,6 @@ import { isMobile } from 'react-device-detect';
 import styles from './DynamicChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
 import { composeOptions, composeData, mobileOptions, desktopOptions} from './ChartConfig';
-import Footer from './ChartFooter';
 
 
 
@@ -21,18 +20,6 @@ const DynamicChart = ({ category, data }) => {
 
   console.log(`${category} Chart`)
   console.log(data)
-  // //Chart data:
-  // const [currentData, setCurrentData] = useState(null);
-  // const [totalData, setTotalData] = useState({});
-  // const [chartType, setChartType] = useState('');
-  // const [ date, setDate ] = useState('')
-  // const [ source, setSource] = useState('')
-
-
-  // //Input bar:
-  // const [dayCount, setDayCount] = useState(90);
-  // const [subCategory, setSubCategory] = useState('chart1');
-
 
    //Input bar:
  const [dayCount, setDayCount] = useState(90);
@@ -42,15 +29,12 @@ const DynamicChart = ({ category, data }) => {
  const [currentData, setCurrentData] = useState(null);
  const [totalData, setTotalData] = useState(null);
  const [chartType, setChartType] = useState('chart1');
- const [ date, setDate ] = useState('')
- const [ source, setSource] = useState('')
+
 
   useLayoutEffect(() => {
     setCurrentData(data[subCategory])
     setTotalData(data)
     setChartType(data[subCategory].type)
-    setDate(data.date_recorded)
-    setSource(data.source)
   }, [data]);
 
   const inputBar = currentData ? (
