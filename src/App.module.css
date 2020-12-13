@@ -1,8 +1,17 @@
+/* CSS Variables: */
+:root {
+  --main-bg-color: rgb(62, 56, 78);
+  --primary-dark: rgb(11, 6, 28);
+  --primary-light: whitesmoke;
+  --accent-color: rgb(240, 184, 194);
+  /* --accent-color: */
+}
+
 body {
   /* background-color: rgb(99, 120, 139); */
   /* background-color: rgb(62, 56, 78); */
   margin: 0;
-  background-color: rgb(62, 56, 78);
+  background-color: var(--main-bg-color);
   overscroll-behavior: none;
 }
 

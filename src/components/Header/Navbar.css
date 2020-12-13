@@ -3,7 +3,7 @@
 } */
 
 .navbar {
-  background-color: rgb(11, 6, 28);
+  background-color: var(--primary-dark);
   height: 80px;
   width: 100%;
   font-size: 1.2rem;
@@ -21,7 +21,7 @@
   height: 80px;
   width: 100%;
   max-width: 1500px;
-  color: white;
+  color: var(--primary-light);
   font-size: 1.5rem;
   letter-spacing: 2px;
   padding: 0 4.2rem;
@@ -84,14 +84,14 @@
 }
 
 .nav-links a {
-  color: #fff;
+  color: var(--primary-light);
 }
 
 .nav-links:hover {
   margin: auto;
-  color: rgb(240, 184, 194) !important;
+  color: var(--accent-color) !important;
   text-decoration: none;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid var(--primary-light);
   /* transition: all 0.2s ease-out; */
 }
 
@@ -121,7 +121,7 @@
 
   .nav-menu.active {
     padding-left: 0;
-    background: rgb(11, 6, 28);
+    background: var(--primary-dark);
     /* margin: 0; */
     left: 0;
     opacity: 1;
@@ -138,13 +138,13 @@
   }
 
   .nav-links:hover {
-    background-color: #fff;
-    color: #242424;
+    background-color: var(--primary-light);
+    color: #242424 !important;
     border-radius: 0;
   }
 
   .navbar-logo {
-    color: #fff;
+    color: var(--primary-light);
     justify-self: start;
     /* cursor: pointer; */
     text-decoration: none;
@@ -165,7 +165,7 @@
   }
 
   .fa-times {
-    color: #fff;
+    color: var(--primary-light);
     font-size: 2rem;
   }
 
@@ -178,9 +178,9 @@
     text-decoration: none;
     font-size: 1.5rem;
     background-color: transparent;
-    color: #fff;
+    color: var(--primary-light);
     padding: 14px 20px;
-    border: 1px solid #fff;
+    border: 1px solid var(--primary-light);
     transition: all 0.3s ease-out;
   }
 
@@ -190,7 +190,7 @@
   }
 
   .nav-links-mobile:hover {
-    background: #fff;
+    background: var(--primary-light);
     color: #242424;
     transition: 250ms;
   }

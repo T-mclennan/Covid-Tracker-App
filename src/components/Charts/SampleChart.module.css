@@ -7,17 +7,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* width: 47%; */
   height: 300px;
-  /* margin: 0.7rem auto; */
   background-color: white;
   border-radius: 0.5rem;
-  /* width: 95%; */
   width: 100%;
-  /* box-shadow: lightslategray; */
-  /* -webkit-box-shadow: 2px 1px 3px 2px rgba(126, 140, 136, 0.7);
-  box-shadow: 2px 1px 3px 2px rgba(126, 140, 136, 0.7); */
-  /* background-color: rgba(204, 143, 68, 0.6); */
 }
 
 .headerContainer {
