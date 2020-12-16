@@ -7,36 +7,14 @@
   margin: 0.7rem auto;
   background-color: white;
   border-radius: 0.5rem;
-  /* box-shadow: lightslategray; */
-  /* -webkit-box-shadow: 2px 1px 3px 2px rgba(126, 140, 136, 0.7);
-  box-shadow: 2px 1px 3px 2px rgba(126, 140, 136, 0.7); */
-  /* background-color: rgba(204, 143, 68, 0.6); */
 }
-
-/* .sample {
-  width: 100%;
-  height: 12rem;
-  justify-content: flex-start;
-} */
 
 .chartContainer {
   padding: 0 1rem 1rem 1rem;
   border-radius: 0.5rem;
 }
 
-/* .sampleContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.75em;
-}
-
-.sampleContainer h5 {
-  margin-left: 2rem;
-} */
-
 .inputBar {
-  /* padding-bottom: 0.5rem; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -54,7 +32,7 @@
   justify-content: center;
   top: 0;
   width: 100%;
-  height: 2.5rem;
+  height: 3rem;
   background-color: rgba(202, 195, 240, 0.6);
   color: var(--primary-dark);
   margin-bottom: 1rem;
@@ -62,9 +40,10 @@
 }
 
 .inputBar h5 {
-  /* text-transform: capitalize; */
-  font-size: 1.5rem;
-  font-stretch: expanded;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .map {

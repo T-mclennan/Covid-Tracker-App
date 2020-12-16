@@ -1,13 +1,10 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { fetchData, fetchTitle } from './utils';
 import {
-  generateData
-} from '../../api';
-import {
   dateRangeValues,
   fetchSecondary,
 } from '../Select/SelectConfig';
-import { MapChart } from './MapChart';
+import  MapChart from './MapChart';
 import { Line, Doughnut } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
 import styles from './DynamicChart.module.css';

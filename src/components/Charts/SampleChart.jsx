@@ -21,7 +21,7 @@ function SampleChart({title}) {
   const inputBar = (<>
     <div className={styles.inputBar}>
       <div className={styles.headerContainer}>
-        <h2>{title}</h2>
+        <h5>{title}</h5>
       </div>
     </div>
     </>)

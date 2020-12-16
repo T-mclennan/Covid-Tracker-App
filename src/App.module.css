@@ -1,10 +1,32 @@
+*,
+body,
+html {
+  box-sizing: border-box;
+}
+
 /* CSS Variables: */
 :root {
+  /* Colors: */
   --main-bg-color: rgb(62, 56, 78);
   --primary-dark: rgb(11, 6, 28);
   --primary-light: whitesmoke;
   --accent-color: rgb(240, 184, 194);
-  /* --accent-color: */
+  --accent-dark: rgba(202, 195, 240, 0.6);
+  --font-tint: rgba(245, 245, 245, 0.8);
+
+  /* Font Weight: */
+  --fw-l: 300;
+  --fw-n: 450;
+  --fw-m: 600;
+  --fw-b: 900;
+
+  /* Font Sizing: */
+  --fs-2: 3rem;
+  --fs-3: 2.5rem;
+  --fs-4: 2rem;
+  --fs-5: 1.5rem;
+  --fs-6: 1.4rem;
+  --fs-p: 1rem;
 }
 
 body {
@@ -19,13 +41,42 @@ body {
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: safe;
+  /* justify-content: safe; */
   flex-direction: column;
   /* overflow: hidden; */
 }
 
-@media (max-width: 770px) {
-  .container {
-    /* margin: 0 10%; */
-  }
+h2 {
+  font-size: var(--fs-2);
+}
+
+h3 {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-n);
+}
+
+h4 {
+  font-size: var(--fs-4);
+  font-weight: var(--fw-n);
+}
+
+h5 {
+  font-size: var(--fs-5);
+  font-weight: var(--fw-n);
+}
+
+h6 {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-l);
+  margin: 1.5rem 0;
+  color: var(--font-tint);
+  line-height: 1.3;
+}
+
+p {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-l);
+  margin: 1.5rem 0;
+  color: var(--font-tint);
+  line-height: 1.3;
 }

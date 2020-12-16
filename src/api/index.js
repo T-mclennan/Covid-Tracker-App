@@ -2,7 +2,7 @@ import axios from 'axios';
 import {ageConfig, dataConfig } from './dataUtils'
 import { makeSevenDayAverage } from '../components/Charts/utils';
 
-const {urls, titles } = dataConfig
+const {urls, titles} = dataConfig
 
 export const processHospitalData = (data) => {
   console.log(data)
@@ -465,20 +465,17 @@ export const processAgeData = (data) => {
     return ageData
 };
 
-// export const fetchMapGeoJSON = async () => {
-//   try {
-//     const { data } = await axios.get(keys.CASES_MAP_GEOJSON);
-//     return {
-//       primary: data,
-//       source: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',
-//       date: new Date().getMonth() + '-' + new Date().getDate(),
-//     };
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const processMapData = (data) => {
 
-const processes = [processHospitalData, processSampleData, processSFData, processGenderData, processRaceData, processAgeData]
+    return {
+      primary: data,
+      source: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',
+      date: new Date().getMonth() + '-' + new Date().getDate(),
+      chart1: {}
+    };
+}
+
+const processes = [processHospitalData, processSampleData, processSFData, processGenderData, processRaceData, processAgeData, processMapData]
   
 export const generateData = () => {
   const requests = urls.map(url => axios.get(url));

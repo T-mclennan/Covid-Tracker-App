@@ -1,16 +1,20 @@
-import React from 'react'
-import styles from './Pages.module.css'
+import React, {useContext} from 'react'
+import styles from '../Pages.module.css'
+import CustomTable from './CustomTable'
+// import {ChartContext} from 
 
 
-function Resources() {
 
-  
+function About() {
+
   return (
+
+
     <div className={styles.container}>
       <section className={styles.hero}>
         <div className={styles.pageContainer}>
           <div className={styles.heading}>
-          <h4>Resources:</h4>
+          <h4>About this project:</h4>
             <p>The SF Covid Dashboard aims to provide a visual representation of Covid-19 data from our community.
               The data is sourced real-time from the local government at SODA, and local researchers. 
             </p>
@@ -24,7 +28,8 @@ function Resources() {
             <h4>About the Data:</h4>
           </div>
 
-          <div className={styles.content}>
+          <div className={styles.tableContainer}>
+            <CustomTable />
           </div>
         </div>
       </section>
@@ -32,4 +37,4 @@ function Resources() {
   )
 }
 
-export default Resources
+export default About

@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import DynamicChart from './Charts/DynamicChart'
+import MapChart from './Charts/MapChart'
 import SampleChart from './Charts/SampleChart'
 import {ChartContext} from '../context/ChartContext'
 import Loader from 'react-loader-spinner'
@@ -8,7 +9,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 function Dashboard() {
 
-  const {hospital,sample,sf,gender,race,age, loaded} = useContext(ChartContext)
+  const {hospital,sample,sf,gender,race,age,loaded, map} = useContext(ChartContext)
 
 
   return (
@@ -22,7 +23,7 @@ function Dashboard() {
       <DynamicChart category={'GENDER_DATA'} data={gender}/>
       <DynamicChart category={'AGE_DATA'} data={age}/>
       <DynamicChart category={'RACE_DATA'} data={race}/>
-      {/* <DynamicChart category={'MAP_DATA'} /> */}
+      {/* <MapChart category={'MAP_DATA'}data={map} /> */}
     </div> : 
     <div className={styles.loadingScreen}>
         {/* <Loader type="ThreeDots" color="white" height={80} width={80} /> */}

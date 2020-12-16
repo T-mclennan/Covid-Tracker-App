@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactMapGl from 'react-map-gl';
 import keys from '../../config/keys';
-import { fetchMapGeoJSON } from '../../api';
+import { fetchTitle } from './utils';
 import { generateLegend } from './MapUtils';
 // import 'mapbox-gl/dist/mapbox-gl.css';
 import './Map.css';
 import { isMobile } from 'react-device-detect';
 
-export const MapChart = () => {
+const MapChart = ({category}) => {
   const [viewPort, setViewPort] = useState({
     latitude: 37.7785262,
     longitude: -122.421323,
@@ -25,15 +25,6 @@ export const MapChart = () => {
     keyboard: false,
     doubleClickZoom: false})
 
-  // useEffect(() => {
-  //   const fetchAPI = async () => {
-  //     const data = await fetchMapGeoJSON();
-  //     setData(data);
-  //   };
-
-  //   fetchAPI();
-  // }, []);
-
   console.log(data);
 
   const zoomIn = () => {
@@ -47,7 +38,10 @@ export const MapChart = () => {
   };
 
   const mapSF = (
-    <>
+    <div className="container">
+      <div className="header-container">
+        <h5>{fetchTitle(category)}</h5>
+      </div>
       <ReactMapGl
         {...viewPort}
         {...settings}
@@ -69,8 +63,10 @@ export const MapChart = () => {
           {generateLegend()}
         </div>
       </ReactMapGl>
-    </>
+    </div>
   );
 
-  return <>{mapSF}</>;
+  return mapSF
 };
+
+export default MapChart
