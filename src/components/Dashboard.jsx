@@ -11,12 +11,11 @@ function Dashboard() {
 
   const {Hospital_Data, Outcome_Data, Case_Data, Gender_Data, Race_Data, Age_Data, loaded, Map_Data} = useContext(ChartContext)
 
-
   return (
     loaded ? <div className={styles.main}>
       <div className={styles.sampleCharts}>
-        <SampleChart title={'Total Cases'} data={Outcome_Data}/>
-        <SampleChart title={'Total Deaths'} data={Outcome_Data}/>
+        <SampleChart title={'Total Cases'} data={Outcome_Data.cases}/>
+        <SampleChart title={'Total Deaths'} data={Outcome_Data.deaths}/>
       </div>
       <DynamicChart category={'SF_CASE_DATA'} data={Case_Data}/>
       <DynamicChart category={'HOSPITAL_DATA'} data={Hospital_Data}/>

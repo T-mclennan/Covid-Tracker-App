@@ -26,7 +26,7 @@
   /* color: rgb(51, 50, 50); */
   color: var(--primary-dark);
 
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   border: 1px whitesmoke;
 }
 
@@ -54,6 +54,7 @@
   justify-content: center;
   align-items: center;
   font-size: 1.6em;
+  height: 100%;
   /* padding-bottom: 1rem; */
 }
 
@@ -83,6 +84,18 @@
   letter-spacing: 1px;
   line-height: 1.6;
   margin: 0;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 3rem;
+}
+
+.footerContent h5 {
+  margin: 0.25rem;
 }
 
 @media (max-width: 500px) {

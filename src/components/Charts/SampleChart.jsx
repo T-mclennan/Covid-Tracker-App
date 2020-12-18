@@ -4,19 +4,8 @@ import CountUp from 'react-countup';
 import { fetchData } from './utils';
 
 
-function SampleChart({title}) {
-  const [content, setContent] = useState(0)
-
-  useLayoutEffect(() => {
-    const fetchAPI = async () => {
-      const {cases, deaths} = await fetchData('SAMPLE_DATA');
-      // setContent( title === 'Total Cases' ? `${cases} Cases` : `${deaths} Deaths`)
-      setContent( title === 'Total Cases' ? cases : deaths)
-
-    };
-
-    fetchAPI();
-  }, [title]);
+function SampleChart({title, data}) {
+  const {daily, weekly, total} = data
 
   const inputBar = (<>
     <div className={styles.inputBar}>
@@ -34,12 +23,15 @@ function SampleChart({title}) {
         <h1 className={title === 'Total Cases' ? styles.cases : styles.deaths}>
           <CountUp
                 start={0}
-                end={content}
+                end={total}
                 duration={1.5}
                 separator={','}
               />
           </h1>
-        <h5>+3% this week</h5>
+        <div className={styles.footerContent}>
+          <h5>+{`${daily}`} today</h5>
+          <h5>+{`${weekly}`} this week</h5>
+        </div>
       </div>
     </div>
   )

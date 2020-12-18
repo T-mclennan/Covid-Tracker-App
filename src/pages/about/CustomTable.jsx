@@ -30,21 +30,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-// function createData(category, source, date) {
-//   return { category, source, date };
-// }
-
-// const rows = [
-//   createData('Hospital Data', 'www.soda.com', '03/21/1985'),
-//   createData('Hospital Data', 'www.soda.com', '03/21/1985'),
-//   createData('Hospital Data', 'www.soda.com', '03/21/1985'),
-//   createData('Hospital Data', 'www.soda.com', '03/21/1985'),
-//   createData('Hospital Data', 'www.soda.com', '03/21/1985'),
-//   createData('Hospital Data', 'www.soda.com', '03/21/1985'),
-//   createData('Hospital Data', 'www.soda.com', '03/21/1985'),
-
-// ];
-
 const useStyles = makeStyles({
   table: {
     minWidth: 300,
@@ -73,7 +58,7 @@ export default function CustomTables({data}) {
                 <div style={keyStyle}>{row.title}</div>
               </StyledTableCell>
               <StyledTableCell align="center">
-                <a href={`${row.source}`}
+                <a href={`${row.details}`}
                   target="_blank"
                   rel="noopener noreferrer">
                     {row.source}

@@ -64,6 +64,7 @@ export const processHospitalData = (data) => {
       chart2,
       chart3,
       source: 'https://data.sfgov.org/resource/nxjg-bhem.json',
+      details: 'https://data.sfgov.org/COVID-19/COVID-19-Hospitalizations/nxjg-bhem',
       date_recorded: label[label.length - 1],
     };
 
@@ -76,8 +77,11 @@ export const processHospitalData = (data) => {
 export const processSampleData = (data) => {
     let cases = 0
     let deaths = 0
-    console.log('Sample data:')
-    console.log(data)
+    let weekly_cases = 0
+    let weekly_deaths = 0
+    let daily_cases = 0
+    let daily_deaths = 0
+    
     data.forEach(({case_disposition, case_count}) => {
         if (case_disposition === "Confirmed") {
           cases += parseInt(case_count)
@@ -86,11 +90,37 @@ export const processSampleData = (data) => {
           deaths += parseInt(case_count)
         }
     })
+    data.slice(0, 22).forEach(({case_disposition, case_count}) => {
+      if (case_disposition === "Confirmed") {
+        weekly_cases += parseInt(case_count)
+      }
+      if (case_disposition === "Death") {
+        weekly_deaths += parseInt(case_count)
+      }
+    })
+    data.slice(0, 4).forEach(({case_disposition, case_count}) => {
+      if (case_disposition === "Confirmed") {
+        daily_cases += parseInt(case_count)
+      }
+      if (case_disposition === "Death") {
+        daily_deaths += parseInt(case_count)
+      }
+    })
+
     return {
-      cases: cases, 
-      deaths: deaths, 
+      cases: {
+        daily: daily_cases,
+        weekly: weekly_cases,
+        total: cases,
+      },
+      deaths: {
+        daily: daily_deaths,
+        weekly: weekly_deaths,
+        total: deaths,
+      },
       source: 'https://data.sfgov.org/resource/nfpa-mg4g.json',
-      date_recorded: data[0].specimen_collection_date.slice(5, 10)
+      details: 'https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Date-Transmission-and/tvq9-ec9w',
+      date_recorded: data[0].specimen_collection_date.slice(5, 10),
     }
 }
 
@@ -161,6 +191,7 @@ export const processSFData = (data) => {
       chart2,
       chart3,
       source: 'https://data.sfgov.org/resource/nfpa-mg4g.json',
+      details: 'https://data.sfgov.org/stories/s/San-Francisco-COVID-19-Data-and-Reports/fjki-2fab',
       date_recorded: dates[dates.length - 1],
     };
 
@@ -260,6 +291,7 @@ export const processGenderData = (data) => {
       chart3,
       chart4,
       source: 'https://data.sfgov.org/resource/nhy6-gqam.json',
+      details: 'https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Gender/nhy6-gqam',
       date_recorded: dates[dates.length - 1],
     };
 
@@ -415,6 +447,7 @@ export const processRaceData = (data) => {
       chart5,
       chart6,
       source: 'https://data.sfgov.org/resource/vqqm-nsqg.json',
+      details: 'https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Race-and-Ethnicity/vqqm-nsqg',
       date_recorded: dates[dates.length - 1],
     };
 
@@ -477,6 +510,7 @@ export const processMapData = (data) => {
     return {
       primary: data,
       source: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',
+      details: 'https://data.sfgov.org/resource/tpyr-dvnc.json',
       date_recorded: new Date().getMonth() + '-' + new Date().getDate(),
       chart1: {}
     };
@@ -500,9 +534,7 @@ export const generateData = () => {
 
 export const generateTableData = (data) => {
   return titles.map((title) => {
-    const {source, date_recorded} = data[`${title}`]
-    console.log(date_recorded)
-    console.log(source)
-    return {title, source, date: date_recorded}
+    const {source, date_recorded, details} = data[`${title}`]
+    return {title, source, date: date_recorded, details}
   })
 }
