@@ -14,7 +14,7 @@ function About() {
       <section className={styles.hero}>
         <div className={styles.pageContainer}>
           <div className={styles.heading}>
-          <h4>About the project:</h4>
+            <h4>About the project:</h4>
             <p>The SF Covid Dashboard provides a visualization of local Covid-19 data.
               The data is sourced real-time from <a target="_blank" rel="noopener noreferrer" href={'https://datasf.org/'}>DataSF</a> and <a target="_blank" rel="noopener noreferrer" href={'https://dev.socrata.com/'}>Socrata</a>, 
               which aggregate information from government entities and non-profit researchers. 

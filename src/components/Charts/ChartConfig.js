@@ -137,7 +137,8 @@ export const composeOptions = ({ dates, type }, dayCount) => {
       padding: 5,
       boxWidth: 12,
     }
-     }
+  }
+
   const desktopOptions = {
     display: true,
     position: "bottom",
@@ -147,7 +148,7 @@ export const composeOptions = ({ dates, type }, dayCount) => {
       padding: 5,
       boxWidth: 12,
     }
-     }
+  }
   
   const options = {
     responsive: true,
@@ -168,7 +169,7 @@ export const composeOptions = ({ dates, type }, dayCount) => {
           labels: dates.slice(length - offset, length),
           ticks: {
             autoSkip: true,
-            maxTicksLimit: window.innerWidth <= 500? 10 : 22,
+            maxTicksLimit: window.innerWidth <= 500? 10 : 17,
           },
         },
       ],

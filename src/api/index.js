@@ -11,9 +11,7 @@ export const processHospitalData = (data) => {
     const regularPatientData = data.filter(
       (item) => item.dphcategory === 'Med/Surg'
     );
-    const label = regularPatientData.map(({ reportdate }) =>
-      reportdate.slice(5, 10)
-    );
+    const label = regularPatientData.map(({ reportdate }) => (new Date(reportdate)).toDateString().slice(4,10));
     const patients = regularPatientData.map(({ patientcount }) => patientcount);
     const icu = icuData.map(({ patientcount }) => patientcount);
 
@@ -120,7 +118,8 @@ export const processSampleData = (data) => {
       },
       source: 'https://data.sfgov.org/resource/nfpa-mg4g.json',
       details: 'https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Date-Transmission-and/tvq9-ec9w',
-      date_recorded: data[0].specimen_collection_date.slice(5, 10),
+      date_recorded: (new Date(data[0].specimen_collection_date)).toDateString().slice(4,10)
+      
     }
 }
 
@@ -134,10 +133,10 @@ export const processSFData = (data) => {
       average = [];
 
     data.forEach(
-      ({ specimen_collection_date, pos, pct, neg, tests, indeterminate }) => {
-        if (specimen_collection_date.slice(5, 10) !== dates[dates.length - 1]) {
+      ({ specimen_collection_date, pos, pct, neg, tests }) => {
+        if ((new Date(specimen_collection_date)).toDateString().slice(4, 10) !== dates[dates.length - 1]) {
           positive.push(pos);
-          dates.push(specimen_collection_date.slice(5, 10));
+          dates.push((new Date(specimen_collection_date)).toDateString().slice(4, 10))
           total_tests.push(tests);
           average.push(pct * 100);
           percent.push((pct * 100).toFixed(2));
@@ -209,7 +208,7 @@ export const processGenderData = (data) => {
     const dayCasesMale = male.map((item) => item.new_confirmed_cases);
     const dayCasesFemale = female.map((item) => item.new_confirmed_cases);
     const dates = male.map((item) =>
-      item.specimen_collection_date.slice(5, 10)
+      (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)
     );
 
     const trans = data.filter((item) => item.gender === 'Trans Female');
@@ -323,7 +322,7 @@ export const processRaceData = (data) => {
     const dailyHispanic = Hispanic.map((item) => item.new_confirmed_cases);
 
     const dates = White.map((item) =>
-      item.specimen_collection_date.slice(5, 10)
+      (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)
     );
 
     const chart1 = {
@@ -372,7 +371,7 @@ export const processRaceData = (data) => {
     const chart2 = {
       primary: dailyAsian,
       secondary: makeSevenDayAverage(dailyAsian),
-      dates: Asian.map((item) => item.specimen_collection_date.slice(5, 10)),
+      dates: Asian.map((item) => (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)),
       primaryLabel: 'Confirmed cases of Asian descent',
       secondaryLabel: '7-day average',
       chartLabel: 'daily cases',
@@ -386,7 +385,7 @@ export const processRaceData = (data) => {
     const chart3 = {
       primary: dailyWhite,
       secondary: makeSevenDayAverage(dailyWhite),
-      dates: White.map((item) => item.specimen_collection_date.slice(5, 10)),
+      dates: White.map((item) => (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)),
       primaryLabel: 'Confirmed cases of White descent',
       secondaryLabel: '7-day average',
       chartLabel: 'daily cases',
@@ -400,7 +399,7 @@ export const processRaceData = (data) => {
     const chart4 = {
       primary: dailyBlack,
       secondary: makeSevenDayAverage(dailyBlack),
-      dates,
+      dates: Black.map((item) => (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)),
       primaryLabel: 'Confirmed cases of Black descent',
       secondaryLabel: '7-day average',
       chartLabel: 'daily cases',
@@ -414,7 +413,7 @@ export const processRaceData = (data) => {
     const chart5 = {
       primary: dailyHispanic,
       secondary: makeSevenDayAverage(dailyHispanic),
-      dates: Hispanic.map((item) => item.specimen_collection_date.slice(5, 10)),
+      dates: Hispanic.map((item) => (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)),
       primaryLabel: 'Confirmed cases of Hispanic descent',
       secondaryLabel: '7-day average',
       chartLabel: 'daily cases',
@@ -428,7 +427,7 @@ export const processRaceData = (data) => {
     const chart6 = {
       primary: dailyNative,
       secondary: makeSevenDayAverage(dailyNative),
-      dates: Native.map((item) => item.specimen_collection_date.slice(5, 10)),
+      dates: Native.map((item) => (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)),
       primaryLabel: 'Confirmed cases of Native American descent',
       secondaryLabel: '7-day average',
       chartLabel: 'daily cases',
@@ -459,7 +458,7 @@ export const processAgeData = (data) => {
 
     const age_group_data = ageLabels.map((label) => data.filter((item) => item.age_group === label))
     const dates = age_group_data[6].map((item) =>
-      item.specimen_collection_date.slice(5, 10)
+      (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)
     );
 
     const chart1 = {
@@ -492,7 +491,7 @@ export const processAgeData = (data) => {
               primary: new_case_data,
               secondary: makeSevenDayAverage(new_case_data),
               dates: entry.map((item) =>
-                item.specimen_collection_date.slice(5, 10)
+                (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)
               ),
               primaryLabel: `Confirmed cases for ${ageLabels[i]} years`,
               secondaryLabel: '7-day average',

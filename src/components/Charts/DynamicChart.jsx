@@ -74,7 +74,7 @@ const DynamicChart = ({ category, data }) => {
       <Line
         data={composeData(currentData, dayCount)}
         options={composeOptions(currentData, dayCount)}
-      height={isMobile ? 175: 175}
+        height={isMobile ? 175: 175}
       />
     ) : null;
 
