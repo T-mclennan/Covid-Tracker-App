@@ -69,3 +69,21 @@ export const makeSevenDayAverage = (dataset) => {
   }
   return ret;
 };
+
+export const findWidth = () => {
+  const {innerWidth} = window
+  let ret = null
+  if (innerWidth >= 800) {
+    ret = '46rem'
+  } else if (innerWidth >= 700 && innerWidth < 800) {
+    ret = '40rem'
+  } else if (innerWidth >= 600 && innerWidth < 700) {
+    ret = '35rem'
+  } else if (innerWidth >= 500 && innerWidth < 600) {
+    ret = '28rem'
+  } else {
+    ret = '100%'
+    
+  }
+  return ret
+}

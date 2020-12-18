@@ -76,6 +76,8 @@ export const processHospitalData = (data) => {
 export const processSampleData = (data) => {
     let cases = 0
     let deaths = 0
+    console.log('Sample data:')
+    console.log(data)
     data.forEach(({case_disposition, case_count}) => {
         if (case_disposition === "Confirmed") {
           cases += parseInt(case_count)
@@ -84,7 +86,12 @@ export const processSampleData = (data) => {
           deaths += parseInt(case_count)
         }
     })
-    return {cases: cases, deaths: deaths}
+    return {
+      cases: cases, 
+      deaths: deaths, 
+      source: 'https://data.sfgov.org/resource/nfpa-mg4g.json',
+      date_recorded: data[0].specimen_collection_date.slice(5, 10)
+    }
 }
 
 export const processSFData = (data) => {
@@ -470,7 +477,7 @@ export const processMapData = (data) => {
     return {
       primary: data,
       source: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',
-      date: new Date().getMonth() + '-' + new Date().getDate(),
+      date_recorded: new Date().getMonth() + '-' + new Date().getDate(),
       chart1: {}
     };
 }
@@ -489,4 +496,13 @@ export const generateData = () => {
     })
 
     return chartData
+}
+
+export const generateTableData = (data) => {
+  return titles.map((title) => {
+    const {source, date_recorded} = data[`${title}`]
+    console.log(date_recorded)
+    console.log(source)
+    return {title, source, date: date_recorded}
+  })
 }

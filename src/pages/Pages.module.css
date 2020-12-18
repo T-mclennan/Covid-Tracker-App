@@ -30,6 +30,18 @@ h4 {
   margin-bottom: 0;
 }
 
+h6 {
+  margin: 0;
+}
+
+a:link {
+  color: rgb(163, 87, 103);
+}
+
+a:visited {
+  color: rgb(228, 125, 147);
+}
+
 @media (max-width: 770px) {
   .pageContainer {
     margin: 0 6%;

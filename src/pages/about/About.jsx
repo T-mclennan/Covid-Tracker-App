@@ -1,14 +1,14 @@
 import React, {useContext} from 'react'
 import styles from '../Pages.module.css'
 import CustomTable from './CustomTable'
-// import {ChartContext} from 
-
-
+import {ChartContext} from '../../context/ChartContext'
 
 function About() {
 
-  return (
+  // const {hospital,sample,sf,gender,race,age,loaded, map} = useContext(ChartContext)
+  const chartData = useContext(ChartContext)
 
+  return (
 
     <div className={styles.container}>
       <section className={styles.hero}>
@@ -29,7 +29,7 @@ function About() {
           </div>
 
           <div className={styles.tableContainer}>
-            <CustomTable />
+          {chartData.Hospital_Data && <CustomTable data={chartData}/>}
           </div>
         </div>
       </section>

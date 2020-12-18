@@ -1,6 +1,6 @@
 import keys from '../config/keys';
 
-const {HOSPITAL_RATE_API, ALT_CASES_DEATHS, SF_ORIGINAL_DATA, GENDER_CASES_API, RACE_ETHNICITY_API, AGE_API, CASES_MAP_GEOJSON} = keys
+const {HOSPITAL_RATE_API, ALT_CASES_DEATHS, SF_ORIGINAL_DATA, GENDER_CASES_API, RACE_ETHNICITY_API, AGE_API,  CASES_MAP_GEOJSON} = keys
 
 export const ageConfig = {
   ageLabels: [
@@ -83,12 +83,12 @@ export const dataConfig = {
   ],
 
   titles: [
-    'hospital', 
-    'sample',
-    'sf',
-    'gender',
-    'race',
-    'age',
-    'map'
+    'Hospital_Data', 
+    'Outcome_Data',
+    'Case_Data',
+    'Gender_Data',
+    'Race_Data',
+    'Age_Data',
+    'Map_Data'
   ]
 }
