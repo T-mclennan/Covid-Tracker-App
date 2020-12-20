@@ -1,7 +1,7 @@
 .pageContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   /* background-color: rgb(216, 222, 228);
   color: rgb(11, 6, 28); */
@@ -15,6 +15,15 @@
   display: flex;
   height: 30vh;
   flex-direction: column;
+}
+
+.listContainer {
+}
+
+.listContainer a {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
 .headingBox {

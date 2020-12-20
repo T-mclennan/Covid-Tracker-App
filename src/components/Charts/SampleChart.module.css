@@ -94,8 +94,9 @@
   margin-left: 3rem;
 }
 
-.footerContent h5 {
-  margin: 0.25rem;
+.footerContent h6 {
+  margin: 0.12rem;
+  color: var(--font-tint-dark);
 }
 
 @media (max-width: 500px) {

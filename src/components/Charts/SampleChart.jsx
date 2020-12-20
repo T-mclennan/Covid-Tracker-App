@@ -29,8 +29,8 @@ function SampleChart({title, data}) {
               />
           </h1>
         <div className={styles.footerContent}>
-          <h5>+{`${daily}`} today</h5>
-          <h5>+{`${weekly}`} this week</h5>
+          <h6>+{`${daily}`} today</h6>
+          <h6>+{`${weekly}`} this week</h6>
         </div>
       </div>
     </div>

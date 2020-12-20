@@ -91,35 +91,37 @@ export const composeData = (
   }
 };
 
-export const mobileOptions = {
-  legend: {
-    display: true,
-    position: "bottom",
-    align: 'center',
-    responsive: true,
-    maintainAspectRatio: true,
-    labels: {
-      fontSize: 12,
-      padding: 10,
-      boxWidth: 12,
-    }
+export const doughnutOptions = (mobile) => {
+  const desktopOptions = {
+    legend: {
+      display: true,
+      position: "bottom",
+      align: 'center',
+      responsive: true,
+      maintainAspectRatio: true,
+      labels: {
+        fontSize: 12,
+        padding: 10,
+        boxWidth: 12,
+      }
+    },
   }
 
-}
-
-export const desktopOptions = {
-  legend: {
-    display: true,
-    position: "bottom",
-    align: 'center',
-    responsive: true,
-    maintainAspectRatio: true,
-    labels: {
-      fontSize: 12,
-      padding: 10,
-      boxWidth: 12,
-    }
+  const mobileOptions = {
+    legend: {
+      display: true,
+      position: "bottom",
+      align: 'center',
+      responsive: true,
+      maintainAspectRatio: true,
+      labels: {
+        fontSize: 12,
+        padding: 10,
+        boxWidth: 12,
+      }
+    },
   }
+  return mobile ? mobileOptions : desktopOptions
 }
   
 

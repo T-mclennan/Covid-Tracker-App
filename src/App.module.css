@@ -14,6 +14,7 @@ html {
   --accent-bold: rgb(163, 87, 103);
   --accent-dark: rgba(202, 195, 240, 0.6);
   --font-tint: rgba(245, 245, 245, 0.8);
+  --font-tint-dark: rgba(62, 56, 78, 0.6);
 
   /* Font Weight: */
   --fw-l: 300;

@@ -510,7 +510,7 @@ export const processMapData = (data) => {
       primary: data,
       source: 'https://data.sfgov.org/resource/tpyr-dvnc.geojson',
       details: 'https://data.sfgov.org/resource/tpyr-dvnc.json',
-      date_recorded: new Date().getMonth() + '-' + new Date().getDate(),
+      date_recorded: (new Date()).toDateString().slice(4, 10),
       chart1: {}
     };
 }

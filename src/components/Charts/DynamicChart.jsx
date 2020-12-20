@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react';
-import { fetchData, fetchTitle } from './utils';
+import { fetchTitle } from './utils';
 import {
   dateRangeValues,
   fetchSecondary,
@@ -9,7 +9,7 @@ import { Line, Doughnut } from 'react-chartjs-2';
 import { isMobile } from 'react-device-detect';
 import styles from './DynamicChart.module.css';
 import SimpleSelect from '../Select/SimpleSelect';
-import { composeOptions, composeData, mobileOptions, desktopOptions} from './ChartConfig';
+import { composeOptions, composeData, doughnutOptions} from './ChartConfig';
 
 
 
@@ -32,8 +32,9 @@ const DynamicChart = ({ category, data }) => {
     setCurrentData(data[subCategory])
     setTotalData(data)
     setChartType(data[subCategory].type)
-  }, [data]);
+  }, [data, subCategory]);
 
+  
   const inputBar = currentData ? (
     <>
     <div className={styles.inputBar}>
@@ -41,7 +42,6 @@ const DynamicChart = ({ category, data }) => {
         <h5>{fetchTitle(category)}</h5>
       </div>
       <div className={styles.dropdownContainer}>
-      {/* {window.innerWidth >= 900 && chartType !== 'map' &&( */}
         <SimpleSelect
           action={(event) => {
             setSubCategory(event);
@@ -52,7 +52,6 @@ const DynamicChart = ({ category, data }) => {
           values={fetchSecondary(category)}
           newValue={subCategory}
         />
-      {/* )} */}
       {window.innerWidth >= 900 && chartType !== 'map' &&(
         <SimpleSelect
           action={setDayCount}
@@ -81,8 +80,13 @@ const DynamicChart = ({ category, data }) => {
   const doughnutChart = currentData ? (
     <Doughnut
       data={currentData.primary}
-      options={isMobile ? mobileOptions : desktopOptions}
+      // options={isMobile ? mobileOptions : desktopOptions}
+      options={doughnutOptions(isMobile)}
       height={isMobile ? 175: 175}
+      onElementsClick={(e) => {
+        const index = e[0]._index+2
+        setSubCategory(`chart${index}`)
+      }}
     />
   ) : null;
 
