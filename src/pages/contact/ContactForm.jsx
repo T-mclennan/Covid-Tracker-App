@@ -1,71 +1,85 @@
-import React from "react";
-import { Formik, Form, Field } from 'formik';
-import { Button, LinearProgress } from '@material-ui/core';
+import * as React from 'react';
+import {Formik, Form, Field} from 'formik';
+import {
+  Button,
+  LinearProgress,
+  Typography,
+} from '@material-ui/core';
+import {
+  TextField,
+  TextFieldProps,
+} from 'formik-material-ui';
+import CustomInput from './CustomInput'
 import Box from '@material-ui/core/Box';
-import { TextField } from 'formik-material-ui';
 
-function ContactForm() {
-  return (
-    <Formik
+
+const ContactForm = () => {
+
+  // const classes = useStyles();
+  return <Formik
     initialValues={{
+      name: '',
       email: '',
-      password: '',
+      message: '',
     }}
-    validate={values => {
+
+    validate={(values) => {
       const errors = {};
       if (!values.email) {
-        errors.email = 'Required';
+        errors.email = 'Please enter an email';
       } else if (
         !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
       ) {
         errors.email = 'Invalid email address';
       }
+
+      if (!values.name) {
+        errors.name = 'Please enter a name';
+      }
+
+      if (!values.message) {
+        errors.message = 'Please enter a message';
+      }
       return errors;
     }}
-    onSubmit={(values, { setSubmitting }) => {
+    onSubmit={(values, {setSubmitting}) => {
       setTimeout(() => {
         setSubmitting(false);
         alert(JSON.stringify(values, null, 2));
       }, 500);
     }}
   >
-    {({ submitForm, isSubmitting }) => (
-      <Form>
-        <Box margin={1}>
-          <Field
-            component={TextField}
-            name="email"
-            type="email"
-            label="Email"
-          />
-          <br />
-          <Field
-            component={TextField}
-            type="password"
-            label="Password"
-            name="password"
-          />
-          <br />
+    {({submitForm, isSubmitting, touched, errors}) => (
+        <Form >
+          <Box margin={2}>
+            <CustomInput type="text" name="name" label="Name"/>
+          </Box>
+          
+          <Box margin={2}>
+            <CustomInput type="email" name="email" label="Email"/>
+          </Box>
+
+          <Box margin={2}>
+            <CustomInput type="text" name="message" label="Message" multiline rows={4}/>
+          </Box>
+
           {isSubmitting && <LinearProgress />}
-          <br />
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={isSubmitting}
-            onClick={submitForm}
-          >
-            Submit
-          </Button>
-        </Box>
-      </Form>
+          <Box margin={2}>
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={isSubmitting}
+              onClick={submitForm}
+            >
+              Submit
+            </Button>
+          </Box>
+        </Form>
     )}
   </Formik>
-  )
-}
+};
 
-export default ContactForm
-
-
+export default ContactForm;
 
 // export default class ContactForm extends React.Component {
 //   constructor(props) {

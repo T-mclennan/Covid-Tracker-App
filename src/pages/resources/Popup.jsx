@@ -54,7 +54,7 @@ export default function CustomizedSnackbars() {
         >
           <Alert onClose={handleClose} severity="warning">
             <div style={{width: '100%'}}>
-              If you are experiencing any Covid-19 symptoms, please schedule a test immediately!
+              If you are experiencing any Covid-19 symptoms, please contact your healthcare provider!
             </div>
           </Alert>
         </Snackbar>

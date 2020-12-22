@@ -7,18 +7,16 @@ const {pageContainer, title, mainContent, profileContainer, formContainer} = sty
 const Contact = () => {
   return (
     <>
-      <div className={pageContainer}>
         <h3 className={title}>Questions or comments?</h3>
         <div className={mainContent}> 
-          <div className={profileContainer}>
-
-          </div>
-        
+            <div className={profileContainer}>
+              PROFILE
+            </div>
+          { window.innerWidth <= 1000 && <hr style={{backgroundColor: 'white', width: '90%'}}/>}
           <div className={formContainer}>
             <ContactForm />
           </div>
         </div>
-      </div>
     </>
   )
 }

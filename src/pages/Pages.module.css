@@ -9,16 +9,35 @@
   height: 95%;
   padding: 1rem 0.5rem;
   max-width: 47rem;
+  width: 100%;
+}
+
+/* CONTACT PAGE */
+.mainContent {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1rem 0.5rem;
+  max-width: 60rem;
 }
 
 .formContainer {
   display: flex;
-  height: 30vh;
+  /* height: 30vh; */
+  width: 100%;
   flex-direction: column;
+  margin: 1rem 0;
 }
 
-.listContainer {
+.profileContainer {
+  width: 100%;
+  /* height: 100%; */
+  background-color: thistle;
 }
+
+/* ABOUT PAGE */
 
 .listContainer a {
   font-size: 1.3rem;
@@ -51,8 +70,22 @@ a:visited {
   color: rgb(228, 125, 147);
 }
 
+@media (max-width: 1000px) {
+  .mainContent {
+    height: 100%;
+    flex-direction: column;
+    max-width: 47rem;
+  }
+}
+
 @media (max-width: 770px) {
+  .mainContent {
+    /* margin: 0 12%; */
+    padding: 0 6%;
+  }
+
   .pageContainer {
-    margin: 0 6%;
+    /* margin: 0 12%; */
+    padding: 0 6%;
   }
 }
