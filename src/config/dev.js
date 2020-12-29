@@ -16,15 +16,15 @@ module.exports = {
   //  Transmission / Case type API - San Francisco
   //  Details: https://data.sfgov.org/resource/tvq9-ec9w
   //  Example: https://data.sfgov.org/stories/s/COVID-19-Cases-and-Deaths/dak2-gvuj
-  DASHBOARD_API: 'https://data.sfgov.org/resource/tvq9-ec9w.json',
+  DASHBOARD_API: 'https://data.sfgov.org/resource/tvq9-ec9w.json?$limit=5000',
 
   //  Response Data / Reports API - San Francisco
   //  Details: 'https://data.sfgov.org/stories/s/San-Francisco-COVID-19-Data-and-Reports/fjki-2fab',
-  RESPONSE_DATA_API: 'https://data.sfgov.org/resource/fjki-2fab.json',
+  RESPONSE_DATA_API: 'https://data.sfgov.org/resource/fjki-2fab.json?$limit=5000',
 
   // Hospitalization Rates - San Francisco
   // Details: 'https://data.sfgov.org/COVID-19/COVID-19-Hospitalizations/nxjg-bhem'
-  HOSPITAL_RATE_API: 'https://data.sfgov.org/resource/nxjg-bhem.json?$limit=2000',
+  HOSPITAL_RATE_API: 'https://data.sfgov.org/resource/nxjg-bhem.json?$limit=5000',
 
   // Map of cases - San Francisco
   // Details: https://data.sfgov.org/stories/s/Map-of-Cumulative-Cases/adm5-wq8i/
@@ -33,7 +33,7 @@ module.exports = {
 
   // Cases summarized by gender - San Francisco
   // Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Gender/nhy6-gqam
-  GENDER_CASES_API: 'https://data.sfgov.org/resource/nhy6-gqam.json',
+  GENDER_CASES_API: 'https://data.sfgov.org/resource/nhy6-gqam.json?$limit=5000',
 
   // Cases summarized by race / ethnicity - San Francisco
   // Details: https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Race-and-Ethnicity/vqqm-nsqg

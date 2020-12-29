@@ -1,0 +1,170 @@
+.contactContainer {
+  /* padding: 1rem 0; */
+  width: 100%;
+  height: 100%;
+  margin: 3rem auto 0;
+}
+
+.headerBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: rgb(227, 218, 231);
+  width: 100%;
+}
+
+.headerBox h6 {
+  margin: 0;
+  color: var(--accent-dark);
+}
+
+.headerBox h3 {
+  margin: 0;
+  color: rgb(227, 218, 231);
+}
+
+h3,
+h5,
+h6 {
+  margin: 0 !important;
+}
+
+.mainContent {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+  padding: 1rem 0.5rem;
+  /* background-color: rgb(238, 190, 182); */
+  /* max-width: 60rem; */
+}
+
+.formContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  /* background-color: thistle; */
+  flex-direction: column;
+  max-width: 500px;
+  min-width: 350px;
+  margin: 1rem;
+}
+
+.profileContainer {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 0.5rem;
+  /* width: 100%; */
+  max-width: 500px;
+  /* margin: 2rem auto; */
+  padding: 2rem;
+}
+
+.infoBox {
+  color: rgb(227, 218, 231);
+}
+
+.imageBox {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  /* border: 1px solid rgb(106, 106, 161); */
+  border: 1px solid rgb(248, 215, 221);
+  /* margin-top: 1rem; */
+}
+
+.infoBox {
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* margin: 1rem; */
+}
+
+.iconBox {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  color: var(--accent-dark);
+  /* font-size: 3rem; */
+  /* margin: 0.5rem; */
+}
+
+/* ABOUT PAGE */
+
+.listContainer a {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.headingBox {
+  padding: 3rem 10rem;
+  /* background-color: rgba(80, 48, 80, 0.5); */
+}
+
+.tableContainer {
+  margin-bottom: 3rem;
+}
+
+h4 {
+  margin-bottom: 0;
+}
+
+h6 {
+  margin: 0;
+}
+
+a:link {
+  color: rgb(163, 87, 103);
+}
+
+a:visited {
+  color: rgb(228, 125, 147);
+}
+
+@media (max-width: 1000px) {
+  .mainContent {
+    height: 100%;
+    flex-direction: column;
+    /* max-width: 47rem; */
+    width: 100%;
+  }
+
+  .profileContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem auto;
+    padding: 0;
+  }
+
+  .infoBox {
+    height: auto;
+  }
+
+  .formContainer {
+    margin: auto;
+  }
+}
+
+@media (max-width: 770px) {
+  .mainContent {
+    padding: 0 0 2rem 0;
+  }
+
+  .pageContainer {
+    /* margin: 0 12%; */
+    padding: 2rem 6%;
+  }
+}

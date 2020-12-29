@@ -1,0 +1,52 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: aliceblue;
+  height: 100%;
+  padding: 1rem 0.5rem;
+  max-width: 47rem;
+  width: 100%;
+}
+
+.listContainer {
+}
+
+.listContainer a {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.headingBox {
+  padding: 3rem 10rem;
+  /* background-color: rgba(80, 48, 80, 0.5); */
+}
+
+.tableContainer {
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+h4 {
+  margin: 0;
+}
+
+h6 {
+  margin: 0;
+}
+
+p {
+  text-align: justify;
+}
+
+@media (max-width: 770px) {
+  /* h6 {
+    margin: 0 !important;
+  } */
+
+  .pageContainer {
+    padding: 3rem 6% 0;
+  }
+}

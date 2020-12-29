@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {findWidth} from '../../components/Charts/utils'
+// import {findWidth} from '../../components/Charts/utils'
 import {generateTableData} from '../../api'
 
 const StyledTableCell = withStyles((theme) => ({
@@ -15,13 +15,13 @@ const StyledTableCell = withStyles((theme) => ({
     backgroundColor:'rgb(11, 6, 28)',
     color: theme.palette.common.white,
     borderColor: '#fff',
-    padding: 5
   },
   body: {
     fontSize: 14,
   },
 }))(TableCell);
 
+const isMobile = window.innerWidth <= 600
 const StyledTableRow = withStyles((theme) => ({
   root: {
     '&:nth-of-type(odd)': {
@@ -33,7 +33,7 @@ const StyledTableRow = withStyles((theme) => ({
 const useStyles = makeStyles({
   table: {
     minWidth: 300,
-    width: findWidth,
+    // width: findWidth,
   },
 });
 
@@ -48,7 +48,7 @@ export default function CustomTables({data}) {
           <TableRow>
             <StyledTableCell align="center"><h6 style={headerStyle}>Category</h6></StyledTableCell>
             <StyledTableCell align="center"><h6>Source</h6></StyledTableCell>
-            <StyledTableCell align="center"><h6>Last Updated</h6></StyledTableCell>
+            <StyledTableCell align="center"><h6>{isMobile ? 'Updated': 'Last Updated'}</h6></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -57,11 +57,11 @@ export default function CustomTables({data}) {
               <StyledTableCell component="th" scope="row"align="left">
                 <div style={keyStyle}>{row.title}</div>
               </StyledTableCell>
-              <StyledTableCell align="center">
+              <StyledTableCell align={"center"}>
                 <a href={`${row.details}`}
                   target="_blank"
                   rel="noopener noreferrer">
-                    {row.source}
+                    {isMobile ? 'link' : row.source}
                 </a>
                 </StyledTableCell>
               <StyledTableCell align="center">{row.date}</StyledTableCell>
@@ -73,10 +73,12 @@ export default function CustomTables({data}) {
   );
 }
 
-const headerStyle = {
+const headerStyle = isMobile ? {
+  marginLeft: '1rem'
+} : {
   margin: 0
 }
 
 const keyStyle = {
-  marginLeft: '1rem'
+  marginLeft: isMobile ? '0px' : '1rem'
 }

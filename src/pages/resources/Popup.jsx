@@ -1,8 +1,6 @@
-import React, {useEffect} from 'react';
-import Button from '@material-ui/core/Button';
+import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import Slide from '@material-ui/core/Slide';
 import Zoom from '@material-ui/core/Zoom';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -54,7 +52,7 @@ export default function CustomizedSnackbars() {
         >
           <Alert onClose={handleClose} severity="warning">
             <div style={{width: '100%'}}>
-              If you are experiencing any Covid-19 symptoms, please contact your healthcare provider!
+              If you're experiencing Covid-19 symptoms, please contact a doctor immediately!
             </div>
           </Alert>
         </Snackbar>

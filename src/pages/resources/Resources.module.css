@@ -1,0 +1,37 @@
+.resourceContainer {
+  color: var(--primary-light);
+  margin: auto;
+  padding: 1rem 0.5rem;
+  max-width: 47rem;
+  width: 100%;
+}
+
+.listContainer {
+  margin-bottom: auto;
+}
+
+.listContainer li {
+  margin-top: 1rem;
+}
+
+.listContainer a {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.headingBox {
+  width: 100%;
+  text-align: center;
+  /* justify-content: center; */
+}
+
+.tableContainer {
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 770px) {
+  .pageContainer {
+    padding: 1rem 6%;
+  }
+}

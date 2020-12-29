@@ -11,13 +11,12 @@ const useStyles = makeStyles({
   },
 
   cssLabel: {
-    // color : 'rgb(175, 108, 121)',
     color: 'rgba(222, 217, 247, 0.6)',
     "&.Mui-error": {
       color: 'rgb(248, 215, 221)'
     },
     "&.MuiFormHelperText-root": {
-      color: 'purple'
+      color: 'white'
     },
     "&.Mui-focused": {
       color: 'rgb(248, 215, 221)'
@@ -26,7 +25,6 @@ const useStyles = makeStyles({
 
   cssOutlinedInput: {
     '&.MuiInputBase-root': {
-      // color: 'rgba(222, 217, 247, 0.6)'
       color : 'rgb(175, 108, 121)',
     },
     '&$cssFocused $notchedOutline': {

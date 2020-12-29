@@ -5,7 +5,6 @@ import { makeSevenDayAverage } from '../components/Charts/utils';
 const {urls, titles} = dataConfig
 
 export const processHospitalData = (data) => {
-  console.log(data)
   try {
     const icuData = data.filter((item) => item.dphcategory === 'ICU');
     const regularPatientData = data.filter(
@@ -124,7 +123,6 @@ export const processSampleData = (data) => {
 }
 
 export const processSFData = (data) => {
-  console.log(data)
     const dates = [],
       positive = [],
       total_tests = [],
@@ -199,6 +197,7 @@ export const processSFData = (data) => {
 
 export const processGenderData = (data) => {
 
+  console.log(data)
     const male = data.filter((item) => item.gender === 'Male');
     const female = data.filter((item) => item.gender === 'Female');
     const cumulativeMale = male.map((item) => item.cumulative_confirmed_cases);

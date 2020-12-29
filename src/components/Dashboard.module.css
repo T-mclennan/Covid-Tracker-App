@@ -33,7 +33,6 @@
 @media (max-width: 500px) {
   .main {
     padding: 0px;
-    color: red;
   }
 
   .sampleCharts {
@@ -73,11 +72,6 @@
 
 @media (max-width: 750px) {
   .main {
-    /* position: relative;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
     padding: 0.5rem 0.5rem;
   }
   /* .sampleCharts {
