@@ -57,12 +57,11 @@ a:visited {
 }
 
 .container {
-  /* height: Max(100vh, 100%); */
   min-height: 100vh;
   display: flex;
   align-items: center;
-  /* justify-content: safe; */
   flex-direction: column;
+  overflow: hidden;
 }
 
 h2 {

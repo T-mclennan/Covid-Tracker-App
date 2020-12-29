@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    // width: '100%',
     '& > * + *': {
       marginTop: theme.spacing(2),
     },
@@ -51,8 +51,8 @@ export default function CustomizedSnackbars() {
           unmountOnExit  
         >
           <Alert onClose={handleClose} severity="warning">
-            <div style={{width: '100%'}}>
-              If you're experiencing Covid-19 symptoms, please contact a doctor immediately!
+            <div >
+              If you're experiencing any Covid-19 symptoms, please contact a healthcare provider immediately!
             </div>
           </Alert>
         </Snackbar>

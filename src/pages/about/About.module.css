@@ -5,7 +5,7 @@
   align-items: center;
   color: aliceblue;
   height: 100%;
-  padding: 1rem 0.5rem;
+  padding: 1rem 1rem 3rem;
   max-width: 47rem;
   width: 100%;
 }
@@ -25,16 +25,16 @@
 }
 
 .tableContainer {
-  margin-bottom: 3rem;
   width: 100%;
 }
 
-h4 {
-  margin: 0;
+.pageContainer h4 {
+  margin: 3rem 0 0;
 }
 
-h6 {
+.tableContainer h6 {
   margin: 0;
+  color: var(--primary-light);
 }
 
 p {
