@@ -58,7 +58,8 @@
   /* padding-bottom: 1rem; */
 }
 
-.sampleContainer h1 {
+.sampleContainer h1,
+h2 {
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -99,50 +100,85 @@
   color: var(--font-tint-dark);
 }
 
-@media (max-width: 500px) {
-  .sample {
-    width: 100%;
-    /* height: 8rem; */
-    justify-content: flex-start;
+@media (max-width: 900px) {
+  .headerContainer {
+    flex-direction: row;
+    background-color: white;
+    margin: 0.5rem 0 0 0;
   }
 
+  .headerContainer h5 {
+    margin-bottom: 4px;
+  }
+
+  .sample {
+    /* height: 48.75%; */
+    height: 95%;
+    /* width: 49.2%; */
+    margin: 0.25rem 0;
+    border-radius: 0.25rem;
+  }
+
+  .sampleContainer h1 {
+    font-size: 2.5rem;
+  }
+
+  .footerContent {
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 650px) {
+  .headerContainer {
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 500px) {
+  /* .sample {
+    width: 100%;
+    justify-content: flex-start;
+  } */
+
   .container {
-    width: 95%;
-    margin: 0.25rem;
-    border-radius: 0.1rem;
-    /* padding: 0 0.25rem 0.25rem 0.25rem; */
+    width: 100%;
+    /* margin: 0.25rem auto; */
     font-size: small;
   }
 
-  .headerContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    top: 0;
-    width: 100%;
-    height: 2.5rem;
-    background-color: white;
-    color: rgb(51, 50, 50);
+  .headerContainer h5 {
+    font-size: 1.1rem;
   }
 
   .sampleContainer {
     flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
     font-size: 1.6em;
   }
 }
 
-@media (max-width: 900px) {
-  .headerContainer {
+@media (max-width: 700px) and (min-width: 400px) {
+  .sample {
+    width: 49.2%;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    min-height: 8rem;
+    justify-content: space-evenly;
+  }
+
+  .sampleContainer {
     flex-direction: row;
-    justify-content: flex-start;
-    background-color: white;
-    margin-bottom: 0;
+  }
+
+  .footerContent {
+    margin-left: 1rem;
   }
 
   .sample {
-    height: 48.75%;
-    border-radius: 0.25rem;
+    width: 100%;
+    /* height: 8rem; */
+    justify-content: flex-start;
   }
 }
