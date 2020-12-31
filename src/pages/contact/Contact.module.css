@@ -1,8 +1,7 @@
 .contactContainer {
-  /* padding: 1rem 0; */
   width: 100%;
   height: 100%;
-  margin: 3rem auto 0;
+  margin: 3rem 0 auto;
 }
 
 .headerBox {
@@ -69,8 +68,8 @@ h6 {
 }
 
 .imageBox {
-  width: 150px;
-  height: 150px;
+  width: 125px;
+  height: 125px;
   border-radius: 50%;
   /* border: 1px solid rgb(106, 106, 161); */
   border: 1px solid rgb(248, 215, 221);
@@ -86,6 +85,10 @@ h6 {
   /* margin: 1rem; */
 }
 
+.infoBox h6 {
+  margin: 0;
+}
+
 .iconBox {
   width: 100%;
   display: flex;
@@ -94,50 +97,40 @@ h6 {
   align-items: center;
 }
 
+.iconBox a {
+  padding: 0 0.5rem;
+}
+
 .icon {
   color: var(--accent-dark);
   /* font-size: 3rem; */
   /* margin: 0.5rem; */
 }
 
-/* ABOUT PAGE */
-
-.listContainer a {
-  font-size: 1.3rem;
-  line-height: 1.5;
-  font-weight: 300;
+.success {
+  color: rgba(227, 218, 231, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 8rem;
+  width: 100%;
 }
 
-.headingBox {
-  padding: 3rem 10rem;
-  /* background-color: rgba(80, 48, 80, 0.5); */
-}
-
-.tableContainer {
-  margin-bottom: 3rem;
-}
-
-h4 {
-  margin-bottom: 0;
-}
-
-h6 {
-  margin: 0;
-}
-
-a:link {
-  color: rgb(163, 87, 103);
-}
-
-a:visited {
-  color: rgb(228, 125, 147);
+.error {
+  color: var(--accent-bold);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 8rem;
+  width: 100%;
 }
 
 @media (max-width: 1000px) {
   .mainContent {
     height: 100%;
     flex-direction: column;
-    /* max-width: 47rem; */
     width: 100%;
   }
 

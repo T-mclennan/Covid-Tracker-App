@@ -1,34 +1,3 @@
-import {
-  fetchSFData,
-  fetchHospitalData,
-  fetchMapGeoJSON,
-  fetchGenderData,
-  fetchRaceData,
-  fetchAgeData,
-  fetchSampleData
-} from '../../api/old-index';
-
-export const fetchData = (criteria) => {
-  switch (criteria) {
-    case 'HOSPITAL_DATA':
-      return fetchHospitalData();
-    case 'SF_CASE_DATA':
-      return fetchSFData();
-    case 'GENDER_DATA':
-      return fetchGenderData();
-    case 'RACE_DATA':
-      return fetchRaceData();
-    case 'AGE_DATA':
-      return fetchAgeData();
-    case 'MAP_DATA':
-      return fetchMapGeoJSON();
-    case 'SAMPLE_DATA':
-      return fetchSampleData();
-    default:
-      console.log(`Criteria ${criteria} not recognized.`);
-      return null;
-  }
-};
 
 export const fetchTitle = (criteria) => {
   switch (criteria) {

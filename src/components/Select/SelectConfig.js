@@ -81,6 +81,14 @@ const raceSecondary = [
     label: 'Native American',
     value: 'chart6',
   },
+  {
+    label: 'Multi-racial',
+    value: 'chart7',
+  },
+  {
+    label: 'Unknown',
+    value: 'chart8',
+  },
 ];
 
 const hospitalSecondary = [

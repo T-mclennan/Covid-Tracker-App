@@ -25,7 +25,9 @@ function Dashboard() {
       {/* <MapChart category={'MAP_DATA'}data={Map_Data} /> */}
     </div> : 
     <div className={styles.loadingScreen}>
-        {/* <Loader type="ThreeDots" color="white" height={80} width={80} /> */}
+      {/* <div style={{margin: 'auto'}}> */}
+        <Loader type="ThreeDots" color="white" height={80} width={80} margin="auto"/>
+      {/* </div> */}
     </div>
   )
 }

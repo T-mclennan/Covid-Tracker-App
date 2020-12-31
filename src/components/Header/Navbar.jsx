@@ -42,11 +42,11 @@ function Navbar() {
             <li className="nav-item">
             <a
               className='nav-links'
-              // href={'https://github.com/T-mclennan/Covid-Tracker-App'}
-              // id='github'
-              // aria-label='github'
-              // target="_blank"
-              // rel="noopener noreferrer"
+              href={'https://github.com/T-mclennan/Covid-Tracker-App'}
+              id='github'
+              aria-label='github'
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={closeMobileMenu}>Github
             </a>
             </li>

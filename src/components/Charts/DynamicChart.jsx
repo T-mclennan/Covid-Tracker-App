@@ -15,9 +15,6 @@ import { composeOptions, composeData, doughnutOptions} from './ChartConfig';
 
 const DynamicChart = ({ category, data }) => {
 
-  console.log(`${category} Chart`)
-  console.log(data)
-
    //Input bar:
  const [dayCount, setDayCount] = useState(90);
  const [subCategory, setSubCategory] = useState('chart1');

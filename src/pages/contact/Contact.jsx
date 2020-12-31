@@ -24,13 +24,16 @@ const Contact = () => {
             <h5>Tristan Mclennan</h5>
             <h6>Junior Full-Stack Developer</h6>
             <div className={iconBox}>
-            <IconButton aria-label="linkedin" href="http://www.linkedin.com">
+            <IconButton aria-label="linkedin" target="_blank"
+              rel="noopener noreferrer" href="https://www.linkedin.com/in/t-mclennan/">
               <LinkedInIcon className={icon} style={{fontSize: 30}}/>
             </IconButton>
-            <IconButton aria-label="github" href="http://www.linkedin.com">
+            <IconButton aria-label="github" target="_blank"
+              rel="noopener noreferrer" href="https://github.com/T-mclennan">
               <GitHubIcon className={icon} style={{fontSize: 28}}/>
             </IconButton>
-            <IconButton aria-label="facebook" href="http://www.linkedin.com">
+            <IconButton aria-label="facebook" target="_blank"
+              rel="noopener noreferrer" href="https://www.facebook.com/tristan.mclennan.1/">
               <FacebookIcon className={icon} style={{fontSize: 30}}/>
             </IconButton>
 

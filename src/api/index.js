@@ -319,6 +319,8 @@ export const processRaceData = (data) => {
     const dailyBlack = Black.map((item) => item.new_confirmed_cases);
     const dailyNative = Native.map((item) => item.new_confirmed_cases);
     const dailyHispanic = Hispanic.map((item) => item.new_confirmed_cases);
+    const dailyUnknown = Unknown.map((item) => item.new_confirmed_cases);
+    const dailyMulti = MultiRacial.map((item) => item.new_confirmed_cases);
 
     const dates = White.map((item) =>
       (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)
@@ -351,7 +353,6 @@ export const processRaceData = (data) => {
               'rgba(216, 194, 107, 0.6)',
               'rgba(226, 139, 84, 0.5)',
               'rgba(44, 182, 228, 0.5)',
-
               '#dca7f1',
               'rgba(100, 77, 212, 0.6)',
               'rgba(184, 70, 123, 0.6)',
@@ -427,13 +428,41 @@ export const processRaceData = (data) => {
       primary: dailyNative,
       secondary: makeSevenDayAverage(dailyNative),
       dates: Native.map((item) => (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)),
-      primaryLabel: 'Confirmed cases of Native American descent',
+      primaryLabel: 'Confirmed cases of Native American',
       secondaryLabel: '7-day average',
       chartLabel: 'daily cases',
       type: 'average',
       colors: {
         primary: '#dca7f1',
         secondary: '#752e91',
+      },
+    };
+
+    const chart7 = {
+      primary: dailyMulti,
+      secondary: makeSevenDayAverage(dailyMulti),
+      dates: MultiRacial.map((item) => (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)),
+      primaryLabel: 'Confirmed cases of Multi-racial descent',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(131, 74, 197, 0.6)',
+        secondary: 'rgba(67, 49, 185, 0.6)',
+      },
+    };
+
+    const chart8 = {
+      primary: dailyUnknown,
+      secondary: makeSevenDayAverage(dailyUnknown),
+      dates: Unknown.map((item) => (new Date(item.specimen_collection_date)).toDateString().slice(4, 10)),
+      primaryLabel: 'Confirmed cases of Unknown descent',
+      secondaryLabel: '7-day average',
+      chartLabel: 'daily cases',
+      type: 'average',
+      colors: {
+        primary: 'rgba(190, 111, 184, 0.6)',
+        secondary: 'rgba(160, 48, 170, 0.6)',
       },
     };
 
@@ -444,6 +473,8 @@ export const processRaceData = (data) => {
       chart4,
       chart5,
       chart6,
+      chart7,
+      chart8,
       source: 'https://data.sfgov.org/resource/vqqm-nsqg.json',
       details: 'https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Race-and-Ethnicity/vqqm-nsqg',
       date_recorded: dates[dates.length - 1],

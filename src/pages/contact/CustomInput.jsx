@@ -7,7 +7,6 @@ const inputSize = window.innerWidth >= 500 ? 'small' : 'normal'
 const useStyles = makeStyles({
   textField: {
     width: 200,
-    color: 'green'
   },
 
   cssLabel: {
