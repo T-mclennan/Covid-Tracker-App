@@ -129,6 +129,10 @@
     z-index: 1;
   }
 
+  .nav-menu.active li {
+    width: 90%;
+  }
+
   .nav-links {
     text-align: center;
     padding: 2rem;
