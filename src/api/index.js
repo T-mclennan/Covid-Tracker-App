@@ -3,13 +3,13 @@ import { dataConfig } from './dataUtils'
 import { makeSevenDayAverage } from '../components/Charts/utils';
 import keys from '../config/keys';
 
-const {CASE_SUMMARY_DATA} = keys
+const {CASE_SUMMARY_DATA, HOSPITAL_RATE_API} = keys
 
 export const processHospitalData = (data) => {
   try {
-    const icuData = data.filter((item) => item.dphcategory === 'ICU');
+    const icuData = data.filter((item) => item.dphcategory === 'ICU' && item.covidstatus === 'COVID+');
     const regularPatientData = data.filter(
-      (item) => item.dphcategory === 'Med/Surg'
+      (item) => item.dphcategory === 'Med/Surg' && item.covidstatus === 'COVID+'
     );
     const label = regularPatientData.map(({ reportdate }) => (new Date(reportdate)).toDateString().slice(4,10));
     const patients = regularPatientData.map(({ patientcount }) => patientcount);
@@ -64,6 +64,7 @@ export const processHospitalData = (data) => {
       source: 'https://data.sfgov.org/resource/nxjg-bhem.json',
       details: 'https://data.sfgov.org/COVID-19/COVID-19-Hospitalizations/nxjg-bhem',
       date_recorded: label[label.length - 1],
+      labelMap: {}
     };
 
     return hospitalData;
@@ -293,10 +294,10 @@ export const partitionSummaryData = (inputData) => {
   return summaryData;
 }
 
-export const fetchSummaryData = async () => {
+export const fetchData = async (url) => {
   
   try {
-    const {data} = await axios.get(CASE_SUMMARY_DATA)
+    const {data} = await axios.get(url)
     return data;
   } catch (error) {
     console.log(error)
@@ -307,7 +308,8 @@ export const fetchSummaryData = async () => {
   
 export const generateData = async () => {
   try {
-    const combinedData = await fetchSummaryData();
+    const combinedData = await fetchData(CASE_SUMMARY_DATA);
+    const hospitalData = await fetchData(HOSPITAL_RATE_API);
     const partitionedData = partitionSummaryData(combinedData)
 
     Object.entries(partitionedData).forEach(entry => {
@@ -320,11 +322,9 @@ export const generateData = async () => {
     const Race_Data = processData(partitionedData['Race/Ethnicity'], 'Race_Data');
     const Gender_Data = processData(partitionedData['Gender'], 'Gender_Data');
     const Sexual_Data = processData(partitionedData['Sexual Orientation'], 'Sexual_Data')
+    const Hospital_Data = processHospitalData(hospitalData)
 
-    console.log(Race_Data)
-    // const unparsed = processSubSet(partitionedData['Sexual Orientation']);
-
-    return {Age_Data, Race_Data, Gender_Data, Sexual_Data};
+    return {Age_Data, Race_Data, Gender_Data, Sexual_Data, Hospital_Data};
   } catch(error) {
     console.log(error)
   }

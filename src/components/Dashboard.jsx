@@ -11,7 +11,6 @@ function Dashboard() {
 
   const {Hospital_Data, Outcome_Data, Case_Data, Gender_Data, Race_Data, Age_Data, loaded, Sexual_Data} = useContext(ChartContext)
 
-  console.log(Race_Data)
   return (
     loaded ? <div className={styles.main}>
       <div className={styles.sampleCharts}>
@@ -19,7 +18,7 @@ function Dashboard() {
         <SampleChart title={'Total Deaths'} data={Outcome_Data.deaths}/> */}
       </div>
       {/* <DynamicChart category={'SF_CASE_DATA'} data={Case_Data}/> */}
-      {/* <DynamicChart category={'HOSPITAL_DATA'} data={Hospital_Data}/> */}
+      <DynamicChart category={'HOSPITAL_DATA'} data={Hospital_Data}/>
       <DynamicChart category={'GENDER_DATA'} data={Gender_Data}/>
       <DynamicChart category={'AGE_DATA'} data={Age_Data}/>
       <DynamicChart category={'RACE_DATA'} data={Race_Data}/>
