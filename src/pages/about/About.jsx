@@ -30,7 +30,7 @@ function About() {
       </div>
 
       <div className={styles.tableContainer}>
-        {chartData.Hospital_Data && <CustomTable data={chartData}/>}
+        {/* {chartData.Hospital_Data && <CustomTable data={chartData}/>} */}
       </div>
     </div>
   )

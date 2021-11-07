@@ -9,19 +9,22 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 function Dashboard() {
 
-  const {Hospital_Data, Outcome_Data, Case_Data, Gender_Data, Race_Data, Age_Data, loaded, Map_Data} = useContext(ChartContext)
+  const {Hospital_Data, Outcome_Data, Case_Data, Gender_Data, Race_Data, Age_Data, loaded, Sexual_Data} = useContext(ChartContext)
 
+  console.log(Race_Data)
   return (
     loaded ? <div className={styles.main}>
       <div className={styles.sampleCharts}>
-        <SampleChart title={'Total Cases'} data={Outcome_Data.cases}/>
-        <SampleChart title={'Total Deaths'} data={Outcome_Data.deaths}/>
+        {/* <SampleChart title={'Total Cases'} data={Outcome_Data.cases}/>
+        <SampleChart title={'Total Deaths'} data={Outcome_Data.deaths}/> */}
       </div>
-      <DynamicChart category={'SF_CASE_DATA'} data={Case_Data}/>
-      <DynamicChart category={'HOSPITAL_DATA'} data={Hospital_Data}/>
+      {/* <DynamicChart category={'SF_CASE_DATA'} data={Case_Data}/> */}
+      {/* <DynamicChart category={'HOSPITAL_DATA'} data={Hospital_Data}/> */}
       <DynamicChart category={'GENDER_DATA'} data={Gender_Data}/>
       <DynamicChart category={'AGE_DATA'} data={Age_Data}/>
       <DynamicChart category={'RACE_DATA'} data={Race_Data}/>
+      <DynamicChart category={'SEXUAL_DATA'} data={Sexual_Data}/>
+
       {/* <MapChart category={'MAP_DATA'}data={Map_Data} /> */}
     </div> : 
     <div className={styles.loadingScreen}>

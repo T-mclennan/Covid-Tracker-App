@@ -11,6 +11,8 @@ export const fetchTitle = (criteria) => {
       return 'Race Data';
     case 'AGE_DATA':
       return 'Age Data';
+    case 'SEXUAL_DATA':
+      return 'Sexual Orientation';
     case 'MAP_DATA':
       return 'Cases by Neighborhood';
     default:

@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect} from 'react'
+import React  from 'react'
 import styles from './SampleChart.module.css';
 import CountUp from 'react-countup';
 import { fetchData } from './utils';

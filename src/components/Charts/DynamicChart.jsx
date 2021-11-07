@@ -31,7 +31,8 @@ const DynamicChart = ({ category, data }) => {
     setChartType(data[subCategory].type)
   }, [data, subCategory]);
 
-  
+  const {labelMap} = data;
+  const secondary = fetchSecondary(category, labelMap)
   const inputBar = currentData ? (
     <>
     <div className={styles.inputBar}>
@@ -46,7 +47,7 @@ const DynamicChart = ({ category, data }) => {
             setChartType(totalData[event].type)
           }}
           heading='Visualization'
-          values={fetchSecondary(category)}
+          values={secondary}
           newValue={subCategory}
         />
       {window.innerWidth >= 900 && chartType !== 'map' &&(
@@ -83,6 +84,7 @@ const DynamicChart = ({ category, data }) => {
       onElementsClick={(e) => {
         const index = e[0]._index+2
         setSubCategory(`chart${index}`)
+        console.log(`chart${index}`)
       }}
     />
   ) : null;

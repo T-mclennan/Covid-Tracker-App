@@ -1,4 +1,5 @@
-import {ageConfig} from '../../api/dataUtils'
+import {dataConfig} from '../../api/dataUtils'
+const {Age_Data, Race_Data, Gender_Data, Sexual_Data} = dataConfig;
 
 export const dataSetLabels = [
   {
@@ -22,6 +23,10 @@ export const dataSetLabels = [
     value: 'RACE_DATA',
   },
   {
+    label: 'Sexual Orientation',
+    value: 'SEXUAL_DATA',
+  },
+  {
     label: 'Neighborhood Map',
     value: 'MAP_DATA',
   },
@@ -42,54 +47,11 @@ const caseSecondary = [
   },
 ];
 
+const comparisonChart = {
+  label: 'Compare All',
+  value: 'chart1',
+}
 
-const ageSecondary = [
-  {
-    label: 'Compare All',
-    value: 'chart1',
-  },
-  ...ageConfig.ageLabels.map((entry, i) => {
-    return {
-      label: `Ages ${entry}`,
-      value: `chart${i+2}`,
-    }
-  })
-];
-
-const raceSecondary = [
-  {
-    label: 'Compare All',
-    value: 'chart1',
-  },
-  {
-    label: 'Asian',
-    value: 'chart2',
-  },
-  {
-    label: 'White',
-    value: 'chart3',
-  },
-  {
-    label: 'Black',
-    value: 'chart4',
-  },
-  {
-    label: 'Hispanic',
-    value: 'chart5',
-  },
-  {
-    label: 'Native American',
-    value: 'chart6',
-  },
-  {
-    label: 'Multi-racial',
-    value: 'chart7',
-  },
-  {
-    label: 'Unknown',
-    value: 'chart8',
-  },
-];
 
 const hospitalSecondary = [
   {
@@ -106,24 +68,6 @@ const hospitalSecondary = [
   },
 ];
 
-const genderSecondary = [
-  {
-    label: 'Compare All',
-    value: 'chart1',
-  },
-  {
-    label: 'Male Cases',
-    value: 'chart2',
-  },
-  {
-    label: 'Female Cases',
-    value: 'chart3',
-  },
-  {
-    label: 'Cumulative',
-    value: 'chart4',
-  },
-];
 
 export const dateRangeValues = [
   {
@@ -156,7 +100,49 @@ export const dateRangeValues = [
   },
 ];
 
-export const fetchSecondary = (dataSet) => {
+//The issue here is that when each dataset is parsed the charts are created dynamically,
+//we are not in control of what content is present or how it is ordered on the doughnut.
+//However the labels of the select dropdown are organized, and if the two don't correspond,
+//we access the wrong chart onClick. To remedy this labelMap gives us a reference of which 
+//chart each label refers to, and use that as a mapping for a click occurance.
+
+export const fetchSecondary = (dataSet, labelMap) => {
+
+  //This functions creates the label and values input needed to populate the Select component
+  //of a given category. The user selects by label and the corresponding chart will be shown.
+  const createLineChartLabels = ({titles}, labelProducer) => {
+    return Object.keys(titles).map((entry, i) => {
+      return {
+        label: labelProducer(`${titles[entry]}`),
+        value: labelMap[entry],
+      }
+    })
+  }
+
+  const ageLabelProducer = (value) => `Ages ${value}`
+  const ageSecondary = [
+    comparisonChart,
+    ...createLineChartLabels(Age_Data, ageLabelProducer)
+  ];
+
+  const genderLabelProducer = (value) => `${value} Cases`;
+  const genderSecondary = [
+    comparisonChart,
+    ...createLineChartLabels(Gender_Data, genderLabelProducer)
+  ];
+
+  const raceLabelProducer = (value) => `${value} Cases`;
+  const raceSecondary = [
+    comparisonChart,
+    ...createLineChartLabels(Race_Data, raceLabelProducer)
+  ];
+
+  const sexLabelProducer = (value) => `${value} Cases`;
+  const sexSecondary = [
+    comparisonChart,
+    ...createLineChartLabels(Sexual_Data, sexLabelProducer)
+  ];
+
   switch (dataSet) {
     case 'HOSPITAL_DATA':
       return hospitalSecondary;
@@ -168,6 +154,8 @@ export const fetchSecondary = (dataSet) => {
       return raceSecondary;
     case 'GENDER_DATA':
       return genderSecondary;
+    case 'SEXUAL_DATA':
+      return sexSecondary;
     case 'MAP_DATA':
       return [];
     default:
