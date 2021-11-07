@@ -19,7 +19,7 @@ const Contact = () => {
       </div>
       <div className={mainContent}> 
         <div className={profileContainer}>
-          <img src={headshot} className={imageBox}></img>
+          <img src={headshot} className={imageBox} alt="contact us"></img>
           <div className={infoBox}>
             <h5>Tristan Mclennan</h5>
             <h6>Junior Full-Stack Developer</h6>

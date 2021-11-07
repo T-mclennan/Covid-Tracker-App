@@ -1,6 +1,3 @@
-import keys from '../config/keys';
-
-const {CASE_SUMMARY_DATA, HOSPITAL_RATE_API, ALT_CASES_DEATHS, SF_ORIGINAL_DATA, GENDER_CASES_API, RACE_ETHNICITY_API, AGE_API,  CASES_MAP_GEOJSON} = keys
 
 export const ageConfig = {
   ageLabels: [
@@ -154,11 +151,11 @@ const totalColors = [
 ]
 
 const colorMap = {
-  Case_Data: 8,
-  Hospital_Data: 1,
+  Case_Data: 9,
+  Hospital_Data: 7,
   Age_Data: 5,
   Race_Data: 1,
-  Gender_Data: 9,
+  Gender_Data: 0,
   Transmission_Data: 6,
   Sexual_Data: 11
 }

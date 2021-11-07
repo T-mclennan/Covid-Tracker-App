@@ -174,6 +174,8 @@ export const extractDates = (data) => {
         (new Date(item.specimen_collection_date)).toDateString().slice(4, 10));
 }
 
+//Processes the general datasets and produces a comparison doughnut chart and one linechart
+//for each sub-category. Returns an object with these and metadata.
 export const processData = (data, category) => {
   const {chartLabel, titles} = dataConfig[category];
   const processedData = processSubSet(data, Object.keys(titles))
@@ -311,7 +313,6 @@ export const generateData = async () => {
 
 export const generateTableData = (data) => {
   const titles = Object.keys(data);
-  console.log(titles)
   return titles.map((title) => {
     const {source, date_recorded, details} = data[`${title}`]
     return {title, source, date: date_recorded, details}

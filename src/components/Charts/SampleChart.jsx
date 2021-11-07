@@ -1,8 +1,6 @@
 import React  from 'react'
 import styles from './SampleChart.module.css';
 import CountUp from 'react-countup';
-import { fetchData } from './utils';
-
 
 function SampleChart({title, data}) {
   const {daily, weekly, total} = data
