@@ -154,12 +154,12 @@ const totalColors = [
 ]
 
 const colorMap = {
-  Case_Data: 7,
+  Case_Data: 8,
   Hospital_Data: 1,
   Age_Data: 5,
   Race_Data: 1,
-  Gender_Data: 2,
-  Transmission_Data: 3,
+  Gender_Data: 9,
+  Transmission_Data: 6,
   Sexual_Data: 11
 }
 
@@ -178,22 +178,10 @@ export const generateColorPallete = (number, category) => {
 }
 
 export const dataConfig = {
-  
-  //  urls: [
-  //   HOSPITAL_RATE_API,
-  //   ALT_CASES_DEATHS,
-  //   SF_ORIGINAL_DATA,
-  //   GENDER_CASES_API,
-  //   RACE_ETHNICITY_API,
-  //   AGE_API,
-  //   CASES_MAP_GEOJSON
-  // ],
 
   Hospital_Data: {
   },
 
-  Outcome_Data: {},
-  Case_Data: {},
   Gender_Data: {
     chartLabel: 'Confirmed cases by Gender',
     source: 'https://data.sfgov.org/resource/nhy6-gqam.json',

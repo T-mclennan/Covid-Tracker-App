@@ -8,6 +8,7 @@ import styles from './Dashboard.module.css'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 function Dashboard() {
+  const {data, loaded}= useContext(ChartContext)
 
   const {
     Hospital_Data, 
@@ -19,8 +20,7 @@ function Dashboard() {
     Age_Data, 
     Sexual_Data, 
     SF_Data, 
-    loaded, 
-  } = useContext(ChartContext)
+  } = data;
 
   return (
     loaded ? <div className={styles.main}>
@@ -35,9 +35,6 @@ function Dashboard() {
       <DynamicChart category={'RACE_DATA'} data={Race_Data}/>
       <DynamicChart category={'SEXUAL_DATA'} data={Sexual_Data}/>
       <DynamicChart category={'TRANSMISSION_DATA'} data={Transmission_Data}/>
-
-
-      {/* <MapChart category={'MAP_DATA'}data={Map_Data} /> */}
     </div> : 
     <div className={styles.loadingScreen}>
       {/* <div style={{margin: 'auto'}}> */}

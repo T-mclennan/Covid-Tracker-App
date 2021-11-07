@@ -161,7 +161,7 @@ export const processSFData = (data) => {
       chart2,
       chart3,
       source: 'https://data.sfgov.org/resource/nfpa-mg4g.json',
-      details: 'https://data.sfgov.org/stories/s/San-Francisco-COVID-19-Data-and-Reports/fjki-2fab',
+      details: 'https://data.sfgov.org/resource/nfpa-mg4g',
       date_recorded: dates[dates.length - 1],
       labelMap: {}
     };
@@ -205,7 +205,8 @@ export const processData = (data, category) => {
 
     const returnData = {
       chart1,
-      source: 'https://data.sfgov.org/resource/sunc-2t3k.json',
+      source: 'https://data.sfgov.org/resource/j7i3-u9ke.json',
+      details: 'https://data.sfgov.org/resource/j7i3-u9ke',
       date_recorded: dates[dates.length - 1],
     };  
 
@@ -302,8 +303,6 @@ export const generateData = async () => {
     const Case_Data = processCaseData(caseData)
     const SF_Data = processSFData(sfData)
 
-    const transmissionData = processSubSet(partitionedData['Transmission Type'])
-    console.log(transmissionData)
     return {Age_Data, Race_Data, Gender_Data, Sexual_Data, Hospital_Data, Death_Data, Case_Data, SF_Data, Transmission_Data};
   } catch(error) {
     console.log(error)
@@ -311,8 +310,10 @@ export const generateData = async () => {
 }
 
 export const generateTableData = (data) => {
-  // return titles.map((title) => {
-  //   const {source, date_recorded, details} = data[`${title}`]
-  //   return {title, source, date: date_recorded, details}
-  // })
+  const titles = Object.keys(data);
+  console.log(titles)
+  return titles.map((title) => {
+    const {source, date_recorded, details} = data[`${title}`]
+    return {title, source, date: date_recorded, details}
+  })
 }

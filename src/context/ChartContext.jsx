@@ -20,7 +20,7 @@ const ChartProvider = (props) => {
   }, []);
 
   return (
-    <ChartContext.Provider value={{...data, loaded}}>
+    <ChartContext.Provider value={{data, loaded}}>
       {props.children}
     </ChartContext.Provider>
   )

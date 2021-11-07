@@ -6,7 +6,7 @@ import {ChartContext} from '../../context/ChartContext'
 function About() {
 
   // const {hospital,sample,sf,gender,race,age,loaded, map} = useContext(ChartContext)
-  const chartData = useContext(ChartContext)
+  const {data} = useContext(ChartContext)
 
   return (
     <div className={styles.pageContainer}>
@@ -30,7 +30,7 @@ function About() {
       </div>
 
       <div className={styles.tableContainer}>
-        {/* {chartData.Hospital_Data && <CustomTable data={chartData}/>} */}
+        {data.Hospital_Data && <CustomTable data={data}/>}
       </div>
     </div>
   )
