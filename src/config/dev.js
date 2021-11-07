@@ -48,4 +48,7 @@ module.exports = {
   SF_ORIGINAL_DATA:
     'https://data.sfgov.org/resource/nfpa-mg4g.json?$limit=10000',
   US_COVID_DATA: 'https://covid19.mathdro.id/api',
+
+  DEATH_RATE_API: 'https://data.sfgov.org/resource/g2di-xufg.json',
+  CASE_RATE_API: 'https://data.sfgov.org/resource/gyr2-k29z.json',
 };

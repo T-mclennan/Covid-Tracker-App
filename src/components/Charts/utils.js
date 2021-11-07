@@ -13,6 +13,8 @@ export const fetchTitle = (criteria) => {
       return 'Age Data';
     case 'SEXUAL_DATA':
       return 'Sexual Orientation';
+    case 'TRANSMISSION_DATA':
+      return 'Transmission Vector';
     case 'MAP_DATA':
       return 'Cases by Neighborhood';
     default:

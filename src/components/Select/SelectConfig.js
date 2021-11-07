@@ -1,5 +1,5 @@
 import {dataConfig} from '../../api/dataUtils'
-const {Age_Data, Race_Data, Gender_Data, Sexual_Data} = dataConfig;
+const {Age_Data, Race_Data, Gender_Data, Sexual_Data, Transmission_Data} = dataConfig;
 
 export const dataSetLabels = [
   {
@@ -25,6 +25,10 @@ export const dataSetLabels = [
   {
     label: 'Sexual Orientation',
     value: 'SEXUAL_DATA',
+  },
+  {
+    label: 'Transmission Data',
+    value: 'TRANSMISSION_DATA',
   },
   {
     label: 'Neighborhood Map',
@@ -143,6 +147,12 @@ export const fetchSecondary = (dataSet, labelMap) => {
     ...createLineChartLabels(Sexual_Data, sexLabelProducer)
   ];
 
+  const transmissionLabelProducer = (value) => `${value} Transmission`;
+  const transmissionSecondary = [
+    comparisonChart,
+    ...createLineChartLabels(Transmission_Data, transmissionLabelProducer)
+  ];
+
   switch (dataSet) {
     case 'HOSPITAL_DATA':
       return hospitalSecondary;
@@ -156,6 +166,8 @@ export const fetchSecondary = (dataSet, labelMap) => {
       return genderSecondary;
     case 'SEXUAL_DATA':
       return sexSecondary;
+    case 'TRANSMISSION_DATA':
+      return transmissionSecondary;
     case 'MAP_DATA':
       return [];
     default:

@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { dataConfig } from './dataUtils'
+import { dataConfig, generateColorPallete } from './dataUtils'
 import { makeSevenDayAverage } from '../components/Charts/utils';
 import keys from '../config/keys';
 
-const {CASE_SUMMARY_DATA, HOSPITAL_RATE_API} = keys
+const {CASE_SUMMARY_DATA, HOSPITAL_RATE_API, DEATH_RATE_API, CASE_RATE_API, SF_ORIGINAL_DATA} = keys
 
 export const processHospitalData = (data) => {
   try {
@@ -15,6 +15,8 @@ export const processHospitalData = (data) => {
     const patients = regularPatientData.map(({ patientcount }) => patientcount);
     const icu = icuData.map(({ patientcount }) => patientcount);
 
+    const [doughnutColors, colorList] = generateColorPallete(3, 'Hospital_Data')
+
     //Acute care 7 day average:
     const chart1 = {
       primary: patients,
@@ -23,10 +25,7 @@ export const processHospitalData = (data) => {
       primaryLabel: 'Daily acute care patients',
       secondaryLabel: 'Seven day average',
       type: 'average',
-      colors: {
-        primary: 'rgba(111, 255, 233, 0.5)',
-        secondary: 'rgba(10, 173, 149, 0.7)',
-      },
+      colors: colorList[0],
     };
 
     //ICU care 7 day average:
@@ -37,10 +36,7 @@ export const processHospitalData = (data) => {
       primaryLabel: 'Daily ICU patients',
       secondaryLabel: 'Seven day average',
       type: 'average',
-      colors: {
-        primary: 'rgba(131, 188, 255, 0.5)',
-        secondary: 'rgba(43, 85, 133, 0.7)',
-      },
+      colors: colorList[1],
     };
 
     //ICU care 7 day average:
@@ -51,10 +47,7 @@ export const processHospitalData = (data) => {
       primaryLabel: 'Daily ICU patients',
       secondaryLabel: 'Daily Acute care patients',
       type: 'stacked',
-      colors: {
-        primary: 'rgba(111, 255, 233, 0.5)',
-        secondary: 'rgba(131, 188, 255, 0.5)',
-      },
+      colors: colorList[2],
     };
 
     const hospitalData = {
@@ -73,56 +66,40 @@ export const processHospitalData = (data) => {
   }
 };
 
-export const processSampleData = (data) => {
+export const processDeathData = (data) => {
 
-    let cases = 0
-    let deaths = 0
-    let weekly_cases = 0
-    let weekly_deaths = 0
-    let daily_cases = 0
-    let daily_deaths = 0
+  const lastDay = data[data.length-1]
+  const lastWeek = data.slice(data.length-7)
+  const weekly_deaths = lastWeek.reduce((acc, day) => {
+    return acc + +day.new_deaths
+  }, 0)
+
+  return {
+    daily: +lastDay.new_deaths,
+    weekly: +weekly_deaths,
+    total: +lastDay.cumulative_deaths,
+    source: 'https://data.sfgov.org/resource/nfpa-mg4g.json',
+    details: 'https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Date-Transmission-and/tvq9-ec9w',
+    date_recorded: (new Date(lastDay.date_of_death)).toDateString().slice(4,10)
     
-    data.forEach(({case_disposition, case_count}) => {
-        if (case_disposition === "Confirmed") {
-          cases += parseInt(case_count)
-        }
-        if (case_disposition === "Death") {
-          deaths += parseInt(case_count)
-        }
-    })
-    data.slice(0, 22).forEach(({case_disposition, case_count}) => {
-      if (case_disposition === "Confirmed") {
-        weekly_cases += parseInt(case_count)
-      }
-      if (case_disposition === "Death") {
-        weekly_deaths += parseInt(case_count)
-      }
-    })
-    data.slice(0, 4).forEach(({case_disposition, case_count}) => {
-      if (case_disposition === "Confirmed") {
-        daily_cases += parseInt(case_count)
-      }
-      if (case_disposition === "Death") {
-        daily_deaths += parseInt(case_count)
-      }
-    })
+  }
+}
 
-    return {
-      cases: {
-        daily: daily_cases,
-        weekly: weekly_cases,
-        total: cases,
-      },
-      deaths: {
-        daily: daily_deaths,
-        weekly: weekly_deaths,
-        total: deaths,
-      },
-      source: 'https://data.sfgov.org/resource/nfpa-mg4g.json',
-      details: 'https://data.sfgov.org/COVID-19/COVID-19-Cases-Summarized-by-Date-Transmission-and/tvq9-ec9w',
-      date_recorded: (new Date(data[0].specimen_collection_date)).toDateString().slice(4,10)
-      
-    }
+export const processCaseData = (data) => {
+  const lastDay = data[data.length-1]
+  const lastWeek = data.slice(data.length-7)
+  const weekly_cases = lastWeek.reduce((acc, day) => {
+    return acc + +day.new_cases
+  }, 0)
+
+  return {
+    daily: +lastDay.new_cases,
+    weekly: +weekly_cases,
+    total: +lastDay.cumulative_cases,
+    source: 'https://data.sfgov.org/resource/gyr2-k29z.json',
+    details: 'https://data.sfgov.org/COVID-19/COVID-19-Cases-Over-Time/gyr2-k29z',
+    date_recorded: (new Date(lastDay.date_of_death)).toDateString().slice(4,10)
+  }
 }
 
 export const processSFData = (data) => {
@@ -146,6 +123,8 @@ export const processSFData = (data) => {
       }
     );
 
+    const [doughnutColors, colorList] = generateColorPallete(3, 'Case_Data')
+
     //Positive cases + seven day average:
     const chart1 = {
       primary: positive,
@@ -154,10 +133,7 @@ export const processSFData = (data) => {
       primaryLabel: 'Positive Tests',
       secondaryLabel: '7-day average',
       type: 'average',
-      colors: {
-        primary: 'rgba(146, 201, 219, 0.5)',
-        secondary: 'rgba(25, 195, 214, 0.5)',
-      },
+      colors: colorList[0],
     };
 
     const chart2 = {
@@ -167,10 +143,7 @@ export const processSFData = (data) => {
       primaryLabel: 'Tests Conducted',
       secondaryLabel: '7-day average',
       type: 'average',
-      colors: {
-        primary: 'rgba(159, 233, 211, 0.5)',
-        secondary: 'rgba(26, 153, 115, 0.7)',
-      },
+      colors: colorList[1],
     };
 
     const chart3 = {
@@ -180,10 +153,7 @@ export const processSFData = (data) => {
       primaryLabel: '% of positive tests',
       secondaryLabel: '7-day average',
       type: 'average',
-      colors: {
-        primary: 'rgba(230, 194, 173, 0.5)',
-        secondary: 'rgba(173, 81, 27, 0.7)',
-      },
+      colors: colorList[2],
     };
 
     const SFData = {
@@ -193,6 +163,7 @@ export const processSFData = (data) => {
       source: 'https://data.sfgov.org/resource/nfpa-mg4g.json',
       details: 'https://data.sfgov.org/stories/s/San-Francisco-COVID-19-Data-and-Reports/fjki-2fab',
       date_recorded: dates[dates.length - 1],
+      labelMap: {}
     };
 
     return SFData;
@@ -204,11 +175,13 @@ export const extractDates = (data) => {
 }
 
 export const processData = (data, category) => {
-  const {doughnutColors, colorList, chartLabel, titles} = dataConfig[category];
+  const {chartLabel, titles} = dataConfig[category];
   const processedData = processSubSet(data, Object.keys(titles))
   const organizedData = Object.values(processedData)
   const labels = Object.keys(processedData)
   const dates = extractDates(organizedData[0]);
+
+  const [doughnutColors, colorList] = generateColorPallete(labels?.length, category)
 
     const chart1 = {
       primary: {
@@ -267,14 +240,14 @@ export const processMapData = (data) => {
 }
 
 //Returns data that is grouped by sub-categories, charactersitic_group.
-export const processSubSet = (data, titles) => {
+export const processSubSet = (data, titles={}) => {
   const organizedData = {}
   data.forEach(item => {
       const {characteristic_group} = item;
-      if (titles.includes(characteristic_group)) {
+      // if (titles.includes(characteristic_group)) {
         const categoryData = organizedData[`${characteristic_group}`] || [];
         organizedData[`${characteristic_group}`] = [...categoryData, item];
-      }
+      // }
   })
   return organizedData
 }
@@ -304,27 +277,34 @@ export const fetchData = async (url) => {
   }
 }
 
-// const processes = [processHospitalData, processSampleData, processSFData, processGenderData, processRaceData, processAgeData, processMapData]
-  
 export const generateData = async () => {
   try {
     const combinedData = await fetchData(CASE_SUMMARY_DATA);
     const hospitalData = await fetchData(HOSPITAL_RATE_API);
+    const deathData = await fetchData(DEATH_RATE_API)
+    const caseData = await fetchData(CASE_RATE_API)
+    const sfData = await fetchData(SF_ORIGINAL_DATA)
     const partitionedData = partitionSummaryData(combinedData)
 
-    Object.entries(partitionedData).forEach(entry => {
-      const [key, value] = entry;
-      // console.log(key)
-      // console.log(value)
-    });
+    // Object.entries(partitionedData).forEach(entry => {
+    //   const [key, value] = entry;
+    //   console.log(key)
+    //   console.log(value)
+    // });
 
     const Age_Data = processData(partitionedData['Age Group'], 'Age_Data');
     const Race_Data = processData(partitionedData['Race/Ethnicity'], 'Race_Data');
     const Gender_Data = processData(partitionedData['Gender'], 'Gender_Data');
     const Sexual_Data = processData(partitionedData['Sexual Orientation'], 'Sexual_Data')
+    const Transmission_Data = processData(partitionedData['Transmission Type'], 'Transmission_Data')
     const Hospital_Data = processHospitalData(hospitalData)
+    const Death_Data = processDeathData(deathData)
+    const Case_Data = processCaseData(caseData)
+    const SF_Data = processSFData(sfData)
 
-    return {Age_Data, Race_Data, Gender_Data, Sexual_Data, Hospital_Data};
+    const transmissionData = processSubSet(partitionedData['Transmission Type'])
+    console.log(transmissionData)
+    return {Age_Data, Race_Data, Gender_Data, Sexual_Data, Hospital_Data, Death_Data, Case_Data, SF_Data, Transmission_Data};
   } catch(error) {
     console.log(error)
   }

@@ -1,6 +1,6 @@
 :root {
-  --cases-color: rgb(47, 102, 68);
-  --deaths-color: rgb(109, 47, 47);
+  --cases-color: #0c5daa;
+  --deaths-color: #820014;
 }
 
 .container {

@@ -7,9 +7,6 @@ import './Navbar.css';
 
 function Navbar() {
 
-  // const [path, setPath] = useState(window.location.pathname)
-  // console.log('Nav: ', path)
-
   const [isActive, setIsActive] = useState(false)
 
   const toggleButton = useCallback(

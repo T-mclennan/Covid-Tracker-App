@@ -127,6 +127,7 @@
     opacity: 1;
     transition: all 0.25s ease;
     z-index: 1;
+    justify-content: center;
   }
 
   .nav-menu.active li {

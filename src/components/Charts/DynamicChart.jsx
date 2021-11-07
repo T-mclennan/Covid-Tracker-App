@@ -84,7 +84,6 @@ const DynamicChart = ({ category, data }) => {
       onElementsClick={(e) => {
         const index = e[0]._index+2
         setSubCategory(`chart${index}`)
-        console.log(`chart${index}`)
       }}
     />
   ) : null;

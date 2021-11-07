@@ -69,6 +69,114 @@ export const ageConfig = {
   ]
 }
 
+const totalColors = [
+  {
+    primary: '#ffa39e',
+    secondary: '#cf1322',
+  },
+  {
+    primary: '#ffbb96',
+    secondary: '#d4380d',
+  },
+  {
+    primary: '#ffc069',
+    secondary: '#d46b08',
+  },
+  {
+    primary: '#ffd666',
+    secondary: '#d48806',
+  },
+  {
+    primary: '#fff566',
+    secondary: '#d4b106',
+  },
+  {
+    primary: '#d3f261',
+    secondary: '#7cb305',
+  },
+  {
+    primary: '#95de64',
+    secondary: '#389e0d',
+  },
+  {
+    primary: '#5cdbd3',
+    secondary: '#08979c',
+  },
+  {
+    primary: '#69c0ff',
+    secondary: '#096dd9',
+  },
+  {
+    primary: '#85a5ff',
+    secondary: '#096dd9',
+  },
+  {
+    primary: '#d3adf7',
+    secondary: '#096dd9',
+  },
+  {
+    primary: '#ffadd2',
+    secondary: '#c41d7f',
+  },
+  // {
+  //   primary: 'rgba(233, 201, 94, 0.6)',
+  //   secondary: 'rgba(207, 132, 46, 0.6)',
+  // },
+  // {
+  //   primary: 'rgba(226, 122, 84, 0.5)',
+  //   secondary: 'rgba(185, 65, 22, 0.5)',
+  // },
+  // {
+  //   primary: 'rgba(44, 130, 228, 0.5)',
+  //   secondary: 'rgba(44, 47, 228, 0.5)',
+  // },
+  // {
+  //   primary: 'rgba(127, 192, 241, 0.6)',
+  //   secondary: 'rgba(63, 171, 190, 0.6)',
+  // },
+  // {
+  //   primary: 'rgba(190, 111, 184, 0.6)',
+  //   secondary: 'rgba(160, 48, 170, 0.6)',
+  // },
+  // {
+  //   primary: 'rgba(127, 192, 241, 0.6)',
+  //   secondary: 'rgba(63, 171, 190, 0.6)',
+  // },
+
+  // {
+  //   primary: 'rgba(189, 54, 67, 0.5)',
+  //   secondary: 'rgba(156, 26, 104, 0.6)',
+  // },
+  // {
+  //   primary: 'rgba(131, 74, 197, 0.6)',
+  //   secondary: 'rgba(67, 49, 185, 0.6)',
+  // },
+]
+
+const colorMap = {
+  Case_Data: 7,
+  Hospital_Data: 1,
+  Age_Data: 5,
+  Race_Data: 1,
+  Gender_Data: 2,
+  Transmission_Data: 3,
+  Sexual_Data: 11
+}
+
+export const generateColorPallete = (number, category) => {
+  // const startIndex = Math.floor(Math.random() * (totalColors.length));
+  const startIndex = colorMap[category]
+  const colorList = []
+  let index = startIndex;
+  for (let i = 0; i < number; i++) {
+    colorList.push(totalColors[index]);
+    index++;
+    if (index > totalColors.length-1) index = 0;
+  }
+  const doughnutColors = colorList.map(item => item.primary)
+  return [doughnutColors, colorList]
+}
+
 export const dataConfig = {
   
   //  urls: [
@@ -139,45 +247,6 @@ export const dataConfig = {
       'Unknown': 'Unknown',
       'Other': 'Other'
     }, 
-    doughnutColors: [
-      'rgba(94, 233, 175, 0.6)',
-      'rgba(216, 194, 107, 0.6)',
-      'rgba(226, 139, 84, 0.5)',
-      'rgba(44, 182, 228, 0.5)',
-      '#dca7f1',
-      'rgba(100, 77, 212, 0.6)',
-      'rgba(184, 70, 123, 0.6)',
-    ],
-    colorList: [
-      {
-        primary: 'rgba(94, 233, 175, 0.6)',
-        secondary: 'rgba(50, 205, 216, 0.6)',
-      },
-      {
-        primary: 'rgba(226, 139, 84, 0.5)',
-        secondary: 'rgba(196, 82, 41, 0.6)',
-      },
-      {
-        primary: 'rgba(216, 194, 107, 0.6)',
-        secondary: 'rgba(204, 143, 68, 0.6)',
-      },
-      {
-        primary: 'rgba(44, 182, 228, 0.5)',
-        secondary: 'rgba(50, 104, 206, 0.6)',
-      },
-      {
-        primary: '#dca7f1',
-        secondary: '#752e91',
-      },
-      {
-        primary: 'rgba(131, 74, 197, 0.6)',
-        secondary: 'rgba(67, 49, 185, 0.6)',
-      },
-      {
-        primary: 'rgba(190, 111, 184, 0.6)',
-        secondary: 'rgba(160, 48, 170, 0.6)',
-      },
-    ]
   },
   Age_Data: {
     chartLabel: 'Confirmed cases by Age',
@@ -301,5 +370,15 @@ export const dataConfig = {
           secondary: 'rgba(156, 26, 104, 0.6)',
         },
     ],
+  }, 
+
+  Transmission_Data: {
+    chartLabel: 'Confirmed cases by Transmission Type',
+    source: 'https://data.sfgov.org/resource/sunc-2t3k.json',
+    titles: {
+      'From Contact': 'Contact',
+      'Community': 'Community',
+      'Unknown': 'Unknown',
+    }
   }
 }
