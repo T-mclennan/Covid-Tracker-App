@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   width: 47%;
-  max-width: 500px;
+  /* max-width: 500px; */
   margin: 0.7rem auto;
   background-color: white;
   border-radius: 0.5rem;

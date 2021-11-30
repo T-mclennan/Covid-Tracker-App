@@ -3,13 +3,14 @@
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0.5rem 7rem;
+  padding: 2rem 7rem;
   min-height: 76vh;
+  max-width: 100rem;
   width: 100%;
 }
 
 .loadingScreen {
-  min-height: 76vh;
+  min-height: calc(100vh - 10rem);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -22,7 +23,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 47%;
-  max-width: 500px;
+  /* max-width: 500px; */
   margin: 0.75rem auto;
 }
 
