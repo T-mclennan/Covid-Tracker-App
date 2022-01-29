@@ -22,6 +22,7 @@ function Dashboard() {
   } = data;
 
   return (
+    
     loaded ? <div className={styles.main}>
       <div className={styles.sampleCharts}>
         <SampleChart title={'Total Cases'} data={Case_Data}/>

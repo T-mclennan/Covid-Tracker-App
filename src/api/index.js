@@ -110,7 +110,8 @@ export const processSFData = (data) => {
       negative = [],
       average = [];
 
-    data.forEach(
+    const sorted = data.sort((a, b) => new Date(a.specimen_collection_date) - new Date(b.specimen_collection_date));
+    sorted.forEach(
       ({ specimen_collection_date, pos, pct, neg, tests }) => {
         if ((new Date(specimen_collection_date)).toDateString().slice(4, 10) !== dates[dates.length - 1]) {
           positive.push(pos);

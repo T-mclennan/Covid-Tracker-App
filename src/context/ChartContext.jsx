@@ -9,12 +9,10 @@ const ChartProvider = (props) => {
   const [loaded, setLoaded] = useState(false)
 
   useLayoutEffect(() => {
-    console.log('Fetching Data: ChartContext.jsx')
     const fetchAPI = async () => {
       const data = await generateData()
       setData(data)
       setLoaded(true)
-      console.log('Data fetched: success')
     };
     fetchAPI();
   }, []);
